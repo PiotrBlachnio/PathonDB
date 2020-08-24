@@ -13,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projects\\Web\\.NET\\Json-Database\\Json-Database.csproj",
-      "projectName": "Json-Database",
-      "projectPath": "C:\\Projects\\Web\\.NET\\Json-Database\\Json-Database.csproj",
+      "projectUniqueName": "C:\\Projects\\Web\\.NET\\Json-Database\\JsonDatabase.csproj",
+      "projectName": "JsonDatabase",
+      "projectPath": "C:\\Projects\\Web\\.NET\\Json-Database\\JsonDatabase.csproj",
       "packagesPath": "C:\\Users\\Piotr Błachnio\\.nuget\\packages\\",
       "outputPath": "C:\\Projects\\Web\\.NET\\Json-Database\\obj\\",
       "projectStyle": "PackageReference",
