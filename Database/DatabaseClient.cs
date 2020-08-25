@@ -1,25 +1,23 @@
-using System;
+using System.Collections.Generic;
+using System.Linq;
 using JsonDatabase.Validators.Create;
 
 namespace JsonDatabase.Database {
     public class DatabaseClient {
+        private readonly Dictionary<string, dynamic> _storage = new Dictionary<string, dynamic>();
 
         public ResultSet ExecuteQuery(string query) {
-            try {
-                new CreateTableValidator().Validate(query);
-            } catch(Exception ex) {
-                Console.WriteLine(ex.Message);
-            }
+            new CreateTableValidator(_storage).Validate(query);
 
             return new ResultSet{ isSuccess=true };
         }
 
-        private bool CreateTable(string name, string schema) {
-            return true;
+        public string[] GetTableNames() {
+            return this._storage.Keys.ToArray();
         }
     }
 }
 
 //? Correct: CREATE TABLE users (id text, username int);
-//! Malformed parameters: CREATE TABLE users (id text, username;
+//! Malformed parameters: CREATE TABLE users (id text, username);
 //! Incorrect start: CREATE KEY users (id text, username int);
