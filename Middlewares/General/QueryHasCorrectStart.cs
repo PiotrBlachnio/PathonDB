@@ -12,7 +12,7 @@ namespace JsonDatabase.Middlewares.General {
             if(query == null || query.Length <= _startingString.Length) throw new IncorrectQueryStartException(query);
             if(!(query.ToUpper().StartsWith(_startingString))) throw new IncorrectQueryStartException(query);
 
-            return this.CheckNext(query);
+            return this.CheckNext(query.Substring(_startingString.Length));
         }
     }
 }
