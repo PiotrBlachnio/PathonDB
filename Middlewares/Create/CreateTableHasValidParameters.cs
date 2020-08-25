@@ -1,5 +1,6 @@
 using System.Linq;
 using JsonDatabase.Exceptions;
+using JsonDatabase.Middlewares.General;
 
 namespace JsonDatabase.Middlewares.Create {
     public class CreateTableHasValidParameters : Middleware {

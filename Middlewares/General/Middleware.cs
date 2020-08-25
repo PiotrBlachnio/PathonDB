@@ -1,4 +1,4 @@
-namespace JsonDatabase.Middlewares {
+namespace JsonDatabase.Middlewares.General {
     public abstract class Middleware {
         private Middleware next = null;
 
