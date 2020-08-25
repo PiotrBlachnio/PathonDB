@@ -6,10 +6,11 @@ namespace JsonDatabase.Validators.Create {
         private const string CREATE_QUERY_START = "CREATE TABLE ";
         private const string CREATE_QUERY_END = ");";
 
-        private Middleware _middleware; 
+        private Middleware _middleware = new QueryHasCorrectStart(CREATE_QUERY_START);
 
         public CreateTableValidator() {
-            _middleware = new CreateTableHasValidParameters();
+            _middleware 
+                .LinkWith(new CreateTableHasValidParameters());
         }
 
         public bool Validate(string query) {

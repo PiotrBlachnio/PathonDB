@@ -1,10 +1,10 @@
 using JsonDatabase.Exceptions;
 
 namespace JsonDatabase.Middlewares.General {
-    public class QueryHasCorrectStar : Middleware {
+    public class QueryHasCorrectStart : Middleware {
         private readonly string _startingString;
 
-        public QueryHasCorrectStar(string startingString) {
+        public QueryHasCorrectStart(string startingString) {
             _startingString = startingString;
         }
 

@@ -1,7 +1,7 @@
+using System;
+
 namespace JsonDatabase.Exceptions {
-    public class MalformedParametersException : GenericException {
-        public MalformedParametersException() {
-            this.Message = "Query has malformed parameters";
-        }
+    public class MalformedParametersException : Exception {
+        public MalformedParametersException(string query) : base($"Query has malformed parameters: \"{query}\"") {}
     }
 }

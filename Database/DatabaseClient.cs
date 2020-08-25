@@ -5,7 +5,12 @@ namespace JsonDatabase.Database {
     public class DatabaseClient {
 
         public ResultSet ExecuteQuery(string query) {
-            Console.WriteLine(new CreateTableValidator().Validate(query));
+            try {
+                new CreateTableValidator().Validate(query);
+            } catch(Exception ex) {
+                Console.WriteLine(ex.Message);
+            }
+
             return new ResultSet{ isSuccess=true };
         }
 
@@ -15,4 +20,6 @@ namespace JsonDatabase.Database {
     }
 }
 
-// CREATE TABLE users (id text, username int);
+//? Correct: CREATE TABLE users (id text, username int);
+//! Malformed parameters: CREATE TABLE users (id text, username;
+//! Incorrect start: CREATE KEY users (id text, username int);
