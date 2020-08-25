@@ -9,10 +9,9 @@ namespace JsonDatabase.Middlewares.General {
         }
 
         public override bool Check(string query) {
-            if(query == null || query.Length <= _endingString.Length) throw new IncorrectQueryStartException(query);
-            if(!(query.ToUpper().StartsWith(_endingString))) throw new IncorrectQueryStartException(query);
+            if(!query.ToUpper().EndsWith(_endingString)) throw new IncorrectQueryEndException(query);
 
-            return this.CheckNext(query.Substring(_endingString.Length));
+            return this.CheckNext(query.Substring(0, query.Length - _endingString.Length));
         }
     }
 }
