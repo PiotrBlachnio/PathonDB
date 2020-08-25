@@ -19,5 +19,7 @@ namespace JsonDatabase.Database {
 }
 
 //? Correct: CREATE TABLE users (id text, username int);
-//! Malformed parameters: CREATE TABLE users (id text, username);
 //! Incorrect start: CREATE KEY users (id text, username int);
+//! Incorrect table name: CREATE TABLE (id text, username int);
+//! Incorrect end: CREATE TABLE users (id text, username int)
+//! Malformed parameters: CREATE TABLE users (id text, username);

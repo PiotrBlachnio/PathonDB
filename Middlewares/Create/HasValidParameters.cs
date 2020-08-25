@@ -7,8 +7,8 @@ namespace JsonDatabase.Middlewares.Create {
         public override bool Check(string query) {
             var arguments = query.Split("(");
 
-            if(arguments.Length != 2) throw new MalformedParametersException(query);
-            if(!(arguments[1].Split(",").Select(x => x.Trim()).Select(x => x.Split(" ")).All(x => x.Length == 2))) throw new MalformedParametersException(query);
+            if(arguments.Length != 2) throw new MalformedParametersException();
+            if(!(arguments[1].Split(",").Select(x => x.Trim()).Select(x => x.Split(" ")).All(x => x.Length == 2))) throw new MalformedParametersException();
 
             return this.CheckNext(query);
         }
