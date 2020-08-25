@@ -3,7 +3,7 @@ using JsonDatabase.Exceptions;
 using JsonDatabase.Middlewares.General;
 
 namespace JsonDatabase.Middlewares.Create {
-    public class CreateTableHasValidParameters : Middleware {
+    public class HasValidParameters : Middleware {
         public override bool Check(string query) {
             var arguments = query.Split("(");
 
