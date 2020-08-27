@@ -1,18 +1,17 @@
 using JsonDatabase.Middlewares.General;
 using JsonDatabase.Middlewares.Create;
-using System.Collections.Generic;
+using JsonDatabase.Models;
 
 namespace JsonDatabase.Validators.Create {
     public class CreateTableValidator : Validator {
         private const string QUERY_START = "CREATE TABLE ";
         private const string QUERY_END = ");";
 
-        public CreateTableValidator(Dictionary<string, dynamic> storage) {
-            this._middleware = new QueryHasCorrectStart(QUERY_START);
+        public CreateTableValidator(Database database) {
+            this._middleware = new HasValidTableName(QUERY_START, database);
 
             this._middleware
-                .LinkWith(new HasValidTableName(storage))
-                .LinkWith(new QueryHasCorrectEnd(QUERY_END))
+                .LinkWith(new HasCorrectEnd(QUERY_END))
                 .LinkWith(new HasValidParameters())
                 .LinkWith(new HasValidSupportedTypes());
         }
