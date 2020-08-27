@@ -1,28 +1,20 @@
-using System.Collections.Generic;
-using System.Linq;
 using JsonDatabase.Exceptions;
 using JsonDatabase.Services;
 
-namespace JsonDatabase.Database {
+namespace JsonDatabase.Models {
     public class DatabaseClient {
-        private readonly Dictionary<string, dynamic> _storage = new Dictionary<string, dynamic>();
+        private readonly Database _database = new Database();
 
-        public ResultSet ExecuteQuery(string query) {
+        public void ExecuteQuery(string query) {
             var arguments = query.Split(" ");
 
             switch(arguments[0].ToUpper()) {
                 case "CREATE":
-                    new CreateService(_storage).PerformQuery(query);
+                    new CreateService(_database).PerformQuery(query);
                     break;
                 default:
                     throw new InvalidQueryArgumentsException(arguments[0]);
             }
-            
-            return new ResultSet{ isSuccess=true };
-        }
-
-        public string[] GetTableNames() {
-            return this._storage.Keys.ToArray();
         }
     }
 }

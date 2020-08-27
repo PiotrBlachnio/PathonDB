@@ -1,5 +1,5 @@
 ﻿using System;
-using JsonDatabase.Database;
+using JsonDatabase.Models;
 
 namespace JsonDatabase {
     class Program {

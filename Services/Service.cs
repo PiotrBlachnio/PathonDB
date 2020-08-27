@@ -1,11 +1,11 @@
-using System.Collections.Generic;
+using JsonDatabase.Models;
 
 namespace JsonDatabase.Services {
     public abstract class Service {
-        protected readonly Dictionary<string, dynamic> _storage;
+        protected readonly Database _database;
 
-        public Service(Dictionary<string, dynamic> storage) {
-            _storage = storage;
+        public Service(Database database) {
+            _database = database;
         }
 
         public abstract void PerformQuery(string query);

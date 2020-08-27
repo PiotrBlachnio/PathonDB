@@ -1,8 +1,13 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace JsonDatabase.Models {
     public class Database {
-        private Dictionary<string, Table> Tables = new Dictionary<string, Table>();
+        private readonly Dictionary<string, Table> _tables = new Dictionary<string, Table>();
+
+        public string[] GetTableNames() {
+            return _tables.Keys.ToArray();
+        }
     }
 }
 
