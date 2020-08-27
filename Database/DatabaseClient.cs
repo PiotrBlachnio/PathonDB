@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using JsonDatabase.Exceptions;
 using JsonDatabase.Validators.Create;
 
 namespace JsonDatabase.Database {
@@ -7,8 +8,8 @@ namespace JsonDatabase.Database {
         private readonly Dictionary<string, dynamic> _storage = new Dictionary<string, dynamic>();
 
         public ResultSet ExecuteQuery(string query) {
-            new CreateTableValidator(_storage).Validate(query);
-
+            ValidateQuery(query);
+            
             return new ResultSet{ isSuccess=true };
         }
 
@@ -17,19 +18,21 @@ namespace JsonDatabase.Database {
         }
 
         private void ValidateQuery(string query) {
-            var arguments = query.ToUpper().Split(" ");
+            var arguments = query.Split(" ");
 
-            switch(arguments[0]) {
+            switch(arguments[0].ToUpper()) {
                 case "CREATE":
+                    new CreateTableValidator(_storage).Validate(query);
                     break;
                 default:
-                    
+                    throw new InvalidQueryTypeException(arguments[0]);
             }
         }
     }
 }
 
 //? Correct: CREATE TABLE users (id text, username int);
+//! Incorrect query type: GET * FROM users;
 //! Incorrect start: CREATE KEY users (id text, username int);
 //! Incorrect table name: CREATE TABLE (id text, username int);
 //! Incorrect end: CREATE TABLE users (id text, username int)
