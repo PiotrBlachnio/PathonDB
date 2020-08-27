@@ -1,3 +1,11 @@
+using System.Collections.Generic;
+
+namespace JsonDatabase.Models {
+    public class Database {
+        private Dictionary<string, Table> Tables = new Dictionary<string, Table>();
+    }
+}
+
 /**
     {
         "users": {
@@ -10,15 +18,14 @@
                     2: "Bob431"
                 }
             },
-            "email": {
-                properties: {
-                    notNul: false
-                },
-                data: {
-                    1: "Jeff@gmail.com",
-                    2: "Bob@gmail.com"
-                }
-            }
+        "email": {
+            properties: {
+                notNul: false
+            },
+            data: {
+                1: "Jeff@gmail.com",
+                2: "Bob@gmail.com"
+            } 
         }
     }
 
