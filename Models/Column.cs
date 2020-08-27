@@ -3,7 +3,11 @@ using System.Collections.Generic;
 
 namespace JsonDatabase.Models {
     public class Column<T> {
-        private Dictionary<string, object> properties { get; set; }
-        private Dictionary<Guid, T> data { get; set; }
+        private readonly Dictionary<string, object> _properties;
+        private readonly Dictionary<Guid, T> _data;
+
+        public Dictionary<string, object> GetProperties() {
+            return _properties;
+        }
     }
 }

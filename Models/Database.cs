@@ -8,6 +8,10 @@ namespace JsonDatabase.Models {
         public string[] GetTableNames() {
             return _tables.Keys.ToArray();
         }
+
+        public void AddTable(Table table) {
+            _tables.Add(table.Name, table);
+        }
     }
 }
 
