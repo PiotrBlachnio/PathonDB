@@ -9,13 +9,15 @@ namespace JsonDatabase {
             // var query = Console.ReadLine();
             var query = "CREATE TABLE users (id text, username int);";
 
-            try {
-                client.ExecuteQuery(query);
-            } catch(Exception ex) {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(ex.Message);
-                Console.ResetColor();
-            }          
+            // try {
+            //     client.ExecuteQuery(query);
+            // } catch(Exception ex) {
+            //     Console.ForegroundColor = ConsoleColor.Red;
+            //     Console.WriteLine(ex.Message);
+            //     Console.ResetColor();
+            // }    
+
+            client.ExecuteQuery(query);      
         }
     }
 }

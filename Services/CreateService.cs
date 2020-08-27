@@ -13,6 +13,7 @@ namespace JsonDatabase.Services {
                 case "TABLE":
                     new CreateTableValidator(_database).Validate(query);
                     CreateTable(query);
+
                     break;
                 default:
                     throw new InvalidQueryArgumentsException(arguments[1]);
@@ -23,7 +24,14 @@ namespace JsonDatabase.Services {
             var tableName = UtilService.GetTableName(query);
             var parameters = UtilService.GetParameters(query);
 
+            var table = new Table(tableName.ToLower());
+            
+            foreach(var parameter in parameters) {
+                var column = new Column(new Properties(parameter[0], parameter[1].ToUpper()));
+                table.AddColumn(column);
+            }
 
+            _database.AddTable(table);
         }
     }
 }

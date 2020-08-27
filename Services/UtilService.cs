@@ -1,10 +1,11 @@
+using System;
 using System.Linq;
 
 namespace JsonDatabase.Services {
     public static class UtilService {
         public static string GetTableName(string query) {
             var arguments = query.Split(" ");
-            return arguments[1];
+            return arguments[2];
         }
 
         public static string[][] GetParameters(string query) {
@@ -15,4 +16,3 @@ namespace JsonDatabase.Services {
         }
     }
 }
-// username text, email int
