@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using JsonDatabase.Exceptions;
 using JsonDatabase.Middlewares.General;
@@ -11,7 +12,7 @@ namespace JsonDatabase.Middlewares.Create {
             var parameters = arguments[1].Split(",").Select(x => x.Trim()).Select(x => x.Split(" "));
 
             foreach(var field in parameters) {
-                if(!ColumnType.IsFieldAllowed(field[1])) throw new UnsupportedTypeException(field[1]);
+                if(!Enum.IsDefined(typeof(ColumnType), field[1].ToUpper())) throw new UnsupportedTypeException(field[1]);
             }
     
             return this.CheckNext(query);
