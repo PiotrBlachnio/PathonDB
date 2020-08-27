@@ -18,14 +18,15 @@ namespace JsonDatabase.Models {
                     2: "Bob431"
                 }
             },
-        "email": {
-            properties: {
-                notNul: false
-            },
-            data: {
-                1: "Jeff@gmail.com",
-                2: "Bob@gmail.com"
-            } 
+            "email": {
+                properties: {
+                    notNul: false
+                },
+                data: {
+                    1: "Jeff@gmail.com",
+                    2: "Bob@gmail.com"
+                } 
+            }
         }
     }
 
