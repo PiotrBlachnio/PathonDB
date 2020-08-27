@@ -14,7 +14,7 @@ namespace JsonDatabase.Validators.Create {
                 .LinkWith(new HasValidTableName(storage))
                 .LinkWith(new QueryHasCorrectEnd(QUERY_END))
                 .LinkWith(new HasValidParameters())
-                .LinkWith(new HasValidSupportedParameters());
+                .LinkWith(new HasValidSupportedTypes());
         }
     }
 }

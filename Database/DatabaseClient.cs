@@ -15,6 +15,17 @@ namespace JsonDatabase.Database {
         public string[] GetTableNames() {
             return this._storage.Keys.ToArray();
         }
+
+        private void ValidateQuery(string query) {
+            var arguments = query.ToUpper().Split(" ");
+
+            switch(arguments[0]) {
+                case "CREATE":
+                    break;
+                default:
+                    
+            }
+        }
     }
 }
 
@@ -23,3 +34,4 @@ namespace JsonDatabase.Database {
 //! Incorrect table name: CREATE TABLE (id text, username int);
 //! Incorrect end: CREATE TABLE users (id text, username int)
 //! Malformed parameters: CREATE TABLE users (id text, username);
+//! Unsupported types: CREATE TABLE users (id text, username bigint);
