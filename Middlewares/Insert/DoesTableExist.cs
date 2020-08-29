@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using JsonDatabase.Exceptions;
 using JsonDatabase.Middlewares.General;
@@ -23,7 +24,7 @@ namespace JsonDatabase.Middlewares.Insert {
             if(!_database.GetTableNames().Contains(tableName)) throw new TableNotFoundException(tableName);
             if(valuesKeyword.ToUpper() != "VALUES") throw new InvalidQueryArgumentsException(valuesKeyword);
 
-            return this.CheckNext(query.Substring(_startingString.Length + tableName.Length + valuesKeyword.Length));
+            return this.CheckNext(substring);
         }
     }
 }

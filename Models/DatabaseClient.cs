@@ -1,5 +1,6 @@
 using JsonDatabase.Exceptions;
 using JsonDatabase.Services;
+using JsonDatabase.Validators;
 
 namespace JsonDatabase.Models {
     public class DatabaseClient {
@@ -11,6 +12,9 @@ namespace JsonDatabase.Models {
             switch(arguments[0].ToUpper()) {
                 case "CREATE":
                     new CreateService(_database).PerformQuery(query);
+                    break;
+                case "INSERT":
+                    new InsertValidator(_database).Validate(query);
                     break;
                 default:
                     throw new InvalidQueryArgumentsException(arguments[0]);
