@@ -37,7 +37,7 @@ namespace JsonDatabase.Middlewares.Insert {
                     if(!int.TryParse(value, out int i)) return false;
                     break;
                 case "boolean":
-                    if(value != "true" || value != "false") return false;
+                    if(value != "true" && value != "false") return false;
                     break;
             }
 
