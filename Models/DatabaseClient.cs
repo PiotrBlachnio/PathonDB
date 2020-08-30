@@ -1,3 +1,4 @@
+using System;
 using JsonDatabase.Exceptions;
 using JsonDatabase.Services;
 using JsonDatabase.Validators;
@@ -7,6 +8,7 @@ namespace JsonDatabase.Models {
         private readonly Database _database = new Database();
 
         public void ExecuteQuery(string query) {
+            query = query.TrimStart();
             var arguments = query.Split(" ");
 
             switch(arguments[0].ToUpper()) {

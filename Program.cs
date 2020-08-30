@@ -9,7 +9,6 @@ namespace JsonDatabase {
             while(true) {
                 Console.WriteLine("Enter you query:");
                 var query = Console.ReadLine();
-                // var query = "CREATE TABLE users (id text, username int);";
 
                 try {
                     client.ExecuteQuery(query);

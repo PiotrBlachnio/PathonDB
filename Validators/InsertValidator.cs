@@ -12,8 +12,10 @@ namespace JsonDatabase.Validators {
 
             this._middleware
                 .LinkWith(new HasCorrectEnd(QUERY_END))
+                .LinkWith(new HasValidArguments())
                 .LinkWith(new HasValidParameters());
         }
     }
 }
+
 //TODO: Prepare validator to handle query: INSERT INTO users (username, email) VALUES ("Jeff", "Jeff@gmail.com");
