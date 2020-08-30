@@ -16,10 +16,12 @@ namespace JsonDatabase.Middlewares.Insert {
             var arguments = query.Split("(");
             var tableName = arguments[0].Trim().ToLower();
             
-            var columnNames = arguments[1].Split(")")[0].Split(",").Select(x => x.Trim());
-            
-            foreach(var column in _database.GetColumnNames(tableName)) Console.WriteLine(column);
-            if(!columnNames.All(x => _database.GetColumnNames(tableName).Contains(x))) throw new IncorrectParametersNumberException(columnNames.Count(), _database.GetColumnNames(tableName).Count());
+            var queryColumnNames = arguments[1].Split(")")[0].Split(",").Select(x => x.Trim());
+            var databaseColumnNames = _database.GetColumnNames(tableName);
+
+            foreach(var column in queryColumnNames) {
+                if(!databaseColumnNames.Contains(column)) throw new UnknownParameterNameException(column);
+            }
             
             return this.CheckNext(query);
         }
