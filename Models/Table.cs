@@ -15,8 +15,8 @@ namespace JsonDatabase.Models {
             _columns.Add((string) column.GetProperties().Name, column);
         }
 
-        public Dictionary<string, Column> GetColumns() {
-            return _columns;
+        public string[] GetColumnNames() {
+            return _columns.Keys.ToArray();
         }
     }
 }

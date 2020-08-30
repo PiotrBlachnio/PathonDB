@@ -15,8 +15,10 @@ namespace JsonDatabase.Middlewares.Insert {
             var arguments = query.Split("(");
             var tableName = arguments[0].Trim().ToLower();
             
-            var columnNames = arguments[1].Split(")")[0].Split(",").Select(x => x.Trim()).Select(x => x.Split(" "));
-            if(_database.GetColumnNames(tableName).Count() != columnNames.Count()) throw new IncorrectParametersNumberException(columnNames.Count(), _database.GetColumnNames(tableName).Count());
+            var queryColumnsNumber = arguments[1].Split(")")[0].Split(",").Select(x => x.Trim()).Select(x => x.Split(" ")).Count();
+            var databaseColumnsNumber = _database.GetTable(tableName).GetColumnNames().Count();
+
+            if(databaseColumnsNumber != queryColumnsNumber) throw new IncorrectParametersNumberException(queryColumnsNumber, databaseColumnsNumber);
             
             return this.CheckNext(query);
         }

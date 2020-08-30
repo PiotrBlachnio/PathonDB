@@ -8,9 +8,9 @@ namespace JsonDatabase.Models {
         public string[] GetTableNames() {
             return _tables.Keys.ToArray();
         }
-
-        public string[] GetColumnNames(string tableName) {
-            return _tables[tableName].GetColumns().Keys.ToArray();
+        
+        public Table GetTable(string tableName) {
+            return _tables[tableName];
         }
 
         public void AddTable(Table table) {
