@@ -27,7 +27,7 @@ namespace JsonDatabase.Services {
             var table = new Table(tableName.ToLower());
             
             foreach(var parameter in parameters) {
-                var column = new Column(new Properties(parameter[0], parameter[1].ToUpper()));
+                var column = new Column(new Properties(parameter[0], parameter[1]));
                 table.AddColumn(column);
             }
 
