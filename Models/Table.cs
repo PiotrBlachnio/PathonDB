@@ -19,7 +19,7 @@ namespace JsonDatabase.Models {
             return _columns.Keys.ToArray();
         }
 
-        public Dictionary<string, string> GetColumnTypes() {
+        public Dictionary<string, string> GetColumnsTypes() {
             var columnsTypes = new Dictionary<string ,string>();
 
             foreach(var column in _columns) {
