@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace JsonDatabase.Models {
     public class Table {
@@ -12,6 +13,10 @@ namespace JsonDatabase.Models {
 
         public void AddColumn(Column column) {
             _columns.Add((string) column.GetProperties().Name, column);
+        }
+
+        public Dictionary<string, Column> GetColumns() {
+            return _columns;
         }
     }
 }

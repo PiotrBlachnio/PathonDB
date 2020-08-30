@@ -18,7 +18,7 @@ namespace JsonDatabase.Middlewares.Insert {
             var substring = query.Substring(_startingString.Length);
             var splittedSubstring = substring.Split(" ");
 
-            var tableName = splittedSubstring[0];
+            var tableName = splittedSubstring[0].ToLower().Trim();
             if(!_database.GetTableNames().Contains(tableName)) throw new TableNotFoundException(tableName);
 
             return this.CheckNext(substring);
