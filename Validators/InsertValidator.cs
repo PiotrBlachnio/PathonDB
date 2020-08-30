@@ -16,3 +16,4 @@ namespace JsonDatabase.Validators {
         }
     }
 }
+//TODO: Prepare validator to handle query: INSERT INTO users (username, email) VALUES ("Jeff", "Jeff@gmail.com");

@@ -19,10 +19,7 @@ namespace JsonDatabase.Middlewares.Insert {
             var splittedSubstring = substring.Split(" ");
 
             var tableName = splittedSubstring[0];
-            var valuesKeyword = splittedSubstring[1];
-
             if(!_database.GetTableNames().Contains(tableName)) throw new TableNotFoundException(tableName);
-            if(valuesKeyword.ToUpper() != "VALUES") throw new InvalidQueryArgumentsException(valuesKeyword);
 
             return this.CheckNext(substring);
         }
