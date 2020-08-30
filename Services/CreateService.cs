@@ -7,17 +7,8 @@ namespace JsonDatabase.Services {
         public CreateService(Database database) : base(database) {}
 
         public override void PerformQuery(string query) {
-            var arguments = query.Split(" ");
-
-            switch(arguments[1].ToUpper()) {
-                case "TABLE":
-                    new CreateTableValidator(_database).Validate(query);
-                    CreateTable(query);
-
-                    break;
-                default:
-                    throw new InvalidQueryArgumentsException(arguments[1]);
-            }
+            new CreateTableValidator(this._database).Validate(query);
+            CreateTable(query);
         }
 
         private void CreateTable(string query) {

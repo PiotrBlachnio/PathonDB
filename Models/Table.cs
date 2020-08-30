@@ -17,7 +17,7 @@ namespace JsonDatabase.Models {
         }
 
         public void AddRow(string[] columnNames, string[] values) {
-            var id = new Guid();
+            var id = Guid.NewGuid();
             _idList.Add(id);
 
             for(var i = 0; i < columnNames.Length; i++) {
@@ -25,9 +25,14 @@ namespace JsonDatabase.Models {
                 if(value[0] == '"') {
                     value.Remove(0, 1);
                     value.Remove(value.Length - 1, 1);
-                }
 
-                _columns[columnNames[i]].InsertData(id, value);
+                    _columns[columnNames[i]].InsertData(id, value);
+                } else if(value == "true" || value == "false") {
+                    value = value.First().ToString().ToUpper() + value.Substring(1);
+                    _columns[columnNames[i]].InsertData(id, Boolean.Parse(value));
+                } else {
+                    _columns[columnNames[i]].InsertData(id, Int32.Parse(value));
+                }
             }
         }
 
