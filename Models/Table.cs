@@ -18,5 +18,15 @@ namespace JsonDatabase.Models {
         public string[] GetColumnNames() {
             return _columns.Keys.ToArray();
         }
+
+        public Dictionary<string, string> GetColumnTypes() {
+            var columnsTypes = new Dictionary<string ,string>();
+
+            foreach(var column in _columns) {
+                columnsTypes.Add(column.Value.GetProperties().Name, column.Value.GetProperties().Type);
+            }
+
+            return columnsTypes;
+        }
     }
 }
