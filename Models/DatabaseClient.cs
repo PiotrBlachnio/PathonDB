@@ -1,24 +1,25 @@
 using JsonDatabase.Exceptions;
 using JsonDatabase.Services;
-using JsonDatabase.Validators;
 
 namespace JsonDatabase.Models {
     public class DatabaseClient {
         private readonly Database _database = new Database();
 
-        public void ExecuteQuery(string query) {
-            query = query.TrimStart();
-            var arguments = query.Split(" ");
+        public void ExecuteQuery(string[] queries) {
+            foreach(var q in queries) {
+                var query = q.TrimStart();
+                var arguments = query.Split(" ");
 
-            switch(arguments[0].ToUpper()) {
-                case "CREATE":
-                    new CreateService(_database).PerformQuery(query);
-                    break;
-                case "INSERT":
-                    new InsertValidator(_database).Validate(query);
-                    break;
-                default:
-                    throw new InvalidQueryArgumentsException(arguments[0]);
+                switch(arguments[0].ToUpper()) {
+                    case "CREATE":
+                        new CreateService(_database).PerformQuery(query);
+                        break;
+                    case "INSERT":
+                        new InsertService(_database).PerformQuery(query);
+                        break;
+                    default:
+                        throw new InvalidQueryArgumentsException(arguments[0]);
+                }
             }
         }
     }

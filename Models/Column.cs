@@ -13,5 +13,9 @@ namespace JsonDatabase.Models {
         public Properties GetProperties() {
             return _properties;
         }
+
+        public void InsertData(Guid id, object data) {
+            _data.Add(id, data);
+        }
     }
 }
