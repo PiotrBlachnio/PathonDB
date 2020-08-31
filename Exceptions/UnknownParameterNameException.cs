@@ -1,7 +1,7 @@
 using System;
 
 namespace JsonDatabase.Exceptions {
-    public class UnknownParameterNameException : Exception {
-        public UnknownParameterNameException(string parameter) : base($"Unknown parameter: {parameter}") {}
+    public class UnknownColumnNameException : Exception {
+        public UnknownColumnNameException(string columnName) : base($"Unknown column: {columnName}") {}
     }
 }

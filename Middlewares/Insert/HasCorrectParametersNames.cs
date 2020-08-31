@@ -20,7 +20,7 @@ namespace JsonDatabase.Middlewares.Insert {
             var databaseColumnNames = _database.GetTable(tableName).GetColumnNames();
 
             foreach(var column in queryColumnNames) {
-                if(!databaseColumnNames.Contains(column)) throw new UnknownParameterNameException(column);
+                if(!databaseColumnNames.Contains(column)) throw new UnknownColumnNameException(column);
             }
             
             return this.CheckNext(query);
