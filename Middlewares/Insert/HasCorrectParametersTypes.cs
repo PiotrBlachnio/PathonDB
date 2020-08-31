@@ -18,7 +18,7 @@ namespace JsonDatabase.Middlewares.Insert {
             var columnNames = arguments[1].Split(")")[0].Split(",").Select(x => x.Trim()).ToArray();
             var values = arguments[2].Split(",").Select(x => x.Trim()).ToArray();
 
-            var columnTypes = _database.GetTable(tableName).GetColumnsTypes();
+            var columnTypes = _database.GetTable(tableName).GetColumnTypes();
             
             for(var i = 0; i < columnNames.Count(); i++) {
                 if(!IsTypeCompatible(columnTypes[columnNames[i]], values[i])) throw new IncorrectParameterTypeException(columnNames[i], columnTypes[columnNames[i]]);

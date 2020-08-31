@@ -40,14 +40,14 @@ namespace JsonDatabase.Models {
             return _columns.Keys.ToArray();
         }
 
-        public Dictionary<string, string> GetColumnsTypes() {
-            var columnsTypes = new Dictionary<string ,string>();
+        public Dictionary<string, string> GetColumnTypes() {
+            var columnTypes = new Dictionary<string ,string>();
 
             foreach(var column in _columns) {
-                columnsTypes.Add(column.Value.GetProperties().Name, column.Value.GetProperties().Type);
+                columnTypes.Add(column.Value.GetProperties().Name, column.Value.GetProperties().Type);
             }
 
-            return columnsTypes;
+            return columnTypes;
         }
     }
 }
