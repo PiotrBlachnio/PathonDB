@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using JsonDatabase.Services;
+using JsonDatabase.Utils;
 
 namespace JsonDatabase.Models {
     public class Table {
@@ -36,7 +36,7 @@ namespace JsonDatabase.Models {
             _idList.Add(id);
 
             for(var i = 0; i < columnNames.Length; i++) {
-                _columns[columnNames[i]].InsertData(id, UtilService.TransformStringValueToRealValue(values[i]));
+                _columns[columnNames[i]].InsertData(id, GeneralUtils.TransformStringValueToRealValue(values[i]));
             }
         }
     }
