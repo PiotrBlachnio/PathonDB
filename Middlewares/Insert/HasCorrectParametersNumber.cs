@@ -18,7 +18,7 @@ namespace JsonDatabase.Middlewares.Insert {
             var queryColumnNumber = arguments[1].Split(")")[0].Split(",").Select(x => x.Trim()).Select(x => x.Split(" ")).Count();
             var databaseColumnNumber = _database.GetTable(tableName).GetColumnNames().Count();
 
-            if(databaseColumnNumber != queryColumnNumber) throw new IncorrectParametersNumberException(queryColumnNumber, databaseColumnNumber);
+            if(databaseColumnNumber != queryColumnNumber) throw new InvalidColumnNumberException(queryColumnNumber, databaseColumnNumber);
             
             return this.CheckNext(query);
         }
