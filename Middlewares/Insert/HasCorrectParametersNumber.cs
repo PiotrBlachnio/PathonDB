@@ -4,10 +4,10 @@ using JsonDatabase.Middlewares.General;
 using JsonDatabase.Models;
 
 namespace JsonDatabase.Middlewares.Insert {
-    public class HasCorrectParametersNumber : Middleware {
+    public class HasValidColumnNumber : Middleware {
         private readonly Database _database;
 
-        public HasCorrectParametersNumber(Database database) {
+        public HasValidColumnNumber(Database database) {
             _database = database;
         }
         
