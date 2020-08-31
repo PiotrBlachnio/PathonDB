@@ -15,7 +15,7 @@ namespace JsonDatabase.Validators {
                 .LinkWith(new HasValidArguments())
                 .LinkWith(new HasValidParameters())
                 .LinkWith(new HasCorrectParametersNumber(database))
-                .LinkWith(new HasCorrectParametersNames(database))
+                .LinkWith(new HasValidColumnNames(database))
                 .LinkWith(new HasCorrectParametersTypes(database));
         }
     }
