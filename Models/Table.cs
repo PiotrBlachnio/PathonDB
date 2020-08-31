@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using JsonDatabase.Services;
 
 namespace JsonDatabase.Models {
     public class Table {
@@ -13,27 +14,7 @@ namespace JsonDatabase.Models {
         }
 
         public void AddColumn(Column column) {
-            _columns.Add((string) column.GetProperties().Name, column);
-        }
-
-        public void AddRow(string[] columnNames, string[] values) {
-            var id = Guid.NewGuid();
-            _idList.Add(id);
-
-            for(var i = 0; i < columnNames.Length; i++) {
-                var value = values[i];
-                if(value[0] == '"') {
-                    value.Remove(0, 1);
-                    value.Remove(value.Length - 1, 1);
-
-                    _columns[columnNames[i]].InsertData(id, value);
-                } else if(value == "true" || value == "false") {
-                    value = value.First().ToString().ToUpper() + value.Substring(1);
-                    _columns[columnNames[i]].InsertData(id, Boolean.Parse(value));
-                } else {
-                    _columns[columnNames[i]].InsertData(id, Int32.Parse(value));
-                }
-            }
+            _columns.Add(column.GetProperties().Name, column);
         }
 
         public string[] GetColumnNames() {
@@ -48,6 +29,15 @@ namespace JsonDatabase.Models {
             }
 
             return columnTypes;
+        }
+
+        public void AddRow(string[] columnNames, string[] values) {
+            var id = Guid.NewGuid();
+            _idList.Add(id);
+
+            for(var i = 0; i < columnNames.Length; i++) {
+                _columns[columnNames[i]].InsertData(id, UtilService.TransformStringValueToRealValue(values[i]));
+            }
         }
     }
 }
