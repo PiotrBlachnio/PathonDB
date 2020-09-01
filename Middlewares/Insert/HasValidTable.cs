@@ -3,25 +3,21 @@ using System.Linq;
 using JsonDatabase.Exceptions.General;
 using JsonDatabase.Middlewares.General;
 using JsonDatabase.Models;
+using JsonDatabase.Utils;
 
 namespace JsonDatabase.Middlewares.Insert {
     public class HasValidTable : Middleware {
         private readonly Database _database;
-        private readonly string _startingString;
 
-        public HasValidTable(string startingString, Database database) {
-            _startingString = startingString;
+        public HasValidTable(Database database) {
             _database = database;
         }
 
         public override bool Check(string query) {
-            var substring = query.Substring(_startingString.Length);
-            var splittedSubstring = substring.Split(" ");
-
-            var tableName = splittedSubstring[0].ToLower().Trim();
+            var tableName = InsertUtils.GetTableNameFromQuery(query);
             if(!_database.GetTableNames().Contains(tableName)) throw new TableNotFoundException(tableName);
 
-            return this.CheckNext(substring);
+            return this.CheckNext(query);
         }
     }
 }

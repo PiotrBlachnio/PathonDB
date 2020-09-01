@@ -4,12 +4,11 @@ using JsonDatabase.Models;
 
 namespace JsonDatabase.Validators.Create {
     public class CreateTableValidator : Validator {
-        private const string QUERY_START = "CREATE TABLE ";
         private const string QUERY_END = ");";
 
         public CreateTableValidator(Database database) {
             this._middleware = new HasValidArguments();
-            
+
             this._middleware
                 .LinkWith(new HasValidTable(database))
                 .LinkWith(new HasCorrectEnding(QUERY_END))
