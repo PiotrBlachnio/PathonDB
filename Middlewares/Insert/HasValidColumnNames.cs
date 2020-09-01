@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using JsonDatabase.Exceptions;
+using JsonDatabase.Exceptions.General;
 using JsonDatabase.Middlewares.General;
 using JsonDatabase.Models;
 using JsonDatabase.Utils;

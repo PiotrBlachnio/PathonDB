@@ -22,8 +22,8 @@ namespace JsonDatabase.Utils {
             return arguments[1].Split(")")[0].Split(",").Select(x => x.Trim());
         }
 
-        public static IEnumerable<string[]> GetValuesFromArguments(string[] arguments) {
-            return arguments[2].Split(",").Select(x => x.Trim()).Select(x => x.Split(" "));
+        public static IEnumerable<string> GetValuesFromArguments(string[] arguments) {
+            return arguments[2].Split(",").Select(x => x.Trim());
         }
     }
 }
