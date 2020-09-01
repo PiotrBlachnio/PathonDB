@@ -1,19 +1,20 @@
 using System.Linq;
-using JsonDatabase.Exceptions;
+using JsonDatabase.Exceptions.General;
 using JsonDatabase.Middlewares.General;
+using JsonDatabase.Utils;
 
 namespace JsonDatabase.Middlewares.Insert {
     public class HasValidParameters : Middleware {
         public override bool Check(string query) {
-            var arguments = query.Split("(");
+            var arguments = InsertUtils.GetArgumentsFromQuery(query);
             
-            var columnNames = arguments[1].Split(")")[0].Split(",").Select(x => x.Trim()).Select(x => x.Split(" "));
-            var values = arguments[2].Split(",").Select(x => x.Trim()).Select(x => x.Split(" "));
+            var columnNames = InsertUtils.GetColumnNamesFromArguments(arguments);
+            var values = InsertUtils.GetValuesFromArguments(arguments);
             
-            if(!columnNames.All(x => x.Length == 1)) throw new MalformedParametersException();
-            if(!values.All(x => x.Length == 1)) throw new MalformedParametersException();
+            if(!columnNames.All(x => x.Length == 1)) throw new MalformedColumnsException();
+            if(!values.All(x => x.Length == 1)) throw new MalformedColumnsException();
 
-            if(columnNames.Count() != values.Count()) throw new MalformedParametersException();
+            if(columnNames.Count() != values.Count()) throw new MalformedColumnsException();
             
             return this.CheckNext(query);
         }
