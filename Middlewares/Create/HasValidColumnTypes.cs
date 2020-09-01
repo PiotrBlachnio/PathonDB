@@ -7,7 +7,7 @@ using JsonDatabase.Utils;
 namespace JsonDatabase.Middlewares.Create {
     public class HasValidColumnTypes : Middleware {
         public override bool Check(string query) {
-            var arguments = query.Split("(");
+            var arguments = CreateUtils.GetArgumentsFromQuery(query);
             var columns = CreateUtils.GetColumnsFromQuery(arguments[1]);
 
             foreach(var column in columns) {
