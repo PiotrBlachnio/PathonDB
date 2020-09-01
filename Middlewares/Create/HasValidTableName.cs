@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
-using JsonDatabase.Exceptions;
+using JsonDatabase.Exceptions.Create;
+using JsonDatabase.Exceptions.General;
 using JsonDatabase.Middlewares.General;
 using JsonDatabase.Models;
 
@@ -18,7 +19,7 @@ namespace JsonDatabase.Middlewares.Create {
             var substring = query.Substring(_startingString.Length);
             string[] arguments = substring.Trim().Split("(");
 
-            if(arguments.Length < 2 || substring.StartsWith("(") || arguments[0].Equals("")) throw new InvalidTableNameException(arguments[0]);
+            if(arguments.Length < 2 || substring.StartsWith("(") || arguments[0].Equals("")) throw new TableNotFoundException(arguments[0]);
             
             var tableName = arguments[0].ToLower().TrimEnd();
             if(_database.GetTableNames().Contains(tableName)) throw new TableAlreadyExistsException(tableName);
