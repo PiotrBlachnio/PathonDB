@@ -11,7 +11,7 @@ namespace JsonDatabase.Validators.Create {
             this._middleware = new HasValidTableName(QUERY_START, database);
 
             this._middleware
-                .LinkWith(new HasCorrectEnd(QUERY_END))
+                .LinkWith(new HasCorrectEnding(QUERY_END))
                 .LinkWith(new HasValidColumns())
                 .LinkWith(new HasValidColumnTypes());
         }
