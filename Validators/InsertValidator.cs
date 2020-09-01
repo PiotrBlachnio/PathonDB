@@ -8,7 +8,7 @@ namespace JsonDatabase.Validators {
         private const string QUERY_END = ");";
 
         public InsertValidator(Database database) {
-            this._middleware = new DoesTableExist(QUERY_START, database);
+            this._middleware = new HasValidTable(QUERY_START, database);
 
             this._middleware
                 .LinkWith(new HasCorrectEnding(QUERY_END))

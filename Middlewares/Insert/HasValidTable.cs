@@ -5,11 +5,11 @@ using JsonDatabase.Middlewares.General;
 using JsonDatabase.Models;
 
 namespace JsonDatabase.Middlewares.Insert {
-    public class DoesTableExist : Middleware {
+    public class HasValidTable : Middleware {
         private readonly Database _database;
         private readonly string _startingString;
 
-        public DoesTableExist(string startingString, Database database) {
+        public HasValidTable(string startingString, Database database) {
             _startingString = startingString;
             _database = database;
         }

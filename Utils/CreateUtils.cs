@@ -15,9 +15,7 @@ namespace JsonDatabase.Utils {
             var queryStart = "CREATE TABLE ";
             var substring = query.Substring(queryStart.Length);
 
-            return substring.Trim().Split(" ")[0].Trim();
+            return substring.Trim().Split(" ")[0].Trim().ToLower();
         }
     }
 }
-
-//? CREATE TABLE    users  (email text, phoneNumber int, isAdult boolean);

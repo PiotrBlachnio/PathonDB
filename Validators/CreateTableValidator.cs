@@ -8,9 +8,10 @@ namespace JsonDatabase.Validators.Create {
         private const string QUERY_END = ");";
 
         public CreateTableValidator(Database database) {
-            this._middleware = new HasValidTableName(QUERY_START, database);
-
+            this._middleware = new HasValidArguments();
+            
             this._middleware
+                .LinkWith(new HasValidTable(database))
                 .LinkWith(new HasCorrectEnding(QUERY_END))
                 .LinkWith(new HasValidColumns())
                 .LinkWith(new HasValidColumnTypes());
