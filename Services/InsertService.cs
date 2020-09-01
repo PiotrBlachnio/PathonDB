@@ -19,7 +19,6 @@ namespace JsonDatabase.Services {
             var values = query.Split("(")[2].Trim().Split(",").Select(x => x.Trim()).ToArray();
 
             _database.GetTable(tableName).AddRow(columnNames, values);
-            throw new System.Exception();
         }
     }
 }

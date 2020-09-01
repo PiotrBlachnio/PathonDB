@@ -6,7 +6,7 @@ namespace JsonDatabase {
         static void Main(string[] args) {
             var client = new DatabaseClient();
             var queries = new string[] {
-                "CREATE TABLE users (email text, phoneNumber int, isAdult boolean);",
+                "CREATE TABLE    users  (email text, phoneNumber int, isAdult boolean);",
                 "INSERT INTO users (isAdult, email, phoneNumber) VALUES (true, \"Jeff@gmail.com\", 703503);"
             };
 
