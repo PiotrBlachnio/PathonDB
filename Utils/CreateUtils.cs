@@ -3,6 +3,8 @@ using System.Linq;
 
 namespace JsonDatabase.Utils {
     public static class CreateUtils {
+        private const string QUERY_START = "CREATE TABLE ";
+
         public static IEnumerable<string[]> GetColumnsFromQuery(string columnString) {
             return columnString.Split(",").Select(x => x.Trim()).Select(x => x.Split(" "));
         }
@@ -12,8 +14,7 @@ namespace JsonDatabase.Utils {
         }
 
         public static string GetTableNameFromQuery(string query) {
-            var queryStart = "CREATE TABLE ";
-            var substring = query.Substring(queryStart.Length);
+            var substring = query.Substring(QUERY_START.Length);
 
             return substring.Trim().Split(" ")[0].Trim().ToLower();
         }

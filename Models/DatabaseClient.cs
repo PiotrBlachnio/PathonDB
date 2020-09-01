@@ -1,4 +1,4 @@
-using JsonDatabase.Exceptions;
+using JsonDatabase.Exceptions.General;
 using JsonDatabase.Services;
 
 namespace JsonDatabase.Models {
@@ -18,7 +18,7 @@ namespace JsonDatabase.Models {
                         new InsertService(_database).PerformQuery(query);
                         break;
                     default:
-                        throw new InvalidQueryArgumentsException(arguments[0]);
+                        throw new MalformedArgumentsException();
                 }
             }
         }
