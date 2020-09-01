@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using JsonDatabase.Exceptions;
 using JsonDatabase.Middlewares.General;
@@ -5,10 +6,10 @@ using JsonDatabase.Models;
 using JsonDatabase.Utils;
 
 namespace JsonDatabase.Middlewares.Insert {
-    public class HasValidColumnNumber : Middleware {
+    public class HasValidColumnNames : Middleware {
         private readonly Database _database;
 
-        public HasValidColumnNumber(Database database) {
+        public HasValidColumnNames(Database database) {
             _database = database;
         }
         
@@ -16,10 +17,12 @@ namespace JsonDatabase.Middlewares.Insert {
             var arguments = InsertUtils.GetArgumentsFromQuery(query);
             var tableName = InsertUtils.GetTableNameFromQuery(query);
             
-            var actualColumnNumber = InsertUtils.GetColumnsFromArguments(arguments).Count();
-            var expectedColumnNumber = _database.GetTable(tableName).GetColumnNames().Count();
+            var queryColumns = InsertUtils.GetColumnsFromArguments(arguments);
+            var databaseColumns = _database.GetTable(tableName).GetColumnNames();
 
-            if(actualColumnNumber != expectedColumnNumber) throw new InvalidColumnNumberException(actualColumnNumber, expectedColumnNumber);
+            foreach(var column in queryColumns) {
+                if(!databaseColumns.Contains(column)) throw new UnknownColumnNameException(column);
+            }
             
             return this.CheckNext(query);
         }
