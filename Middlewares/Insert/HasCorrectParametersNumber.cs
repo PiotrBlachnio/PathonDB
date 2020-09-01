@@ -2,6 +2,7 @@ using System.Linq;
 using JsonDatabase.Exceptions;
 using JsonDatabase.Middlewares.General;
 using JsonDatabase.Models;
+using JsonDatabase.Utils;
 
 namespace JsonDatabase.Middlewares.Insert {
     public class HasValidColumnNumber : Middleware {
@@ -12,13 +13,13 @@ namespace JsonDatabase.Middlewares.Insert {
         }
         
         public override bool Check(string query) {
-            var arguments = query.Split("(");
-            var tableName = arguments[0].Trim().ToLower();
+            var arguments = InsertUtils.GetArgumentsFromQuery(query);
+            var tableName = InsertUtils.GetTableNameFromQuery(query);
             
-            var queryColumnNumber = arguments[1].Split(")")[0].Split(",").Select(x => x.Trim()).Select(x => x.Split(" ")).Count();
-            var databaseColumnNumber = _database.GetTable(tableName).GetColumnNames().Count();
+            var actualColumnNumber = InsertUtils.GetColumnsFromArguments(arguments).Count();
+            var expectedColumnNumber = _database.GetTable(tableName).GetColumnNames().Count();
 
-            if(databaseColumnNumber != queryColumnNumber) throw new InvalidColumnNumberException(queryColumnNumber, databaseColumnNumber);
+            if(actualColumnNumber != expectedColumnNumber) throw new InvalidColumnNumberException(actualColumnNumber, expectedColumnNumber);
             
             return this.CheckNext(query);
         }

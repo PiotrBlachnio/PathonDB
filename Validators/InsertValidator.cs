@@ -12,7 +12,7 @@ namespace JsonDatabase.Validators {
             this._middleware
                 .LinkWith(new HasCorrectEnding(QUERY_END))
                 .LinkWith(new HasValidTable(database))
-                .LinkWith(new HasValidParameters())
+                .LinkWith(new HasValidColumns())
                 .LinkWith(new HasValidColumnNumber(database))
                 .LinkWith(new HasValidColumnNames(database))
                 .LinkWith(new HasValidColumnTypes(database));

@@ -18,7 +18,7 @@ namespace JsonDatabase.Utils {
             return arguments[1].Split(")")[1].Trim().ToUpper();
         }
 
-        public static IEnumerable<string[]> GetColumnNamesFromArguments(string[] arguments) {
+        public static IEnumerable<string[]> GetColumnsFromArguments(string[] arguments) {
             return arguments[1].Split(")")[0].Split(",").Select(x => x.Trim()).Select(x => x.Split(" "));
         }
 
