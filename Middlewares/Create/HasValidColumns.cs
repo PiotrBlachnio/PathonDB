@@ -8,7 +8,7 @@ namespace JsonDatabase.Middlewares.Create {
     public class HasValidColumns : Middleware {
         public override bool Check(string query) {
             var arguments = CreateUtils.GetArgumentsFromQuery(query);
-            var columns = CreateUtils.GetColumnsFromQuery(arguments[1]);
+            var columns = CreateUtils.GetColumnsFromArguments(arguments);
             
             if(!columns.All(x => x.Length == 2)) throw new MalformedColumnsException();
             
