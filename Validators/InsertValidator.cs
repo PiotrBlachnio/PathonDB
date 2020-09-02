@@ -4,19 +4,18 @@ using JsonDatabase.Models;
 
 namespace JsonDatabase.Validators {
     public class InsertValidator : Validator {
-        private const string QUERY_START = "INSERT INTO ";
         private const string QUERY_END = ");";
 
         public InsertValidator(Database database) {
-            this._middleware = new DoesTableExist(QUERY_START, database);
+            this._middleware = new HasValidArguments();
 
             this._middleware
-                .LinkWith(new HasCorrectEnd(QUERY_END))
-                .LinkWith(new HasValidArguments())
-                .LinkWith(new HasValidParameters())
-                .LinkWith(new HasCorrectParametersNumber(database))
-                .LinkWith(new HasCorrectParametersNames(database))
-                .LinkWith(new HasCorrectParametersTypes(database));
+                .LinkWith(new HasCorrectEnding(QUERY_END))
+                .LinkWith(new HasValidTable(database))
+                .LinkWith(new HasValidColumns())
+                .LinkWith(new HasValidColumnNumber(database))
+                .LinkWith(new HasValidColumnNames(database))
+                .LinkWith(new HasValidColumnTypes(database));
         }
     }
 }

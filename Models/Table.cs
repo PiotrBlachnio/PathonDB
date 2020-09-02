@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using JsonDatabase.Utils;
 
 namespace JsonDatabase.Models {
     public class Table {
@@ -13,41 +14,30 @@ namespace JsonDatabase.Models {
         }
 
         public void AddColumn(Column column) {
-            _columns.Add((string) column.GetProperties().Name, column);
-        }
-
-        public void AddRow(string[] columnNames, string[] values) {
-            var id = Guid.NewGuid();
-            _idList.Add(id);
-
-            for(var i = 0; i < columnNames.Length; i++) {
-                var value = values[i];
-                if(value[0] == '"') {
-                    value.Remove(0, 1);
-                    value.Remove(value.Length - 1, 1);
-
-                    _columns[columnNames[i]].InsertData(id, value);
-                } else if(value == "true" || value == "false") {
-                    value = value.First().ToString().ToUpper() + value.Substring(1);
-                    _columns[columnNames[i]].InsertData(id, Boolean.Parse(value));
-                } else {
-                    _columns[columnNames[i]].InsertData(id, Int32.Parse(value));
-                }
-            }
+            _columns.Add(column.GetProperties().Name, column);
         }
 
         public string[] GetColumnNames() {
             return _columns.Keys.ToArray();
         }
 
-        public Dictionary<string, string> GetColumnsTypes() {
-            var columnsTypes = new Dictionary<string ,string>();
+        public Dictionary<string, string> GetColumnTypes() {
+            var columnTypes = new Dictionary<string ,string>();
 
             foreach(var column in _columns) {
-                columnsTypes.Add(column.Value.GetProperties().Name, column.Value.GetProperties().Type);
+                columnTypes.Add(column.Value.GetProperties().Name, column.Value.GetProperties().Type);
             }
 
-            return columnsTypes;
+            return columnTypes;
+        }
+
+        public void AddRow(string[] columns, string[] values) {
+            var id = Guid.NewGuid();
+            _idList.Add(id);
+
+            for(var i = 0; i < columns.Length; i++) {
+                _columns[columns[i]].InsertData(id, GeneralUtils.TransformStringValueToRealValue(values[i]));
+            }
         }
     }
 }

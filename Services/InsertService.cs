@@ -1,5 +1,7 @@
+using System;
 using System.Linq;
 using JsonDatabase.Models;
+using JsonDatabase.Utils;
 using JsonDatabase.Validators;
 
 namespace JsonDatabase.Services {
@@ -12,14 +14,15 @@ namespace JsonDatabase.Services {
         }
 
         private void InsertRow(string query) {
-            query = query.Substring(0, query.Length - 2);
-            var tableName = query.Split(" ")[2];
+            var arguments = InsertUtils.GetArgumentsFromQuery(query.Substring(0, query.Length - 2));
+            var tableName = InsertUtils.GetTableNameFromQuery(query);
 
-            var columnNames = query.Split("(")[1].Split(")")[0].Split(",").Select(x => x.Trim()).ToArray();
-            var values = query.Split("(")[2].Trim().Split(",").Select(x => x.Trim()).ToArray();
+            var columns = InsertUtils.GetColumnsFromArguments(arguments).ToArray();
+            var values = InsertUtils.GetValuesFromArguments(arguments).ToArray();
 
-            _database.GetTable(tableName).AddRow(columnNames, values);
-            throw new System.Exception();
+            foreach(var c in values) Console.WriteLine(c);
+            
+            _database.GetTable(tableName).AddRow(columns, values);
         }
     }
 }

@@ -1,5 +1,5 @@
-using JsonDatabase.Exceptions;
 using JsonDatabase.Models;
+using JsonDatabase.Utils;
 using JsonDatabase.Validators.Create;
 
 namespace JsonDatabase.Services {
@@ -12,13 +12,14 @@ namespace JsonDatabase.Services {
         }
 
         private void CreateTable(string query) {
-            var tableName = UtilService.GetTableName(query);
-            var parameters = UtilService.GetParameters(query);
+            var arguments = CreateUtils.GetArgumentsFromQuery(query);
+            var tableName = CreateUtils.GetTableNameFromQuery(query);
+            var columns = CreateUtils.GetColumnsFromArguments(arguments);
 
-            var table = new Table(tableName.ToLower());
+            var table = new Table(tableName);
             
-            foreach(var parameter in parameters) {
-                var column = new Column(new Properties(parameter[0], parameter[1]));
+            foreach(var element in columns) {
+                var column = new Column(new Properties(element[0], element[1]));
                 table.AddColumn(column);
             }
 
