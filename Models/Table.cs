@@ -31,12 +31,12 @@ namespace JsonDatabase.Models {
             return columnTypes;
         }
 
-        public void AddRow(string[] columnNames, string[] values) {
+        public void AddRow(string[] columns, string[] values) {
             var id = Guid.NewGuid();
             _idList.Add(id);
 
-            for(var i = 0; i < columnNames.Length; i++) {
-                _columns[columnNames[i]].InsertData(id, GeneralUtils.TransformStringValueToRealValue(values[i]));
+            for(var i = 0; i < columns.Length; i++) {
+                _columns[columns[i]].InsertData(id, GeneralUtils.TransformStringValueToRealValue(values[i]));
             }
         }
     }
