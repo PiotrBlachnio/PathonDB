@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,7 +17,7 @@ namespace JsonDatabase.Utils {
         }
 
         public static IEnumerable<string[]> GetColumnsFromArguments(string[] arguments) {
-            return arguments[1].Split(",").Select(x => x.Trim()).Select(x => x.Split(" "));
+            return arguments[1].Split(",").Select(x => x.Trim()).Select(x => x.Split(" ", StringSplitOptions.RemoveEmptyEntries));
         }    
     }
 }

@@ -4,9 +4,9 @@ using Xunit;
 
 namespace JsonDatabase.Tests.Middlewares.Create {
     public class HasValidArgumentsTests {
-        [Fact] 
-        public void Check_ValidQuery_ShouldReturnTrue() {
-            var query = "Correct: CREATE TABLE users (email text, phoneNumber int);";
+        [Theory]
+        [InlineData("CREATE TABLE users (email text, phoneNumber int);")]
+        public void Check_ValidQuery_ShouldReturnTrue(string query) {
             var middleware = new HasValidArguments();
 
             var actual = middleware.Check(query);
@@ -15,9 +15,9 @@ namespace JsonDatabase.Tests.Middlewares.Create {
         }
 
         [Theory]
-        [InlineData("Correct: CREATE TABLE users (email (text, phoneNumber int);")]
-        [InlineData("Correct: CREATE TABLE users email text, phoneNumber int);")]
-        [InlineData("Correct: CREATE TABLE users ((email (text, phoneNumber int);")]
+        [InlineData("CREATE TABLE users (email (text, phoneNumber int);")]
+        [InlineData("CREATE TABLE users email text, phoneNumber int);")]
+        [InlineData("CREATE TABLE users ((email (text, phoneNumber int);")]
         public void Check_InvalidQuery_ShouldThrowMalformedArgumentsException(string query) {
             var middleware = new HasValidArguments();
 

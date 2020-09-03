@@ -20,8 +20,6 @@ namespace JsonDatabase.Services {
             var columns = InsertUtils.GetColumnsFromArguments(arguments).ToArray();
             var values = InsertUtils.GetValuesFromArguments(arguments).ToArray();
 
-            foreach(var c in values) Console.WriteLine(c);
-            
             _database.GetTable(tableName).AddRow(columns, values);
         }
     }
