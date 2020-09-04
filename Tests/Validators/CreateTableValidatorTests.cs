@@ -1,4 +1,5 @@
 using System;
+using Autofac.Extras.Moq;
 using JsonDatabase.Exceptions.Create;
 using JsonDatabase.Exceptions.General;
 using JsonDatabase.Models;
@@ -22,6 +23,12 @@ namespace JsonDatabase.Tests.Validators {
 
         [Theory]
         [InlineData("GET * FROM users;")]
+        [InlineData("CREATE TABLE (email text, phoneNumber int);")]
+        [InlineData("CREATE TABLE 510da_ (email text, phoneNumber int);")]
+        [InlineData("CREATE TABLE users (email text, phoneNumber int)")]
+        [InlineData("CREATE TABLE users (email, phoneNumber int);")]
+        [InlineData("CREATE TABLE users (email text, phoneNumber bigint);")]
+        [InlineData("CREATE TABLE users (id text, email text);")]
         public void Validate_InvalidQuery_ShouldThrowAnException(string query) {
             var validator = new CreateTableValidator(new Database());
 
