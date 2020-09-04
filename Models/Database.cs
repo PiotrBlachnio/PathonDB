@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace JsonDatabase.Models {
-    public class Database {
+    public class Database : IDatabase {
         private readonly Dictionary<string, Table> _tables = new Dictionary<string, Table>();
 
         public string[] GetTableNames() {

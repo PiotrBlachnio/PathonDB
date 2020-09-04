@@ -7,9 +7,9 @@ using JsonDatabase.Utils;
 
 namespace JsonDatabase.Middlewares.Create {
     public class HasValidTable : Middleware {
-        private readonly Database _database;
+        private readonly IDatabase _database;
 
-        public HasValidTable(Database database) {
+        public HasValidTable(IDatabase database) {
             _database = database;
         }
 
