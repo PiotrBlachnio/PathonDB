@@ -1,3 +1,4 @@
+using System;
 using JsonDatabase.Exceptions.Create;
 using JsonDatabase.Exceptions.General;
 using JsonDatabase.Models;
@@ -19,22 +20,12 @@ namespace JsonDatabase.Tests.Validators {
             Assert.True(actual);
         }
 
-        [Fact]
-        public void Validate_QueryContainsIncorrectArguments_ShouldThrowMalformedArgumentsException() {
+        [Theory]
+        [InlineData("GET * FROM users;")]
+        public void Validate_InvalidQuery_ShouldThrowAnException(string query) {
             var validator = new CreateTableValidator(new Database());
 
-            var query = "GET * FROM users;";
-
-            var ex = Assert.Throws<MalformedArgumentsException>(() => validator.Validate(query));
-        }
-
-        [Fact]
-        public void Validate_QueryContainsIncorrectTableName_ShouldThrowTableAlreadyExistsException() {
-            var validator = new CreateTableValidator(new Database());
-
-            var query = "CREATE TABLE (email text, phoneNumber int);";
-
-            var ex = Assert.Throws<TableAlreadyExistsException>(() => validator.Validate(query));
+            Assert.ThrowsAny<Exception>(() => validator.Validate(query));
         }
     }
 }

@@ -25,7 +25,7 @@ namespace JsonDatabase.Tests.Middlewares.Create {
         [InlineData("CREATE TABLE  users   (email text,phoneNumber int, isAdult boolean);", "users")]
         [InlineData("CREATE TABLE   Items   (email text,phoneNumber int, isAdult boolean);", "items")]
         [InlineData("CREATE TABLE   USERs   (email text,phoneNumber int, isAdult boolean);", "users")]
-        public void Check_InvalidTable_ShouldThrowTableAlreadyExistsException(string query, string table) {
+        public void Check_TableWhichAlreadyExists_ShouldThrowTableAlreadyExistsException(string query, string table) {
             using (var mock = AutoMock.GetLoose()) {
                 mock.Mock<IDatabase>().Setup(m => m.GetTableNames()).Returns(new string[2] { "users", "items" });
 
@@ -34,6 +34,22 @@ namespace JsonDatabase.Tests.Middlewares.Create {
                 var ex = Assert.Throws<TableAlreadyExistsException>(() => middleware.Check(query));
 
                 Assert.Equal($"Table already exist: \"{table}\"", ex.Message);
+            }
+        }
+
+        [Theory]
+        [InlineData("CREATE TABLE __ (email text,phoneNumber int, isAdult boolean);", "__")]
+        [InlineData("CREATE TABLE dak31451 (email text,phoneNumber int, isAdult boolean);", "dak31451")]
+        [InlineData("CREATE TABLE ???Daida (email text,phoneNumber int, isAdult boolean);", "???daida")]
+        public void Check_TableWithForbiddenName_ShouldThrowForbiddenTableNameException(string query, string table) {
+            using (var mock = AutoMock.GetLoose()) {
+                mock.Mock<IDatabase>();
+
+                var middleware = mock.Create<HasValidTable>();
+
+                var ex = Assert.Throws<ForbiddenTableNameException>(() => middleware.Check(query));
+
+                Assert.Equal($"Table name \"{table}\" is not allowed", ex.Message);
             }
         }
     }
