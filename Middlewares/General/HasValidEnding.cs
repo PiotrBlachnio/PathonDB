@@ -1,10 +1,10 @@
 using JsonDatabase.Exceptions.General;
 
 namespace JsonDatabase.Middlewares.General {
-    public class HasCorrectEnding : Middleware {
+    public class HasValidEnding : Middleware {
         private readonly string _endingString;
 
-        public HasCorrectEnding(string endingString) {
+        public HasValidEnding(string endingString) {
             _endingString = endingString;
         }
 
