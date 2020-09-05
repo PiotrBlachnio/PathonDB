@@ -26,11 +26,11 @@ namespace JsonDatabase.Models {
 }
 
 //? Correct: CREATE TABLE users (email text, phoneNumber int);
-//! Incorrect query argument: GET * FROM users;
+//! Incorrect query arguments: GET * FROM users;
 //! Incorrect start: CREATE KEY users (email text, phoneNumber int);
 //! Incorrect table name: CREATE TABLE (email text, phoneNumber int);
 //! Incorrect end: CREATE TABLE users (email text, phoneNumber int)
-//! Malformed parameters: CREATE TABLE users (email text, phoneNumber int);
+//! Malformed parameters: CREATE TABLE users (email, phoneNumber int);
 //! Unsupported types: CREATE TABLE users (email text, phoneNumber bigint);
 //! Forbidden column name: CREATE TABLE users (id text, email text);
 
