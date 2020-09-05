@@ -24,5 +24,21 @@ namespace JsonDatabase.Tests.Utils {
 
             Assert.Equal(actual, expectedTableName);
         }
+
+        [Fact]
+        public void GetColumnsFromArguments_ShouldReturnValidColumns() {
+            var query = "CREATE TABLE users (  email   text,   phoneNumber   int  ";
+
+            var arguments = CreateUtils.GetArgumentsFromQuery(query);
+
+            var actual = CreateUtils.GetColumnsFromArguments(arguments);
+
+            var expected = new string[][] {
+                new string[] { "email", "text" },
+                new string[] { "phoneNumber", "int"}
+            };
+
+            Assert.Equal(actual, expected);
+        }
     }
 }
