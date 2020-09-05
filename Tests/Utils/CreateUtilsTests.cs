@@ -11,5 +11,18 @@ namespace JsonDatabase.Tests.Utils {
 
             Assert.Equal(actual, expectedArguments);
         }
+
+        [Theory]
+        [InlineData("CREATE TABLE users (email text, phoneNumber int);", "users")]
+        [InlineData("CREATE TABLE   users (email text, phoneNumber int);", "users")]
+        [InlineData("CREATE TABLE users    (email text, phoneNumber int);", "users")]
+        [InlineData("CREATE TABLE     users    (email text, phoneNumber int);", "users" )]
+        [InlineData("CREATE TABLE     ItemS    (email text, phoneNumber int);", "items" )]
+        [InlineData("CREATE TABLE  ITEMS    (email text, phoneNumber int);", "items" )]
+        public void GetTableNameFromQuery_ShouldReturnValidTableName(string query, string expectedTableName) {
+            var actual = CreateUtils.GetTableNameFromQuery(query);
+
+            Assert.Equal(actual, expectedTableName);
+        }
     }
 }
