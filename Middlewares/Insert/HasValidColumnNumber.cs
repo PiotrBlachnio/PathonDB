@@ -6,9 +6,9 @@ using JsonDatabase.Utils;
 
 namespace JsonDatabase.Middlewares.Insert {
     public class HasValidColumnNumber : Middleware {
-        private readonly Database _database;
+        private readonly IDatabase _database;
 
-        public HasValidColumnNumber(Database database) {
+        public HasValidColumnNumber(IDatabase database) {
             _database = database;
         }
         

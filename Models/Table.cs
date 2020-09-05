@@ -4,7 +4,7 @@ using System.Linq;
 using JsonDatabase.Utils;
 
 namespace JsonDatabase.Models {
-    public class Table {
+    public class Table : ITable {
         private readonly Dictionary<string, Column> _columns = new Dictionary<string, Column>();
         private readonly IList<Guid> _idList = new List<Guid>();
         public string Name;

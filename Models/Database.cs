@@ -9,7 +9,7 @@ namespace JsonDatabase.Models {
             return _tables.Keys.ToArray();
         }
         
-        public Table GetTable(string tableName) {
+        public ITable GetTable(string tableName) {
             return _tables[tableName];
         }
 
