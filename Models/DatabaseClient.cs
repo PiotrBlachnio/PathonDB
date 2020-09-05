@@ -3,7 +3,7 @@ using JsonDatabase.Services;
 
 namespace JsonDatabase.Models {
     public class DatabaseClient {
-        private readonly Database _database = new Database();
+        private readonly IDatabase _database = new Database();
 
         public void ExecuteQuery(string[] queries) {
             foreach(var q in queries) {

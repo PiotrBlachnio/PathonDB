@@ -2,9 +2,9 @@ using JsonDatabase.Models;
 
 namespace JsonDatabase.Services {
     public abstract class Service {
-        protected readonly Database _database;
+        protected readonly IDatabase _database;
 
-        public Service(Database database) {
+        public Service(IDatabase database) {
             _database = database;
         }
 

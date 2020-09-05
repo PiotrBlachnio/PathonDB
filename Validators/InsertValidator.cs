@@ -6,7 +6,7 @@ namespace JsonDatabase.Validators {
     public class InsertValidator : Validator {
         private const string QUERY_END = ");";
 
-        public InsertValidator(Database database) {
+        public InsertValidator(IDatabase database) {
             this._middleware = new HasValidArguments();
 
             this._middleware

@@ -6,7 +6,7 @@ using JsonDatabase.Validators;
 
 namespace JsonDatabase.Services {
     public class InsertService : Service {
-        public InsertService(Database database) : base(database) {}
+        public InsertService(IDatabase database) : base(database) {}
 
         public override void PerformQuery(string query) {
             new InsertValidator(this._database).Validate(query);
