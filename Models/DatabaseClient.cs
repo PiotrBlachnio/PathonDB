@@ -34,7 +34,7 @@ namespace JsonDatabase.Models {
 //! Unsupported types: CREATE TABLE users (email text, phoneNumber bigint);
 //! Forbidden column name: CREATE TABLE users (id text, email text);
 
-//? Correct: INSERT INTO users (email, phoneNumber) VALUES ("Jeff@gmail.com", 703503);
+//? Correct: INSERT INTO users (email, phoneNumber) VALUES (\"Jeff@gmail.com\", 703503);
 //! Incorrect argument: INSERT INTO users (email, phoneNumber) VALUE ("Jeff@gmail.com", 703503);
 //! Incorrect parameters: INSERT INTO users (email phoneNumber) VALUES ("Jeff@gmail.com", 703503);
 //! Incorrect parameters case 2: INSERT INTO users (email, phoneNumber) VALUES ("Jeff@gmail.com");
