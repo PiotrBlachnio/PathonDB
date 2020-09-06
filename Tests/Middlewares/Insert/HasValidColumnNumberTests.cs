@@ -8,8 +8,7 @@ using Xunit;
 
 namespace JsonDatabase.Tests.Middlewares.Insert {
     public class HasValidColumnNumberTests {
-        public class MockedTable : ITable
-        {
+        public class MockedTable : ITable {
             public void AddColumn(Column column)
             {
                 throw new System.NotImplementedException();
@@ -32,12 +31,12 @@ namespace JsonDatabase.Tests.Middlewares.Insert {
         }
 
         [Theory]
-        [InlineData("INSERT INTO users (email, phoneNumber) VALUES (\"Jeff@gmail.com\", 703503);", "users")]
-        [InlineData("INSERT INTO users (  email ,   phoneNumber  ) VALUES (\"Jeff@gmail.com\", 703503);", "users")]
-        [InlineData("INSERT INTO users (email,   ) VALUES (\"Jeff@gmail.com\", 703503);", "users")]
-        public void Check_ValidColumnNumber_ShouldReturnTrue(string query, string tableName) {
+        [InlineData("INSERT INTO users (email, phoneNumber) VALUES (\"Jeff@gmail.com\", 703503);")]
+        [InlineData("INSERT INTO users (  email ,   phoneNumber  ) VALUES (\"Jeff@gmail.com\", 703503);")]
+        [InlineData("INSERT INTO users (email,   ) VALUES (\"Jeff@gmail.com\", 703503);")]
+        public void Check_ValidColumnNumber_ShouldReturnTrue(string query) {
             using (var mock = AutoMock.GetLoose()) {
-                mock.Mock<IDatabase>().Setup(m => m.GetTable(tableName)).Returns(new MockedTable());
+                mock.Mock<IDatabase>().Setup(m => m.GetTable("users")).Returns(new MockedTable());
 
                 var middleware = mock.Create<HasValidColumnNumber>();
 
@@ -48,13 +47,13 @@ namespace JsonDatabase.Tests.Middlewares.Insert {
         }
         
         [Theory]
-        [InlineData("INSERT INTO users (email) VALUES (\"Jeff@gmail.com\", 703503);", "users", 1)]
-        [InlineData("INSERT INTO users (   ) VALUES (\"Jeff@gmail.com\", 703503);", "users", 0)]
-        [InlineData("INSERT INTO users (email, username, password) VALUES (\"Jeff@gmail.com\", 703503);", "users", 3)]
-        [InlineData("INSERT INTO users (email, username,  ) VALUES (\"Jeff@gmail.com\", 703503);", "users", 3)]
-        public void Check_InvalidColumnNumber_ShouldThrowInvalidColumnNumberException(string query, string tableName, int actualColumnNumber) {
+        [InlineData("INSERT INTO users (email) VALUES (\"Jeff@gmail.com\", 703503);", 1)]
+        [InlineData("INSERT INTO users (   ) VALUES (\"Jeff@gmail.com\", 703503);", 0)]
+        [InlineData("INSERT INTO users (email, username, password) VALUES (\"Jeff@gmail.com\", 703503);", 3)]
+        [InlineData("INSERT INTO users (email, username,  ) VALUES (\"Jeff@gmail.com\", 703503);", 3)]
+        public void Check_InvalidColumnNumber_ShouldThrowInvalidColumnNumberException(string query, int actualColumnNumber) {
             using (var mock = AutoMock.GetLoose()) {
-                mock.Mock<IDatabase>().Setup(m => m.GetTable(tableName)).Returns(new MockedTable());
+                mock.Mock<IDatabase>().Setup(m => m.GetTable("users")).Returns(new MockedTable());
 
                 var middleware = mock.Create<HasValidColumnNumber>();
 
