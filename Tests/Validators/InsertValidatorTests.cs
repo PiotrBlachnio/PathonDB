@@ -13,26 +13,26 @@ namespace JsonDatabase.Tests.Validators {
             new CreateService(_database).PerformQuery("CREATE TABLE users (email text, phoneNumber int);");
         }
 
-        // [Theory]
-        // [InlineData("INSERT INTO users (email, phoneNumber) VALUES (\"Jeff@gmail.com\", 703503);")]
-        // [InlineData("INSERT INTO   users   (email, phoneNumber) VALUES (\"Jeff@gmail.com\", 703503);")]
-        // [InlineData("INSERT INTO users (  email  ,   phoneNumber  ) VALUeS (\"Jeff@gmail.com\", 703503);")]
-        // [InlineData("INSERT INTO users (email ,  phoneNumber)    values   (   \"Jeff@gmail.com\"  ,   703503  );")]
-        // public void Validate_ValidQuery_ShouldReturnTrue(string query) {
-        //     var validator = new InsertValidator(_database);
+        [Theory]
+        [InlineData("INSERT INTO users (email, phoneNumber) VALUES (\"Jeff@gmail.com\", 703503);")]
+        [InlineData("INSERT INTO   users   (email, phoneNumber) VALUES (\"Jeff@gmail.com\", 703503);")]
+        [InlineData("INSERT INTO users (  email  ,   phoneNumber  ) VALUeS (\"Jeff@gmail.com\", 703503);")]
+        [InlineData("INSERT INTO users (email ,  phoneNumber)    values   (   \"Jeff@gmail.com\"  ,   703503  );")]
+        public void Validate_ValidQuery_ShouldReturnTrue(string query) {
+            var validator = new InsertValidator(_database);
 
-        //     var actual = validator.Validate(query);
+            var actual = validator.Validate(query);
 
-        //     Assert.True(actual);
-        // }
+            Assert.True(actual);
+        }
 
         [Theory]
-        // [InlineData("INSERT INTO users (email, phoneNumber) VALUE (\"Jeff@gmail.com\", 703503);")]
-        // [InlineData("INSERT INTO users (email phoneNumber) VALUES (\"Jeff@gmail.com\", 703503);")]
-        // [InlineData("INSERT INTO users (email, phoneNumber) VALUES (\"Jeff@gmail.com\", 703503")]
-        // [InlineData("INSERT INTO users (email, phoneNumber) VALUES (\"Jeff@gmail.com\");")]
-        // [InlineData("INSERT INTO users (email) VALUES (\"Jeff@gmail.com\");")]
-        // [InlineData("INSERT INTO users (email, phoneNumberr) VALUES (\"Jeff@gmail.com\", 703503);")]
+        [InlineData("INSERT INTO users (email, phoneNumber) VALUE (\"Jeff@gmail.com\", 703503);")]
+        [InlineData("INSERT INTO users (email phoneNumber) VALUES (\"Jeff@gmail.com\", 703503);")]
+        [InlineData("INSERT INTO users (email, phoneNumber) VALUES (\"Jeff@gmail.com\", 703503")]
+        [InlineData("INSERT INTO users (email, phoneNumber) VALUES (\"Jeff@gmail.com\");")]
+        [InlineData("INSERT INTO users (email) VALUES (\"Jeff@gmail.com\");")]
+        [InlineData("INSERT INTO users (email, phoneNumberr) VALUES (\"Jeff@gmail.com\", 703503);")]
         [InlineData("INSERT INTO users (email, phoneNumber) VALUES (\"Jeff@gmail.com\", true);")]
         public void Validate_InvalidQuery_ShouldThrowAnException(string query) {
             var validator = new InsertValidator(_database);
