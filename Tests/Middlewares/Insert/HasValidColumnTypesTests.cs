@@ -52,6 +52,7 @@ namespace JsonDatabase.Tests.Middlewares.Insert {
         [InlineData("INSERT INTO users (email, phoneNumber) VALUES (\"Jeff@gmail.com\", \"703503\"")]
         [InlineData("INSERT INTO users (email, phoneNumber) VALUES (Jeff@gmail.com, 703503")]
         [InlineData("INSERT INTO users (isAdult) VALUES (truef")]
+        [InlineData("INSERT INTO users (email, phoneNumber) VALUES (\"Jeff@gmail.com\", true")]
         public void Check_InvalidColumnTypes_ShouldThrowInvalidColumnTypeException(string query) {
             using (var mock = AutoMock.GetLoose()) {
                 mock.Mock<IDatabase>().Setup(m => m.GetTable("users")).Returns(new MockedTable());
