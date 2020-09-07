@@ -6,7 +6,7 @@ namespace JsonDatabase.Validators.Create {
     public class CreateTableValidator : Validator {
         private const string QUERY_END = ");";
 
-        public CreateTableValidator(Database database) {
+        public CreateTableValidator(IDatabase database) {
             this._middleware = new HasValidArguments();
 
             this._middleware

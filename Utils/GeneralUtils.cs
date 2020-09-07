@@ -22,6 +22,7 @@ namespace JsonDatabase.Utils {
                     if(value[0] != '"' || value[value.Length - 1] != '"') return false;
                     break;
                 case "int":
+                    System.Diagnostics.Debug.WriteLine(int.TryParse(value, out int y));
                     if(!int.TryParse(value, out int i)) return false;
                     break;
                 case "boolean":

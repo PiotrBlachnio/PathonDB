@@ -4,7 +4,7 @@ using JsonDatabase.Validators.Create;
 
 namespace JsonDatabase.Services {
     public class CreateService : Service {
-        public CreateService(Database database) : base(database) {}
+        public CreateService(IDatabase database) : base(database) {}
 
         public override void PerformQuery(string query) {
             new CreateTableValidator(this._database).Validate(query);

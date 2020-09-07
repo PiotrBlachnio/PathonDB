@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using JsonDatabase.Exceptions.Insert;
 using JsonDatabase.Middlewares.General;
@@ -6,9 +7,9 @@ using JsonDatabase.Utils;
 
 namespace JsonDatabase.Middlewares.Insert {
     public class HasValidColumnTypes : Middleware {
-        private readonly Database _database;
+        private readonly IDatabase _database;
 
-        public HasValidColumnTypes(Database database) {
+        public HasValidColumnTypes(IDatabase database) {
             _database = database;
         }
         
