@@ -41,9 +41,9 @@ namespace JsonDatabase.Tests.Utils {
         }
 
         [Theory]
-        [InlineData("INSERT INTO users (email, phoneNumber, isAdult) VALUES (\"Jeff@gmail.com\", 703503);")]
-        [InlineData("INSERT INTO users (  email ,   phoneNumber  ,   isAdult   ) VALUES (\"Jeff@gmail.com\", 703503);")]
-        [InlineData("INSERT INTO   users   (email,   phoneNumber,   isAdult  )   VALUES    (\"Jeff@gmail.com\", 703503);")]
+        [InlineData("INSERT INTO users (email, phoneNumber, isAdult) VALUES (\"Jeff@gmail.com\", 703503, true);")]
+        [InlineData("INSERT INTO users (  email ,   phoneNumber  ,   isAdult   ) VALUES (\"Jeff@gmail.com\", 703503, true);")]
+        [InlineData("INSERT INTO   users   (email,   phoneNumber,   isAdult  )   VALUES    (\"Jeff@gmail.com\", 703503, true);")]
         public void GetColumnsFromArguments_ShouldReturnValidColumns(string query) {
             var actual = InsertUtils.GetColumnsFromArguments(InsertUtils.GetArgumentsFromQuery(query)).ToArray();
 
@@ -51,6 +51,22 @@ namespace JsonDatabase.Tests.Utils {
                 "email",
                 "phoneNumber",
                 "isAdult"
+            };
+
+            Assert.Equal(actual, expected);
+        }
+
+        [Theory]
+        [InlineData("INSERT INTO users (email, phoneNumber, isAdult) VALUES (\"Jeff@gmail.com\", 703503, true")]
+        [InlineData("INSERT INTO users (email, phoneNumber, isAdult) VALUES (  \"Jeff@gmail.com\"  ,   703503  ,   true   ")]
+        [InlineData("INSERT INTO users   (email, phoneNumber, isAdult   )    VALUES   (  \"Jeff@gmail.com\"  ,   703503  ,   true    ")]
+        public void GetValuesFromArguments_ShouldReturnValidValues(string query) {
+            var actual = InsertUtils.GetValuesFromArguments(InsertUtils.GetArgumentsFromQuery(query)).ToArray();
+
+            var expected = new string[] {
+                "\"Jeff@gmail.com\"",
+                "703503",
+                "true"
             };
 
             Assert.Equal(actual, expected);
