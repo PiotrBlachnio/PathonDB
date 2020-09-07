@@ -1,3 +1,4 @@
+using System.Linq;
 using JsonDatabase.Utils;
 using Xunit;
 
@@ -35,6 +36,22 @@ namespace JsonDatabase.Tests.Utils {
             var actual = InsertUtils.GetValuesKeywordFromArguments(InsertUtils.GetArgumentsFromQuery(query));
 
             var expected = "VALUES";
+
+            Assert.Equal(actual, expected);
+        }
+
+        [Theory]
+        [InlineData("INSERT INTO users (email, phoneNumber, isAdult) VALUES (\"Jeff@gmail.com\", 703503);")]
+        [InlineData("INSERT INTO users (  email ,   phoneNumber  ,   isAdult   ) VALUES (\"Jeff@gmail.com\", 703503);")]
+        [InlineData("INSERT INTO   users   (email,   phoneNumber,   isAdult  )   VALUES    (\"Jeff@gmail.com\", 703503);")]
+        public void GetColumnsFromArguments_ShouldReturnValidColumns(string query) {
+            var actual = InsertUtils.GetColumnsFromArguments(InsertUtils.GetArgumentsFromQuery(query)).ToArray();
+
+            var expected = new string[] {
+                "email",
+                "phoneNumber",
+                "isAdult"
+            };
 
             Assert.Equal(actual, expected);
         }
