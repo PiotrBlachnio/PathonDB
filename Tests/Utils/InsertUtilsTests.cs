@@ -25,5 +25,18 @@ namespace JsonDatabase.Tests.Utils {
 
             Assert.Equal(actual, expected);
         }
+
+        [Theory]
+        [InlineData("INSERT INTO users (email, phoneNumber) VALUES (\"Jeff@gmail.com\", 703503);")]
+        [InlineData("INSERT INTO users (email, phoneNumber)     VALUES    (\"Jeff@gmail.com\", 703503);")]
+        [InlineData("INSERT INTO users (email, phoneNumber) VAlues   (\"Jeff@gmail.com\", 703503);")]
+        [InlineData("INSERT INTO users (email, phoneNumber)      values (\"Jeff@gmail.com\", 703503);")]
+        public void GetValuesKeywordFromArguments_ShouldReturnValidKeyword(string query) {
+            var actual = InsertUtils.GetValuesKeywordFromArguments(InsertUtils.GetArgumentsFromQuery(query));
+
+            var expected = "VALUES";
+
+            Assert.Equal(actual, expected);
+        }
     }
 }
