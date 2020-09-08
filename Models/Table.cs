@@ -49,5 +49,9 @@ namespace JsonDatabase.Models {
 
             return row;
         }
+
+        public IList<Guid> GetIdList() {
+            return _idList;
+        }
     }
 }
