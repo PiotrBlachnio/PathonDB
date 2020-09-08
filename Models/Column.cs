@@ -17,5 +17,9 @@ namespace JsonDatabase.Models {
         public void InsertData(Guid id, object data) {
             _data.Add(id, data);
         }
+
+        public object GetData(Guid id) {
+            return _data[id];
+        }
     }
 }

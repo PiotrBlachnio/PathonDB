@@ -39,5 +39,19 @@ namespace JsonDatabase.Models {
                 _columns[columns[i]].InsertData(id, GeneralUtils.TransformStringValueToRealValue(values[i]));
             }
         }
+
+        public Dictionary<string, object> GetRowById(Guid id) {
+            var row = new Dictionary<string, object>() {};
+            
+            foreach(var entry in _columns) {
+                row.Add(entry.Key, entry.Value.GetData(id));
+            }
+
+            return row;
+        }
+
+        public IList<Guid> GetIdList() {
+            return _idList;
+        }
     }
 }
