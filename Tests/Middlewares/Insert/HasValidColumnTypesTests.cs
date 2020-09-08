@@ -31,6 +31,16 @@ namespace JsonDatabase.Tests.Middlewares.Insert {
                     {"isAdult", "boolean"}
                 };
             }
+
+            public IList<System.Guid> GetIdList()
+            {
+                throw new System.NotImplementedException();
+            }
+
+            public Dictionary<string, object> GetRowById(System.Guid id)
+            {
+                throw new System.NotImplementedException();
+            }
         }
 
         [Theory]

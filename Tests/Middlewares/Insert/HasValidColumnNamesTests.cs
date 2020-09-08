@@ -26,6 +26,16 @@ namespace JsonDatabase.Tests.Middlewares.Insert {
         {
             throw new System.NotImplementedException();
         }
+
+        public IList<System.Guid> GetIdList()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Dictionary<string, object> GetRowById(System.Guid id)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 
     public class HasValidColumnNamesTests {
