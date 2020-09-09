@@ -21,21 +21,17 @@ namespace JsonDatabase.Tests.Middlewares.Create {
         public void Check_InvalidQuery_ShouldThrowMalformedColumnsException(string query) {
             var middleware = new HasValidColumns();
 
-            var ex = Assert.Throws<MalformedColumnsException>(() => middleware.Check(query));
-
-            Assert.Equal("Query has malformed columns", ex.Message);
+            Assert.Throws<MalformedColumnsException>(() => middleware.Check(query));
         }
 
         [Theory]
-        [InlineData("CREATE TABLE users (id text, phoneNumber int", "id")]
-        [InlineData("CREATE TABLE users (Id text, phoneNumber int", "Id")]
-        [InlineData("CREATE TABLE users (ID text, phoneNumber int", "ID")]
-        public void Check_ForbiddenColumnName_ShouldThrowForbiddenColumnNameException(string query, string columnName) {
+        [InlineData("CREATE TABLE users (id text, phoneNumber int")]
+        [InlineData("CREATE TABLE users (Id text, phoneNumber int")]
+        [InlineData("CREATE TABLE users (ID text, phoneNumber int")]
+        public void Check_ForbiddenColumnName_ShouldThrowForbiddenColumnNameException(string query) {
             var middleware = new HasValidColumns();
 
-            var ex = Assert.Throws<ForbiddenColumnNameException>(() => middleware.Check(query));
-
-            Assert.Equal($"Column name \"{columnName}\" is not allowed", ex.Message);
+            Assert.Throws<ForbiddenColumnNameException>(() => middleware.Check(query));
         }
     }
 }

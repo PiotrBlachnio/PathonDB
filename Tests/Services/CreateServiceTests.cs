@@ -21,7 +21,7 @@ namespace JsonDatabase.Tests.Services {
                 {"isAdult", "boolean"}
             };
 
-            Assert.Equal(actual, expected);
+            Assert.Equal(expected, actual);
         }
     }
 }

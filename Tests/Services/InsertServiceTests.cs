@@ -22,7 +22,7 @@ namespace JsonDatabase.Services {
                 {"isAdult", true}
             };
 
-            Assert.Equal(actual, expected);
+            Assert.Equal(expected, actual);
         }
     }
 }

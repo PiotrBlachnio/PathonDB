@@ -12,7 +12,7 @@ namespace JsonDatabase.Tests.Utils {
             
             var expected = new string[3] { "INSERT INTO users", "email, phoneNumber) VALUES", "\"Jeff@gmail.com\", 703503);"};
 
-            Assert.Equal(actual, expected);
+            Assert.Equal(expected, actual);
         }
 
         [Theory]
@@ -24,7 +24,7 @@ namespace JsonDatabase.Tests.Utils {
 
             var expected = "users";
 
-            Assert.Equal(actual, expected);
+            Assert.Equal(expected, actual);
         }
 
         [Theory]
@@ -37,7 +37,7 @@ namespace JsonDatabase.Tests.Utils {
 
             var expected = "VALUES";
 
-            Assert.Equal(actual, expected);
+            Assert.Equal(expected, actual);
         }
 
         [Theory]
@@ -53,7 +53,7 @@ namespace JsonDatabase.Tests.Utils {
                 "isAdult"
             };
 
-            Assert.Equal(actual, expected);
+            Assert.Equal(expected, actual);
         }
 
         [Theory]
@@ -69,7 +69,7 @@ namespace JsonDatabase.Tests.Utils {
                 "true"
             };
 
-            Assert.Equal(actual, expected);
+            Assert.Equal(expected, actual);
         }
     }
 }

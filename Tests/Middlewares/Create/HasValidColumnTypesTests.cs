@@ -17,15 +17,13 @@ namespace JsonDatabase.Tests.Middlewares.Create {
         }
 
         [Theory]
-        [InlineData("CREATE TABLE users (email textt, phoneNumber int", "textt")]
-        [InlineData("CREATE TABLE users (email Integer", "Integer")]
-        [InlineData("CREATE TABLE users (email text, isAdult bool", "bool")]
-        public void Check_InvalidColumnTypes_ShouldThrowUnsupportedTypeException(string query, string type) {
+        [InlineData("CREATE TABLE users (email textt, phoneNumber int")]
+        [InlineData("CREATE TABLE users (email Integer")]
+        [InlineData("CREATE TABLE users (email text, isAdult bool")]
+        public void Check_InvalidColumnTypes_ShouldThrowUnsupportedTypeException(string query) {
             var middleware = new HasValidColumnTypes();
 
-            var ex = Assert.Throws<UnsupportedTypeException>(() => middleware.Check(query));
-
-            Assert.Equal($"Unsupported type found in query: {type}", ex.Message);
+            Assert.Throws<UnsupportedTypeException>(() => middleware.Check(query));
         }
     }
 }

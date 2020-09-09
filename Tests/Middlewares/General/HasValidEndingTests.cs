@@ -25,9 +25,7 @@ namespace JsonDatabase.Tests.Middlewares.General {
         public void Check_InvalidEnding_ShouldThrowInvalidQueryEndingException(string query, string validEnding) {
             var middleware = new HasValidEnding(validEnding);
 
-            var ex = Assert.Throws<InvalidQueryEndingException>(() => middleware.Check(query));
-
-            Assert.Equal($"Incorrect end of the query: {query}", ex.Message);
+            Assert.Throws<InvalidQueryEndingException>(() => middleware.Check(query));
         }
     }
 }
