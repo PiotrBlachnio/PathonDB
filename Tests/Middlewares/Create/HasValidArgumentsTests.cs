@@ -21,9 +21,7 @@ namespace JsonDatabase.Tests.Middlewares.Create {
         public void Check_InvalidQuery_ShouldThrowMalformedArgumentsException(string query) {
             var middleware = new HasValidArguments();
 
-            var ex = Assert.Throws<MalformedArgumentsException>(() => middleware.Check(query));
-
-            Assert.Equal("Query has malformed arguments", ex.Message);
+            Assert.Throws<MalformedArgumentsException>(() => middleware.Check(query));
         }
     }
 }
