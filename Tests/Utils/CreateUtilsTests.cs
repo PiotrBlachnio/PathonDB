@@ -11,7 +11,7 @@ namespace JsonDatabase.Tests.Utils {
 
             var expected = new string[2] { "CREATE TABLE users",  "email text, phoneNumber int);" };
 
-            Assert.Equal(actual, expected);
+            Assert.Equal(expected, actual);
         }
 
         [Theory]
@@ -40,7 +40,7 @@ namespace JsonDatabase.Tests.Utils {
                 new string[] { "phoneNumber", "int"}
             };
 
-            Assert.Equal(actual, expected);
+            Assert.Equal(expected, actual);
         }
     }
 }
