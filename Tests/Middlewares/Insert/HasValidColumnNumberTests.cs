@@ -8,38 +8,6 @@ using Xunit;
 
 namespace JsonDatabase.Tests.Middlewares.Insert {
     public class HasValidColumnNumberTests {
-        public class MockedTable : ITable {
-            public void AddColumn(Column column)
-            {
-                throw new System.NotImplementedException();
-            }
-
-            public void AddRow(string[] columns, string[] values)
-            {
-                throw new System.NotImplementedException();
-            }
-
-            public string[] GetColumnNames()
-            {
-                return new string[2] { "email", "phoneNumber" };
-            }
-
-            public Dictionary<string, string> GetColumnTypes()
-            {
-                throw new System.NotImplementedException();
-            }
-
-            public IList<System.Guid> GetIdList()
-            {
-                throw new System.NotImplementedException();
-            }
-
-            public Dictionary<string, object> GetRowById(System.Guid id)
-            {
-                throw new System.NotImplementedException();
-            }
-        }
-
         [Theory]
         [InlineData("INSERT INTO users (email, phoneNumber) VALUES (\"Jeff@gmail.com\", 703503);")]
         [InlineData("INSERT INTO users (  email ,   phoneNumber  ) VALUES (\"Jeff@gmail.com\", 703503);")]
