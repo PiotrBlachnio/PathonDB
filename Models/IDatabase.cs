@@ -4,6 +4,6 @@ namespace PathonDB.Models {
 
         ITable GetTable(string tableName);
 
-        void AddTable(Table table);
+        void AddTable(ITable table);
     }
 }

@@ -6,7 +6,7 @@ using Xunit;
 
 namespace PathonDB.Tests.Validators {
     public class InsertValidatorTests {
-        private readonly Database _database;
+        private readonly IDatabase _database;
 
         public InsertValidatorTests() {
             _database = new Database();

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 namespace PathonDB.Models {
     public interface ITable {
+        string Name { get; set; }
+        
         void AddColumn(Column column);
 
         string[] GetColumnNames();

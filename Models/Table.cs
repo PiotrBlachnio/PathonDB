@@ -7,7 +7,7 @@ namespace PathonDB.Models {
     public class Table : ITable {
         private readonly Dictionary<string, Column> _columns = new Dictionary<string, Column>();
         private readonly IList<Guid> _idList = new List<Guid>();
-        public string Name;
+        public string Name { get; set; }
 
         public Table(string name) {
             Name = name;

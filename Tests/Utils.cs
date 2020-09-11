@@ -3,6 +3,8 @@ using PathonDB.Models;
 
 namespace PathonDB.Tests {
     public class MockedTable : ITable {
+        public string Name { get; set; }
+
         public void AddColumn(Column column) {
             throw new System.NotImplementedException();
         }
