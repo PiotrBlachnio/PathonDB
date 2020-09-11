@@ -1,6 +1,6 @@
 using System;
 
-namespace JsonDatabase.Exceptions.General {
+namespace PathonDB.Exceptions.General {
     public class MalformedColumnsException : Exception {
         public MalformedColumnsException() : base("Query has malformed columns") {}
     }

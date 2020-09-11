@@ -1,6 +1,6 @@
 using System;
 
-namespace JsonDatabase.Exceptions.General {
+namespace PathonDB.Exceptions.General {
     public class InvalidQueryEndingException : Exception {
         public InvalidQueryEndingException(string query) : base($"Incorrect end of the query: {query}") {}
     }

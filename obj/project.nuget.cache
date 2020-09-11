@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TpO4kievswi/AmlF1ZhRYLT0EBv6hJCUXuwwCYO+vJhhdnHzp8k5ht3ldNocPGjXPdgBJzQTQkMumS9AUMWMvQ==",
+  "dgSpecHash": "wOMhjjn4IVExx+kW92DsQ1ZxJU6hyNZPSvY/N7tUolcdt0qYPP+LsgzlDZd5jirbDZB8X17Saggkny4A/46/cQ==",
   "success": true,
-  "projectFilePath": "C:\\Projects\\Web\\.NET\\Json-Database\\JsonDatabase.csproj",
+  "projectFilePath": "C:\\Projects\\Web\\.NET\\PathonDB\\PathonDB.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Piotr Błachnio\\.nuget\\packages\\autofac\\5.2.0\\autofac.5.2.0.nupkg.sha512",
     "C:\\Users\\Piotr Błachnio\\.nuget\\packages\\autofac.extras.moq\\5.0.1\\autofac.extras.moq.5.0.1.nupkg.sha512",

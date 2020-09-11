@@ -1,7 +1,7 @@
-using JsonDatabase.Utils;
+using PathonDB.Utils;
 using Xunit;
 
-namespace JsonDatabase.Tests.Utils {
+namespace PathonDB.Tests.Utils {
     public class CreateUtilsTests {
         [Theory]
         [InlineData("CREATE TABLE users (email text, phoneNumber int);")]

@@ -1,6 +1,6 @@
-﻿using JsonDatabase.Models;
+﻿using PathonDB.Models;
 
-namespace JsonDatabase {
+namespace PathonDB {
     class Program {
         static void Main(string[] args) {
             var client = new DatabaseClient();

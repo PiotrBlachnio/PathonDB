@@ -1,11 +1,11 @@
 using System;
 using System.Linq;
-using JsonDatabase.Exceptions.General;
-using JsonDatabase.Middlewares.General;
-using JsonDatabase.Models;
-using JsonDatabase.Utils;
+using PathonDB.Exceptions.General;
+using PathonDB.Middlewares.General;
+using PathonDB.Models;
+using PathonDB.Utils;
 
-namespace JsonDatabase.Middlewares.Insert {
+namespace PathonDB.Middlewares.Insert {
     public class HasValidTable : Middleware {
         private readonly IDatabase _database;
 

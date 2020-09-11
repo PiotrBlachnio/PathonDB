@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace JsonDatabase.Models {
+namespace PathonDB.Models {
     public class Database : IDatabase {
         private readonly Dictionary<string, Table> _tables = new Dictionary<string, Table>();
 

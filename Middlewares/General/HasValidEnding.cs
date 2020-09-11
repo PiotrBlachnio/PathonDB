@@ -1,6 +1,6 @@
-using JsonDatabase.Exceptions.General;
+using PathonDB.Exceptions.General;
 
-namespace JsonDatabase.Middlewares.General {
+namespace PathonDB.Middlewares.General {
     public class HasValidEnding : Middleware {
         private readonly string _endingString;
 

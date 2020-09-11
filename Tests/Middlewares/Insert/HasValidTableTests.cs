@@ -1,10 +1,10 @@
 using Autofac.Extras.Moq;
-using JsonDatabase.Exceptions.General;
-using JsonDatabase.Middlewares.Insert;
-using JsonDatabase.Models;
+using PathonDB.Exceptions.General;
+using PathonDB.Middlewares.Insert;
+using PathonDB.Models;
 using Xunit;
 
-namespace JsonDatabase.Tests.Middlewares.Insert {
+namespace PathonDB.Tests.Middlewares.Insert {
     public class HasValidTableTests {
         [Theory]
         [InlineData("INSERT INTO users (email, phoneNumber) VALUES (\"Jeff@gmail.com\", 703503);")]

@@ -1,6 +1,6 @@
-using JsonDatabase.Middlewares.General;
+using PathonDB.Middlewares.General;
 
-namespace JsonDatabase.Validators {
+namespace PathonDB.Validators {
     public abstract class Validator {
         protected Middleware _middleware;
 

@@ -1,12 +1,12 @@
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
-using JsonDatabase.Exceptions.Create;
-using JsonDatabase.Middlewares.General;
-using JsonDatabase.Models;
-using JsonDatabase.Utils;
+using PathonDB.Exceptions.Create;
+using PathonDB.Middlewares.General;
+using PathonDB.Models;
+using PathonDB.Utils;
 
-namespace JsonDatabase.Middlewares.Create {
+namespace PathonDB.Middlewares.Create {
     public class HasValidTable : Middleware {
         private readonly IDatabase _database;
 

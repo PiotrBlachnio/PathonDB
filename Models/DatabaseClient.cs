@@ -1,7 +1,7 @@
-using JsonDatabase.Exceptions.General;
-using JsonDatabase.Services;
+using PathonDB.Exceptions.General;
+using PathonDB.Services;
 
-namespace JsonDatabase.Models {
+namespace PathonDB.Models {
     public class DatabaseClient {
         private readonly IDatabase _database = new Database();
 

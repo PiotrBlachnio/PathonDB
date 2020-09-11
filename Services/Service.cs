@@ -1,6 +1,6 @@
-using JsonDatabase.Models;
+using PathonDB.Models;
 
-namespace JsonDatabase.Services {
+namespace PathonDB.Services {
     public abstract class Service {
         protected readonly IDatabase _database;
 

@@ -1,8 +1,8 @@
-using JsonDatabase.Models;
-using JsonDatabase.Utils;
-using JsonDatabase.Validators.Create;
+using PathonDB.Models;
+using PathonDB.Utils;
+using PathonDB.Validators.Create;
 
-namespace JsonDatabase.Services {
+namespace PathonDB.Services {
     public class CreateService : Service {
         public CreateService(IDatabase database) : base(database) {}
 

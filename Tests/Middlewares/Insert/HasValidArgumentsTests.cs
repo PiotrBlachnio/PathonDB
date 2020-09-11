@@ -1,8 +1,8 @@
-using JsonDatabase.Exceptions.General;
-using JsonDatabase.Middlewares.Insert;
+using PathonDB.Exceptions.General;
+using PathonDB.Middlewares.Insert;
 using Xunit;
 
-namespace JsonDatabase.Tests.Middlewares.Insert {
+namespace PathonDB.Tests.Middlewares.Insert {
     public class HasValidArgumentsTests {
         [Theory]
         [InlineData("INSERT INTO users (email, phoneNumber) VALUES (\"Jeff@gmail.com\", 703503);")]
