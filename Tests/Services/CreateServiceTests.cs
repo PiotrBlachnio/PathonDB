@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using JsonDatabase.Models;
-using JsonDatabase.Services;
+using PathonDB.Models;
+using PathonDB.Services;
 using Xunit;
 
-namespace JsonDatabase.Tests.Services {
+namespace PathonDB.Tests.Services {
     public class CreateServiceTests {
         [Theory]
         [InlineData("CREATE TABLE users (email text, phoneNumber int, isAdult boolean);")]

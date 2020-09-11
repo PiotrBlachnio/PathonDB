@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace JsonDatabase.Utils {
+namespace PathonDB.Utils {
     public static class CreateUtils {
         private const string QUERY_START = "CREATE TABLE ";
 

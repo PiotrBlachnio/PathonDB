@@ -1,6 +1,6 @@
 using System;
 
-namespace JsonDatabase.Utils {
+namespace PathonDB.Utils {
     public static class GeneralUtils {
         public static object TransformStringValueToRealValue(string value) {
             if(value[0] == '"') {

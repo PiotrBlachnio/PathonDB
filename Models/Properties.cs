@@ -1,4 +1,4 @@
-namespace JsonDatabase.Models {
+namespace PathonDB.Models {
     public class Properties {
         public readonly string Name;
         public readonly string Type;

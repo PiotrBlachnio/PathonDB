@@ -1,10 +1,10 @@
 using System;
 using System.Linq;
-using JsonDatabase.Models;
-using JsonDatabase.Utils;
-using JsonDatabase.Validators;
+using PathonDB.Models;
+using PathonDB.Utils;
+using PathonDB.Validators;
 
-namespace JsonDatabase.Services {
+namespace PathonDB.Services {
     public class InsertService : Service {
         public InsertService(IDatabase database) : base(database) {}
 

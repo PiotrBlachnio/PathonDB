@@ -6274,11 +6274,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projects\\Web\\.NET\\Json-Database\\JsonDatabase.csproj",
-      "projectName": "JsonDatabase",
-      "projectPath": "C:\\Projects\\Web\\.NET\\Json-Database\\JsonDatabase.csproj",
+      "projectUniqueName": "C:\\Projects\\Web\\.NET\\PathonDB\\PathonDB.csproj",
+      "projectName": "PathonDB",
+      "projectPath": "C:\\Projects\\Web\\.NET\\PathonDB\\PathonDB.csproj",
       "packagesPath": "C:\\Users\\Piotr Błachnio\\.nuget\\packages\\",
-      "outputPath": "C:\\Projects\\Web\\.NET\\Json-Database\\obj\\",
+      "outputPath": "C:\\Projects\\Web\\.NET\\PathonDB\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Piotr Błachnio\\AppData\\Roaming\\NuGet\\NuGet.Config",

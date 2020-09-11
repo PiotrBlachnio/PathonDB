@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using JsonDatabase.Models;
+using PathonDB.Models;
 
-namespace JsonDatabase.Tests {
+namespace PathonDB.Tests {
     public class MockedTable : ITable {
         public void AddColumn(Column column) {
             throw new System.NotImplementedException();

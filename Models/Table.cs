@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using JsonDatabase.Utils;
+using PathonDB.Utils;
 
-namespace JsonDatabase.Models {
+namespace PathonDB.Models {
     public class Table : ITable {
         private readonly Dictionary<string, Column> _columns = new Dictionary<string, Column>();
         private readonly IList<Guid> _idList = new List<Guid>();

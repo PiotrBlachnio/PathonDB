@@ -1,4 +1,4 @@
-namespace JsonDatabase.Middlewares.General {
+namespace PathonDB.Middlewares.General {
     public abstract class Middleware {
         private Middleware next = null;
 

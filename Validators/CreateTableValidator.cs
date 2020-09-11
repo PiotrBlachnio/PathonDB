@@ -1,8 +1,8 @@
-using JsonDatabase.Middlewares.General;
-using JsonDatabase.Middlewares.Create;
-using JsonDatabase.Models;
+using PathonDB.Middlewares.General;
+using PathonDB.Middlewares.Create;
+using PathonDB.Models;
 
-namespace JsonDatabase.Validators.Create {
+namespace PathonDB.Validators.Create {
     public class CreateTableValidator : Validator {
         private const string QUERY_END = ");";
 

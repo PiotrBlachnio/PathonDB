@@ -1,10 +1,10 @@
 using System;
 using System.Linq;
-using JsonDatabase.Exceptions.Create;
-using JsonDatabase.Middlewares.General;
-using JsonDatabase.Utils;
+using PathonDB.Exceptions.Create;
+using PathonDB.Middlewares.General;
+using PathonDB.Utils;
 
-namespace JsonDatabase.Middlewares.Create {
+namespace PathonDB.Middlewares.Create {
     public class HasValidColumnTypes : Middleware {
         public override bool Check(string query) {
             var arguments = CreateUtils.GetArgumentsFromQuery(query);

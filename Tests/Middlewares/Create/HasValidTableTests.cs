@@ -1,10 +1,10 @@
-using JsonDatabase.Middlewares.Create;
+using PathonDB.Middlewares.Create;
 using Xunit;
-using JsonDatabase.Models;
+using PathonDB.Models;
 using Autofac.Extras.Moq;
-using JsonDatabase.Exceptions.Create;
+using PathonDB.Exceptions.Create;
 
-namespace JsonDatabase.Tests.Middlewares.Create {
+namespace PathonDB.Tests.Middlewares.Create {
     public class HasValidTableTests {
         [Theory]
         [InlineData("CREATE TABLE   animals   (email text,phoneNumber int, isAdult boolean);")]

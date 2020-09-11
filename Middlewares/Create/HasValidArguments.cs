@@ -1,8 +1,8 @@
-using JsonDatabase.Exceptions.General;
-using JsonDatabase.Middlewares.General;
-using JsonDatabase.Utils;
+using PathonDB.Exceptions.General;
+using PathonDB.Middlewares.General;
+using PathonDB.Utils;
 
-namespace JsonDatabase.Middlewares.Create {
+namespace PathonDB.Middlewares.Create {
     public class HasValidArguments : Middleware {
         public override bool Check(string query) {
             string[] arguments = CreateUtils.GetArgumentsFromQuery(query);

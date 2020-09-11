@@ -1,10 +1,10 @@
 using System;
-using JsonDatabase.Models;
-using JsonDatabase.Services;
-using JsonDatabase.Validators;
+using PathonDB.Models;
+using PathonDB.Services;
+using PathonDB.Validators;
 using Xunit;
 
-namespace JsonDatabase.Tests.Validators {
+namespace PathonDB.Tests.Validators {
     public class InsertValidatorTests {
         private readonly Database _database;
 

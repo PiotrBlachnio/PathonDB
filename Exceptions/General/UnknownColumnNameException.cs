@@ -1,6 +1,6 @@
 using System;
 
-namespace JsonDatabase.Exceptions.General {
+namespace PathonDB.Exceptions.General {
     public class UnknownColumnNameException : Exception {
         public UnknownColumnNameException(string columnName) : base($"Unknown column: {columnName}") {}
     }

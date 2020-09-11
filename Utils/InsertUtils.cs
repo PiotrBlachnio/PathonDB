@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace JsonDatabase.Utils {
+namespace PathonDB.Utils {
     public static class InsertUtils {
         private const string QUERY_START = "INSERT INTO ";
 

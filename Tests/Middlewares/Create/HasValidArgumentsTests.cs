@@ -1,8 +1,8 @@
-using JsonDatabase.Exceptions.General;
-using JsonDatabase.Middlewares.Create;
+using PathonDB.Exceptions.General;
+using PathonDB.Middlewares.Create;
 using Xunit;
 
-namespace JsonDatabase.Tests.Middlewares.Create {
+namespace PathonDB.Tests.Middlewares.Create {
     public class HasValidArgumentsTests {
         [Theory]
         [InlineData("CREATE TABLE users (email text, phoneNumber int);")]

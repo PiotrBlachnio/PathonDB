@@ -1,9 +1,9 @@
 using System.Linq;
-using JsonDatabase.Exceptions.General;
-using JsonDatabase.Middlewares.General;
-using JsonDatabase.Utils;
+using PathonDB.Exceptions.General;
+using PathonDB.Middlewares.General;
+using PathonDB.Utils;
 
-namespace JsonDatabase.Middlewares.Insert {
+namespace PathonDB.Middlewares.Insert {
     public class HasValidColumns : Middleware {
         public override bool Check(string query) {
             var arguments = InsertUtils.GetArgumentsFromQuery(query);
