@@ -11,9 +11,10 @@ namespace PathonDB.Utils {
         }
 
         public static string GetTableNameFromQuery(string query) {
-            var substring = query.Substring(QUERY_START.Length);
-
-            return substring.Trim().Split(" ")[0].Trim().ToLower();
+            var preparedQuery = string.Join(" ", query.Split(" ", StringSplitOptions.RemoveEmptyEntries));
+            var substring = preparedQuery.Substring(QUERY_START.Length);
+            
+            return substring.Split(" ")[0].ToLower();
         }
 
         public static IEnumerable<string[]> GetColumnsFromArguments(string[] arguments) {
