@@ -12,7 +12,7 @@ namespace PathonDB.Middlewares.General {
 
         public override bool Check(string query) {
             var arguments = query.Split(" ", StringSplitOptions.RemoveEmptyEntries);
-            var actualBeginning = arguments[0] + " " + arguments[1];
+            var actualBeginning = arguments[0].ToUpper() + " " + arguments[1].ToUpper();
 
             if(actualBeginning != _beginningString) throw new InvalidQueryBeginningException();
             return this.CheckNext(query);
