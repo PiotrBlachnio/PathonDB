@@ -37,5 +37,25 @@ namespace PathonDB.Tests.Utils {
 
             Assert.False(actual);
         }
+
+        [Theory]
+        [InlineData(" Hello world")]
+        [InlineData(" Hey313")]
+        [InlineData(" YOo4015rujafAJFA")]
+        public void ContainsOnlyAlphaNumericCharacters_StringContainsOnlyAlphaNumericCharacters_ShouldReturnTrue(string value) {
+            var acutal = GeneralUtils.ContainsOnlyAlphaNumericCharacters(value);
+
+            Assert.True(acutal);
+        }
+
+        [Theory]
+        [InlineData(" Hey!")]
+        [InlineData("#    Hello Wordl")]
+        [InlineData("^YO^")]
+        public void ContainsOnlyAlphaNumericCharacters_StringDoesNotContainOnlyAlphaNumericCharacters_ShouldReturnFalse(string value) {
+            var acutal = GeneralUtils.ContainsOnlyAlphaNumericCharacters(value);
+
+            Assert.False(acutal);
+        }
     }
 }
