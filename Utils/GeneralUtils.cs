@@ -1,4 +1,5 @@
 using System;
+using System.Text.RegularExpressions;
 
 namespace PathonDB.Utils {
     public static class GeneralUtils {
@@ -31,6 +32,11 @@ namespace PathonDB.Utils {
             }
 
             return true;
+        }
+
+        public static bool ContainsOnlyAlphaNumericCharacters(string input) {
+            var regex = new Regex("^[a-zA-Z0-9 ]*$");
+            return regex.IsMatch(input);
         }
     }
 }
