@@ -4,14 +4,14 @@ using PathonDB.Validators.Create;
 using Xunit;
 
 namespace PathonDB.Tests.Validators {
-    public class CreateTableValidatorTests {
+    public class CreateValidatorTests {
         [Theory]
         [InlineData("CREATE TABLE users (email text, phoneNumber int);")]
         [InlineData("CREATE TABLE   users   (email text, phoneNumber int);")]
         [InlineData("CREATE TABLE users (   email   text  , phoneNumber   int);")]
         [InlineData("   CREATE   TABLE   users (email  text, phoneNumber int    );")]
         public void Validate_ValidQuery_ShouldReturnTrue(string query) {
-            var validator = new CreateTableValidator(new Database());
+            var validator = new CreateValidator(new Database());
 
             var actual = validator.Validate(query);
 
@@ -27,7 +27,7 @@ namespace PathonDB.Tests.Validators {
         [InlineData("CREATE TABLE users (email text, phoneNumber bigint);")]
         [InlineData("CREATE TABLE users (id text, email text);")]
         public void Validate_InvalidQuery_ShouldThrowAnException(string query) {
-            var validator = new CreateTableValidator(new Database());
+            var validator = new CreateValidator(new Database());
 
             Assert.ThrowsAny<Exception>(() => validator.Validate(query));
         }
