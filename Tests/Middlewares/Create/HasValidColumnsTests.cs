@@ -28,10 +28,24 @@ namespace PathonDB.Tests.Middlewares.Create {
         [InlineData("CREATE TABLE users (id text, phoneNumber int")]
         [InlineData("CREATE TABLE users (Id text, phoneNumber int")]
         [InlineData("CREATE TABLE users (ID text, phoneNumber int")]
-        public void Check_ForbiddenColumnName_ShouldThrowForbiddenColumnNameException(string query) {
+        public void Check_IdAsAColumnName_ShouldThrowForbiddenColumnNameException(string query) {
             var middleware = new HasValidColumns();
 
             Assert.Throws<ForbiddenColumnNameException>(() => middleware.Check(query));
+        }
+
+        [Theory]
+        [InlineData("CREATE TABLE users (email? text, phoneNumber int")]
+        [InlineData("CREATE TABLE users (email text, phoneNumber! int")]
+        [InlineData("CREATE TABLE users (email# text, phoneNumber int")]
+        [InlineData("CREATE TABLE users (em$ail text, phoneNumber int")]
+        [InlineData("CREATE TABLE users (email text, %phoneNumber int")]
+        [InlineData("CREATE TABLE users (emai)l text, phoneNumber int")]
+        [InlineData("CREATE TABLE users (emai^l text, phoneNumber int")]
+        public void Check_ForbiddenCharacters_ShouldThrowForbiddenCharactersException(string query) {
+            var middleware = new HasValidColumns();
+
+            Assert.Throws<ForbiddenCharactersException>(() => middleware.Check(query));
         }
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using PathonDB.Exceptions.General;
 using PathonDB.Middlewares.General;
@@ -13,6 +12,7 @@ namespace PathonDB.Middlewares.Create {
             if(!columns.All(x => x.Length == 2)) throw new MalformedColumnsException();
             
             foreach(var column in columns) {
+                if(!GeneralUtils.ContainsOnlyAlphaNumericCharacters(column[0])) throw new ForbiddenCharactersException(column[0]);
                 if(column[0].ToLower() == "id") throw new ForbiddenColumnNameException(column[0]);
             }
 
