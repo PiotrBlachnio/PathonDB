@@ -17,6 +17,9 @@ namespace PathonDB.Models {
                     case "INSERT":
                         new InsertService(_database).PerformQuery(query);
                         break;
+                    case "SELECT":
+                        new SelectService(_database).PerformQuery(query);
+                        break;
                     default:
                         throw new MalformedArgumentsException();
                 }
