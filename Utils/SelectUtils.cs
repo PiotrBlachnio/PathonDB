@@ -14,5 +14,12 @@ namespace PathonDB.Utils {
             if(arguments[1].StartsWith('(')) charToFind = arguments.First(x => x.EndsWith(')'));
             return arguments[(Array.IndexOf(lowercaseArray, charToFind) + 1)];
         }
+
+        public static string GetTableNameFromArguments(string[] arguments) {
+            var lowercaseArray = arguments.Select(x => x.ToLower()).ToArray();
+            var tableName = arguments[Array.IndexOf(lowercaseArray, "from") + 1];
+
+            return tableName;
+        }
     }
 }
