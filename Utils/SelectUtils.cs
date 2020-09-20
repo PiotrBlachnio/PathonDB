@@ -9,11 +9,10 @@ namespace PathonDB.Utils {
 
         public static string GetFromKeywordFromArguments(string[] arguments) {
             var lowercaseArray = arguments.Select(x => x.ToLower()).ToArray();
-            string charToFind = ")";
+            string charToFind = arguments[1];
 
-            if(arguments[1] == "*") charToFind = "*";
-
-            return arguments[(Array.IndexOf(lowercaseArray, charToFind))];
+            if(arguments[1].StartsWith('(')) charToFind = arguments.First(x => x.EndsWith(')'));
+            return arguments[(Array.IndexOf(lowercaseArray, charToFind) + 1)];
         }
     }
 }

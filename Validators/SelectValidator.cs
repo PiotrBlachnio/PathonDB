@@ -1,3 +1,4 @@
+using PathonDB.Middlewares.Select;
 using PathonDB.Models;
 
 namespace PathonDB.Validators {
@@ -6,7 +7,7 @@ namespace PathonDB.Validators {
         private const string QUERY_END = ";";
 
         public SelectValidator(IDatabase database) {
-            
+            this._middleware = new HasValidArguments();
         }
     }
 }

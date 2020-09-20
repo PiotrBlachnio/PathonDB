@@ -44,3 +44,5 @@ namespace PathonDB.Models {
 //! Incorrect parameters number: INSERT INTO users (email) VALUES (\"Jeff@gmail.com\");
 //! Incorrect parameters names: INSERT INTO users (email, phoneNumberr) VALUES (\"Jeff@gmail.com\", 703503);
 //! Incorrect parameter types: INSERT INTO users (email, phoneNumber) VALUES (\"Jeff@gmail.com\", true);
+
+//? Correct: SELECT * FROM users;
