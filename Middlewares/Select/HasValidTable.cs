@@ -13,7 +13,7 @@ namespace PathonDB.Middlewares.Select {
         }
 
         public override bool Check(string query) {
-            var tableName = SelectUtils.GetTableNameFromQuery(query);
+            var tableName = SelectUtils.GetTableNameFromArguments(SelectUtils.GetArgumentsFromQuery(query));
             if(!_database.GetTableNames().Contains(tableName)) throw new TableNotFoundException(tableName);
 
             return this.CheckNext(query);

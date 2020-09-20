@@ -19,7 +19,7 @@ namespace PathonDB.Utils {
             var lowercaseArray = arguments.Select(x => x.ToLower()).ToArray();
             var tableName = arguments[Array.IndexOf(lowercaseArray, "from") + 1];
 
-            return tableName;
+            return tableName.ToLower();
         }
     }
 }

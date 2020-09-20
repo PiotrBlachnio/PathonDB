@@ -10,9 +10,8 @@ namespace PathonDB.Validators {
             this._middleware = new HasValidArguments();
 
             this._middleware
-                .LinkWith(new HasValidEnding(QUERY_END));
+                .LinkWith(new HasValidEnding(QUERY_END))
+                .LinkWith(new HasValidTable(database));
         }
     }
 }
-
-// SELECT * FROM users;
