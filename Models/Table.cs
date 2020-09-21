@@ -54,17 +54,19 @@ namespace PathonDB.Models {
             return _idList;
         }
 
-        public RowsData GetAllRows() {
+        public RowsData GetRowsData(string[] columnNames = null) {
             var output = new RowsData();
             var rows = new Dictionary<string, object[]>();
 
             foreach(var column in _columns) {
-                rows.Add(column.Key, column.Value.GetData());
+                if(columnNames == null || columnNames.Contains(column.Key)) {
+                    rows.Add(column.Key, column.Value.GetData());
+                }          
             }
 
             output.Rows = rows;
-            output.IdList = _idList;
-
+            if(columnNames == null || columnNames.Select(x => x.ToLower()).Contains("id")) output.IdList = _idList;
+        
             return output;
         }
     }

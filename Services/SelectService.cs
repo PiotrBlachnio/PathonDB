@@ -4,7 +4,7 @@ using PathonDB.Validators;
 
 namespace PathonDB.Services {
     public class SelectService : Service {
-        private RowsData _data;
+        private RowsData _data = new RowsData();
 
         public SelectService(IDatabase database) : base(database) {}
 
@@ -19,7 +19,9 @@ namespace PathonDB.Services {
             var columnNames = SelectUtils.GetColumnNamesFromQuery(query);
 
             if(columnNames.Length == 0) return;
-            if(columnNames[0] == "*") _data = _database.GetTable(tableName).GetAllRows();
+            if(columnNames[0] == "*") columnNames = null;
+
+            _data = _database.GetTable(tableName).GetRowsData(columnNames);
 
             return;
         }

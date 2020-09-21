@@ -7,7 +7,8 @@ namespace PathonDB {
             var queries = new string[] {
                 "  CREATE   TABLE   users    (  email   text   , phoneNumber int, isAdult boolean);",
                 "INSERT    INTO   users    (isAdult,  email,  phoneNumber )  VALUES  (true, \"Jeff@gmail.com\", 703503);",
-                "SELECT * FROM  userS ;"
+                "INSERT    INTO   users    (isAdult,  email,  phoneNumber )  VALUES  (false, \"Arnold@gmail.com\", 141505);",
+                "SELECT (*) FROM  userS ;"
             };
 
             client.ExecuteQuery(queries); 
