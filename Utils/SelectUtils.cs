@@ -10,11 +10,10 @@ namespace PathonDB.Utils {
         }
 
         public static string GetFromKeywordFromArguments(string[] arguments) {
-            var lowercaseArray = arguments.Select(x => x.ToLower()).ToArray();
             string charToFind = arguments[1];
 
             if(arguments[1].StartsWith('(')) charToFind = arguments.First(x => x.EndsWith(')'));
-            return arguments[(Array.IndexOf(lowercaseArray, charToFind) + 1)];
+            return arguments[(Array.IndexOf(arguments, charToFind) + 1)];
         }
 
         public static string GetTableNameFromArguments(string[] arguments) {
@@ -24,14 +23,14 @@ namespace PathonDB.Utils {
             return tableName.ToLower();
         }
 
-        public static object GetColumnNamesFromQuery(string query) {
+        public static string[] GetColumnNamesFromQuery(string query) {
             var parts = query.Split(" ", StringSplitOptions.RemoveEmptyEntries);
-            if(parts[1] == "*") return "*";
+            if(parts[1] == "*") return new string[] { "*" };
             
             var startIndex = query.IndexOf('(') + 1;
             var endIndex = query.IndexOf(')');
 
-            return query.Substring(startIndex, endIndex - startIndex).Split(",", StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).ToArray();
+            return query.Substring(startIndex, endIndex - startIndex).Split(",", StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).Distinct().ToArray();
         }
     }
 }
