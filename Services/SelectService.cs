@@ -15,7 +15,7 @@ namespace PathonDB.Services {
 
         private void SelectData(string query) {
             var arguments = SelectUtils.GetArgumentsFromQuery(query);
-            var tableName = SelectUtils.GetTableNameFromArguments(arguments);
+            var tableName = SelectUtils.GetTableNameFromArguments(arguments).ToLower();
             var columnNames = SelectUtils.GetColumnNamesFromQuery(query);
 
             if(columnNames.Length == 0) return;

@@ -16,11 +16,20 @@ namespace PathonDB.Utils {
             return arguments[(Array.IndexOf(arguments, charToFind) + 1)];
         }
 
+        public static string GetWhereKeywordFromArguments(string[] arguments) {
+            var tableName = SelectUtils.GetTableNameFromArguments(arguments);
+            var tableNameIndex = Array.IndexOf(arguments, tableName);
+            
+            if(tableNameIndex + 1 == arguments.Length) return null;
+
+            return arguments[tableNameIndex + 1];
+        }
+
         public static string GetTableNameFromArguments(string[] arguments) {
             var lowercaseArray = arguments.Select(x => x.ToLower()).ToArray();
             var tableName = arguments[Array.IndexOf(lowercaseArray, "from") + 1];
 
-            return tableName.ToLower();
+            return tableName;
         }
 
         public static string[] GetColumnNamesFromQuery(string query) {
