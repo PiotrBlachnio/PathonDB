@@ -44,7 +44,7 @@ namespace PathonDB.Models {
             var row = new Dictionary<string, object>() {};
             
             foreach(var entry in _columns) {
-                row.Add(entry.Key, entry.Value.GetData(id));
+                row.Add(entry.Key, entry.Value.GetDataById(id));
             }
 
             return row;
@@ -52,6 +52,22 @@ namespace PathonDB.Models {
 
         public IList<Guid> GetIdList() {
             return _idList;
+        }
+
+        public RowsData GetRowsData(string[] columnNames = null) {
+            var output = new RowsData();
+            var rows = new Dictionary<string, object[]>();
+
+            foreach(var column in _columns) {
+                if(columnNames == null || columnNames.Contains(column.Key)) {
+                    rows.Add(column.Key, column.Value.GetData());
+                }          
+            }
+
+            output.Rows = rows;
+            if(columnNames == null || columnNames.Select(x => x.ToLower()).Contains("id")) output.IdList = _idList;
+        
+            return output;
         }
     }
 }

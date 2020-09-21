@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PathonDB.Models {
     public class Column {
@@ -18,8 +19,12 @@ namespace PathonDB.Models {
             _data.Add(id, data);
         }
 
-        public object GetData(Guid id) {
+        public object GetDataById(Guid id) {
             return _data[id];
+        }
+
+        public object[] GetData() {
+            return _data.Values.ToArray();
         }
     }
 }

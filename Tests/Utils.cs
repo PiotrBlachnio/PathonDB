@@ -13,6 +13,11 @@ namespace PathonDB.Tests {
             throw new System.NotImplementedException();
         }
 
+        public RowsData GetRowsData(string[] columnNames = null)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public string[] GetColumnNames() {
             return new string[2] { "email", "phoneNumber" };
         }
