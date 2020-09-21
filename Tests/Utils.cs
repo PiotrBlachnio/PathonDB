@@ -13,7 +13,7 @@ namespace PathonDB.Tests {
             throw new System.NotImplementedException();
         }
 
-        public Dictionary<string, object[]> GetAllRows()
+        public RowsData GetAllRows()
         {
             throw new System.NotImplementedException();
         }

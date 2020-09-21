@@ -1,11 +1,10 @@
-using System.Collections.Generic;
 using PathonDB.Models;
 using PathonDB.Utils;
 using PathonDB.Validators;
 
 namespace PathonDB.Services {
     public class SelectService : Service {
-        private Dictionary<string, object[]> _data = new Dictionary<string, object[]>();
+        private RowsData _data;
 
         public SelectService(IDatabase database) : base(database) {}
 
@@ -25,7 +24,7 @@ namespace PathonDB.Services {
             return;
         }
 
-        public Dictionary<string, object[]> GetData() {
+        public RowsData GetData() {
             return _data;
         }
     }

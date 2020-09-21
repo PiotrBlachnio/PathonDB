@@ -15,7 +15,7 @@ namespace PathonDB.Models {
 
         Dictionary<string, object> GetRowById(Guid id);
 
-        Dictionary<string, object[]> GetAllRows();
+        RowsData GetAllRows();
 
         IList<Guid> GetIdList();
     }
