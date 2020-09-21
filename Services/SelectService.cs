@@ -21,6 +21,8 @@ namespace PathonDB.Services {
 
             if(columnNames.Length == 0) return;
             if(columnNames[0] == "*") _data = _database.GetTable(tableName).GetAllRows();
+
+            return;
         }
 
         public Dictionary<string, object[]> GetData() {
