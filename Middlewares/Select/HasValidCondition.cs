@@ -17,6 +17,9 @@ namespace PathonDB.Middlewares.Select {
 
             if(keyword != null && keyword.ToLower() != "where") throw new MalformedArgumentsException();
 
+            var condition = SelectUtils.GetConditionFromArguments(arguments);
+            if(keyword != null && condition == null) throw new MalformedArgumentsException();
+
             return CheckNext(query);
         }
     }
