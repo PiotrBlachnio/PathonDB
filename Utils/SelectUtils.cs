@@ -43,28 +43,22 @@ namespace PathonDB.Utils {
             return query.Substring(startIndex, endIndex - startIndex).Split(",", StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).Distinct().ToArray();
         }
 
-        public static Dictionary<string, string> GetConditionFromArguments(string[] arguments) {
-            var whereKeywordIndex = Array.IndexOf(arguments.Select(x => x.ToLower()).ToArray(), "where");
-            var condition = new Dictionary<string, string>();
+        public static Dictionary<string, string> GetConditionFromQuery(string query) {
+            if(query.IndexOf("=") == -1) return null;
             
-            if(whereKeywordIndex + 1 == arguments.Length) return null;
+            var whereKeywordIndex = query.ToLower().IndexOf("where");
+            var substring = query.Substring(whereKeywordIndex + 5);
+            var condition = new Dictionary<string, string>();
 
-            var nextElement = arguments[whereKeywordIndex + 1];
-            if(nextElement.Contains('=') && nextElement.IndexOf('=') != arguments.Length - 1) {
-                var parts = nextElement.Split("=");
+            var arguments = substring.Split("=").Select(x => x.Trim()).ToArray();
+            var argumentsLength = arguments.Length;
 
-                condition.Add(parts[0], parts[1]);
-            } else if(nextElement.Contains('=')) {
-                if(whereKeywordIndex + 2 == arguments.Length) return null;
+            var columnName = arguments[argumentsLength - 2];
+            var value = arguments[argumentsLength - 1];
 
-                condition.Add(nextElement.RemoveLastChar(), arguments[whereKeywordIndex + 2]);
-            } else {
-                // if(whereKeywordIndex + 3 == arguments.Length) return null;
-                if(arguments[whereKeywordIndex + 2] == "=" && whereKeywordIndex + 3 != arguments.Length) condition.Add(nextElement, arguments[whereKeywordIndex + 3]);
-                else if(arguments[whereKeywordIndex + 2].StartsWith("=") && whereKeywordIndex + 3 == arguments.Length) condition.Add(nextElement, arguments[whereKeywordIndex + 2].Remove(0));
-                else return null;
-            }
+            if(columnName == "" || value == "") return null;
 
+            condition.Add(columnName, value);
             return condition;
         }
     }
