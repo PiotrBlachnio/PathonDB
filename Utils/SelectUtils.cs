@@ -43,12 +43,12 @@ namespace PathonDB.Utils {
             return query.Substring(startIndex, endIndex - startIndex).Split(",", StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).Distinct().ToArray();
         }
 
-        public static Dictionary<string, string> GetConditionFromQuery(string query) {
+        public static string[] GetConditionFromQuery(string query) {
             if(query.IndexOf("=") == -1) return null;
-            
+
             var whereKeywordIndex = query.ToLower().IndexOf("where");
             var substring = query.Substring(whereKeywordIndex + 5);
-            var condition = new Dictionary<string, string>();
+            var condition = new string[2];
 
             var arguments = substring.Split("=").Select(x => x.Trim()).ToArray();
             var argumentsLength = arguments.Length;
@@ -58,7 +58,9 @@ namespace PathonDB.Utils {
 
             if(columnName == "" || value == "") return null;
 
-            condition.Add(columnName, value);
+            condition[0] = columnName;
+            condition[1] = value;
+            
             return condition;
         }
     }

@@ -1,6 +1,5 @@
-using System;
 using System.Linq;
-using PathonDB.Exceptions.Insert;
+using PathonDB.Exceptions.General;
 using PathonDB.Middlewares.General;
 using PathonDB.Models;
 using PathonDB.Utils;
