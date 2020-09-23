@@ -8,7 +8,7 @@ namespace PathonDB.Middlewares.Select {
         private readonly IDatabase _database;
 
         public HasValidCondition(IDatabase database) {
-            _database = database;
+            _database = database; 
         }
 
         public override bool Check(string query) {
