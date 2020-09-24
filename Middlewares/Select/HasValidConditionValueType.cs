@@ -1,14 +1,13 @@
-using System.Linq;
 using PathonDB.Exceptions.General;
 using PathonDB.Middlewares.General;
 using PathonDB.Models;
 using PathonDB.Utils;
 
 namespace PathonDB.Middlewares.Select {
-    public class HasValidConditionColumn : Middleware {
+    public class HasValidConditionValueType : Middleware {
         private readonly IDatabase _database;
 
-        public HasValidConditionColumn(IDatabase database) {
+        public HasValidConditionValueType(IDatabase database) {
             _database = database; 
         }
 
@@ -18,9 +17,9 @@ namespace PathonDB.Middlewares.Select {
             var condition = SelectUtils.GetConditionFromQuery(query);
             var tableName = SelectUtils.GetTableNameFromArguments(arguments).ToLower();
 
-            var columnNames = _database.GetTable(tableName).GetColumnNames();
-            if(!columnNames.Contains(condition[0])) throw new UnknownColumnNameException(condition[0]);
-
+            var columnTypes = _database.GetTable(tableName).GetColumnTypes();
+            if(!GeneralUtils.IsTypeValid(columnTypes[condition[0]], condition[1])) throw new InvalidColumnTypeException(condition[0], columnTypes[condition[0]]);
+            
             return CheckNext(query);
         }
     }
