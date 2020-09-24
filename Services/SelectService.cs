@@ -21,7 +21,13 @@ namespace PathonDB.Services {
             if(columnNames.Length == 0) return;
             if(columnNames[0] == "*") columnNames = null;
 
-            _data = _database.GetTable(tableName).GetRowsData(columnNames);
+            var condition = SelectUtils.GetConditionFromQuery(query);
+
+            if(condition == null) {
+                _data = _database.GetTable(tableName).GetRowsData(columnNames);
+            } else {
+                _data = _database.GetTable(tableName).GetRowsDataWithCondition(condition, columnNames);
+            }
 
             return;
         }

@@ -13,7 +13,9 @@ namespace PathonDB.Validators {
                 .LinkWith(new HasValidEnding(QUERY_END))
                 .LinkWith(new HasValidTable(database))
                 .LinkWith(new HasValidColumns(database))
-                .LinkWith(new HasValidCondition(database));
+                .LinkWith(new HasValidCondition())
+                .LinkWith(new HasValidConditionColumnName(database))
+                .LinkWith(new HasValidConditionValueType(database));
         }
     }
 }

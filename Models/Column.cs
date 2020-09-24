@@ -23,8 +23,16 @@ namespace PathonDB.Models {
             return _data[id];
         }
 
+        public object[] GetMultipleRowsByIdList(string[] idList) {
+            return _data.Where(x => idList.Contains(x.Key.ToString())).Select(x => x.Value).ToArray();
+        }
+
         public object[] GetData() {
             return _data.Values.ToArray();
+        }
+
+        public string[] FindIdsByData(object data) {
+            return _data.Where(x => x.Value.Equals(data)).Select(x => x.Key.ToString()).ToArray();
         }
     }
 }

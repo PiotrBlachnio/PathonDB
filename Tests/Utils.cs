@@ -37,5 +37,10 @@ namespace PathonDB.Tests {
         public Dictionary<string, object> GetRowById(System.Guid id) {
             throw new System.NotImplementedException();
         }
+
+        public RowsData GetRowsDataWithCondition(string[] condition, string[] columnNames = null)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

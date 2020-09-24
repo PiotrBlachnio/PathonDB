@@ -53,7 +53,7 @@ namespace PathonDB.Utils {
             var argumentsLength = arguments.Length;
 
             var columnName = arguments[argumentsLength - 2];
-            var value = arguments[argumentsLength - 1];
+            var value = arguments[argumentsLength - 1].TrimEnd(';').Trim();
 
             if(columnName == "" || value == "") return null;
 
