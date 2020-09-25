@@ -4,7 +4,7 @@ namespace PathonDB.Models.Column {
 
         void InsertData(string id, object data);
 
-        object GetDataById(string id);
+        Row GetDataById(string id);
 
         object[] GetMultipleRowsByIdList(string[] idList);
 
