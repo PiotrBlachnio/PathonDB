@@ -8,6 +8,6 @@ namespace PathonDB.Models.Column {
 
         Row[] GetRows(string[] idList = null);
 
-        string[] FindIdsByData(object data);
+        string[] GetFilteredIdList(object value);
     }
 }

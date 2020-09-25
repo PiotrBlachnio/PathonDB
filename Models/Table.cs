@@ -77,7 +77,7 @@ namespace PathonDB.Models {
             var rows = new Dictionary<string, object[]>();
 
             var columnName = condition[0];
-            var ids = columnName.ToLower() == "id" ? new string[] {condition[1]}: _columns[columnName].FindIdsByData(GeneralUtils.TransformStringValueToRealValue(condition[1])).ToArray();
+            var ids = columnName.ToLower() == "id" ? new string[] {condition[1]}: _columns[columnName].GetFilteredIdList(GeneralUtils.TransformStringValueToRealValue(condition[1]));
 
             foreach(var column in _columns) {
                 if(columnNames == null || columnNames.Contains(column.Key)) {

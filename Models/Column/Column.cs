@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 
 namespace PathonDB.Models.Column {
     public class Column : IColumn {
@@ -26,8 +25,8 @@ namespace PathonDB.Models.Column {
             return this._rows.Where(validateRow).ToArray();
         }
 
-        public string[] FindIdsByData(object data) {
-            return _rows.Where(x => x.Value.Equals(data)).Select(x => x.Id).ToArray();
+        public string[] GetFilteredIdList(object value) {
+            return _rows.Where(x => x.Value.Equals(value)).Select(x => x.Id).ToArray();
         }
     }
 }
