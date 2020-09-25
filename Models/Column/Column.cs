@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace PathonDB.Models.Column {
     public class Column : IColumn {
@@ -12,20 +13,17 @@ namespace PathonDB.Models.Column {
             this._rows = new List<Row>();
         }  
 
-        public void InsertData(string id, object data) {
-            this._rows.Add(new Row(id, data));
+        public void InsertRow(Row row) {
+            this._rows.Add(row);
         }
 
-        public Row GetDataById(string id) {
+        public Row GetRowById(string id) {
             return this._rows.First(x => x.Id == id);
         }
 
-        public object[] GetMultipleRowsByIdList(string[] idList) {
-            return this._rows.Where(x => idList.Contains(x.Id)).Select(x => x.Value).ToArray();
-        }
-
-        public object[] GetData() {
-            return _rows.Select(x => x.Value).ToArray();
+        public Row[] GetRows(string[] idList = null) {
+            Func<Row, bool> validateRow = (Row x) => idList == null ? true : idList.Contains(x.Id);
+            return this._rows.Where(validateRow).ToArray();
         }
 
         public string[] FindIdsByData(object data) {

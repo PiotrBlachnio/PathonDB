@@ -37,7 +37,8 @@ namespace PathonDB.Models {
             _idList.Add(id);
 
             for(var i = 0; i < columns.Length; i++) {
-                _columns[columns[i]].InsertData(id, GeneralUtils.TransformStringValueToRealValue(values[i]));
+                var row = new Row(id, GeneralUtils.TransformStringValueToRealValue(values[i]));
+                _columns[columns[i]].InsertRow(row);
             }
         }
 
@@ -45,7 +46,7 @@ namespace PathonDB.Models {
             var row = new Dictionary<string, object>() {};
             
             foreach(var entry in _columns) {
-                row.Add(entry.Key, entry.Value.GetDataById(id));
+                row.Add(entry.Key, entry.Value.GetRowById(id));
             }
 
             return row;
@@ -61,7 +62,7 @@ namespace PathonDB.Models {
 
             foreach(var column in _columns) {
                 if(columnNames == null || columnNames.Contains(column.Key)) {
-                    rows.Add(column.Key, column.Value.GetData());
+                    rows.Add(column.Key, column.Value.GetRows().Select(x => x.Value).ToArray());
                 }          
             }
 
@@ -80,7 +81,7 @@ namespace PathonDB.Models {
 
             foreach(var column in _columns) {
                 if(columnNames == null || columnNames.Contains(column.Key)) {
-                    rows.Add(column.Key, column.Value.GetMultipleRowsByIdList(ids));
+                    rows.Add(column.Key, column.Value.GetRows(ids).Select(x => x.Value).ToArray());
                 }  
             }
 

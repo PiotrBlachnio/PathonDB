@@ -2,13 +2,11 @@ namespace PathonDB.Models.Column {
     public interface IColumn {
         Properties Properties { get; }
 
-        void InsertData(string id, object data);
+        void InsertRow(Row row);
 
-        Row GetDataById(string id);
+        Row GetRowById(string id);
 
-        object[] GetMultipleRowsByIdList(string[] idList);
-
-        object[] GetData();
+        Row[] GetRows(string[] idList = null);
 
         string[] FindIdsByData(object data);
     }
