@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using PathonDB.Models.Column;
 using PathonDB.Utils;
 
 namespace PathonDB.Models {
     public class Table : ITable {
-        private readonly Dictionary<string, Column> _columns = new Dictionary<string, Column>();
+        private readonly Dictionary<string, IColumn> _columns = new Dictionary<string, IColumn>();
         private readonly IList<Guid> _idList = new List<Guid>();
         public string Name { get; set; }
 
@@ -13,7 +14,7 @@ namespace PathonDB.Models {
             Name = name;
         }
 
-        public void AddColumn(Column column) {
+        public void AddColumn(IColumn column) {
             _columns.Add(column.GetProperties().Name, column);
         }
 

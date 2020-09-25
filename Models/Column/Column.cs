@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PathonDB.Models {
-    public class Column {
+namespace PathonDB.Models.Column {
+    public class Column : IColumn {
         private readonly Properties _properties;
         private readonly Dictionary<Guid, object> _data = new Dictionary<Guid, object>();
 

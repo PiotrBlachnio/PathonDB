@@ -1,4 +1,4 @@
-namespace PathonDB.Models {
+namespace PathonDB.Models.Column {
     public class Properties {
         public string Name { get; set; }
         public string Type { get; set; }
