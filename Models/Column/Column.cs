@@ -4,18 +4,20 @@ using System.Linq;
 
 namespace PathonDB.Models.Column {
     public class Column : IColumn {
-        private Properties Properties { get; }
-        private readonly Dictionary<Guid, object> _data = new Dictionary<Guid, object>();
+        public Properties Properties { get; private set; }
+
+        private Dictionary<string, object> _data { get; }
 
         public Column(Properties properties) {
-            Properties = properties;
+            this.Properties = properties;
+            this._data = new Dictionary<string, object>();
         }  
 
-        public void InsertData(Guid id, object data) {
+        public void InsertData(string id, object data) {
             _data.Add(id, data);
         }
 
-        public object GetDataById(Guid id) {
+        public object GetDataById(string id) {
             return _data[id];
         }
 
