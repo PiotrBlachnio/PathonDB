@@ -31,11 +31,11 @@ namespace PathonDB.Tests {
             };
         }
 
-        public IList<System.Guid> GetIdList() {
+        public IList<string> GetIdList() {
             throw new System.NotImplementedException();
         }
 
-        public Dictionary<string, object> GetRowById(System.Guid id) {
+        public Dictionary<string, object> GetRowById(string id) {
             throw new System.NotImplementedException();
         }
 

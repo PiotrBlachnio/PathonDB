@@ -7,7 +7,7 @@ using PathonDB.Utils;
 namespace PathonDB.Models {
     public class Table : ITable {
         private readonly Dictionary<string, IColumn> _columns = new Dictionary<string, IColumn>();
-        private readonly IList<Guid> _idList = new List<Guid>();
+        private readonly IList<string> _idList = new List<string>();
         public string Name { get; set; }
 
         public Table(string name) {
@@ -15,7 +15,7 @@ namespace PathonDB.Models {
         }
 
         public void AddColumn(IColumn column) {
-            _columns.Add(column.GetProperties().Name, column);
+            _columns.Add(column.Properties.Name, column);
         }
 
         public string[] GetColumnNames() {
@@ -23,17 +23,17 @@ namespace PathonDB.Models {
         }
 
         public Dictionary<string, string> GetColumnTypes() {
-            var columnTypes = new Dictionary<string ,string>();
+            var columnTypes = new Dictionary<string, string>();
 
             foreach(var column in _columns) {
-                columnTypes.Add(column.Value.GetProperties().Name, column.Value.GetProperties().Type);
+                columnTypes.Add(column.Value.Properties.Name, column.Value.Properties.Type);
             }
 
             return columnTypes;
         }
 
         public void AddRow(string[] columns, string[] values) {
-            var id = Guid.NewGuid();
+            var id = Guid.NewGuid().ToString();
             _idList.Add(id);
 
             for(var i = 0; i < columns.Length; i++) {
@@ -41,7 +41,7 @@ namespace PathonDB.Models {
             }
         }
 
-        public Dictionary<string, object> GetRowById(Guid id) {
+        public Dictionary<string, object> GetRowById(string id) {
             var row = new Dictionary<string, object>() {};
             
             foreach(var entry in _columns) {
@@ -51,7 +51,7 @@ namespace PathonDB.Models {
             return row;
         }
 
-        public IList<Guid> GetIdList() {
+        public IList<string> GetIdList() {
             return _idList;
         }
 

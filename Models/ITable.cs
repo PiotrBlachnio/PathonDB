@@ -14,11 +14,11 @@ namespace PathonDB.Models {
 
         void AddRow(string[] columns, string[] values);
 
-        Dictionary<string, object> GetRowById(Guid id);
+        Dictionary<string, object> GetRowById(string id);
 
         RowsData GetRowsData(string[] columnNames = null);
 
-        IList<Guid> GetIdList();
+        IList<string> GetIdList();
 
         RowsData GetRowsDataWithCondition(string[] condition, string[] columnNames = null);
     }

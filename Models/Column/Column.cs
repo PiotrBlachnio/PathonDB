@@ -4,16 +4,12 @@ using System.Linq;
 
 namespace PathonDB.Models.Column {
     public class Column : IColumn {
-        private readonly Properties _properties;
+        private Properties Properties { get; }
         private readonly Dictionary<Guid, object> _data = new Dictionary<Guid, object>();
 
         public Column(Properties properties) {
-            _properties = properties;
+            Properties = properties;
         }  
-
-        public Properties GetProperties() {
-            return _properties;
-        }
 
         public void InsertData(Guid id, object data) {
             _data.Add(id, data);

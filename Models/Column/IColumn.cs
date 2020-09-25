@@ -1,13 +1,10 @@
-using System;
-using System.Linq;
-
 namespace PathonDB.Models.Column {
     public interface IColumn {
-        Properties GetProperties();
+        Properties Properties { get; }
 
-        void InsertData(Guid id, object data);
+        void InsertData(string id, object data);
 
-        object GetDataById(Guid id);
+        object GetDataById(string id);
 
         object[] GetMultipleRowsByIdList(string[] idList);
 
