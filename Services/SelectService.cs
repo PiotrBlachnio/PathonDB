@@ -28,8 +28,6 @@ namespace PathonDB.Services {
             } else {
                 _data = _database.GetTable(tableName).GetRowsDataWithCondition(condition, columnNames);
             }
-
-            return;
         }
 
         public RowsData GetData() {
