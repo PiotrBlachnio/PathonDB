@@ -1,3 +1,5 @@
+using System;
+using Newtonsoft.Json;
 using PathonDB.Exceptions.General;
 using PathonDB.Services;
 
@@ -18,7 +20,10 @@ namespace PathonDB.Models {
                         new InsertService(_database).PerformQuery(query);
                         break;
                     case "SELECT":
-                        new SelectService(_database).PerformQuery(query);
+                        var service = new SelectService(_database);
+                        service.PerformQuery(query);
+
+                        Console.WriteLine(JsonConvert.SerializeObject(service.GetData(), Formatting.Indented));
                         break;
                     default:
                         throw new MalformedArgumentsException();

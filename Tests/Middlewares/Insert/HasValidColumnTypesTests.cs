@@ -1,5 +1,5 @@
 using Autofac.Extras.Moq;
-using PathonDB.Exceptions.Insert;
+using PathonDB.Exceptions.General;
 using PathonDB.Middlewares.Insert;
 using PathonDB.Models;
 using Xunit;

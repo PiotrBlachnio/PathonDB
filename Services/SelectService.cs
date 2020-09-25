@@ -15,15 +15,19 @@ namespace PathonDB.Services {
 
         private void SelectData(string query) {
             var arguments = SelectUtils.GetArgumentsFromQuery(query);
-            var tableName = SelectUtils.GetTableNameFromArguments(arguments);
+            var tableName = SelectUtils.GetTableNameFromArguments(arguments).ToLower();
             var columnNames = SelectUtils.GetColumnNamesFromQuery(query);
 
             if(columnNames.Length == 0) return;
             if(columnNames[0] == "*") columnNames = null;
 
-            _data = _database.GetTable(tableName).GetRowsData(columnNames);
+            var condition = SelectUtils.GetConditionFromQuery(query);
 
-            return;
+            if(condition == null) {
+                _data = _database.GetTable(tableName).GetRowsData(columnNames);
+            } else {
+                _data = _database.GetTable(tableName).GetRowsDataWithCondition(condition, columnNames);
+            }
         }
 
         public RowsData GetData() {

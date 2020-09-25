@@ -18,5 +18,7 @@ namespace PathonDB.Models {
         RowsData GetRowsData(string[] columnNames = null);
 
         IList<Guid> GetIdList();
+
+        RowsData GetRowsDataWithCondition(string[] condition, string[] columnNames = null);
     }
 }

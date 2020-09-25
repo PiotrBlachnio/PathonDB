@@ -65,8 +65,27 @@ namespace PathonDB.Models {
             }
 
             output.Rows = rows;
-            if(columnNames == null || columnNames.Select(x => x.ToLower()).Contains("id")) output.IdList = _idList;
+            if(columnNames == null || columnNames.Select(x => x.ToLower()).Contains("id")) output.IdList = _idList.Select(x => x.ToString()).ToArray();
         
+            return output;
+        }
+
+        public RowsData GetRowsDataWithCondition(string[] condition, string[] columnNames = null) {
+            var output = new RowsData();
+            var rows = new Dictionary<string, object[]>();
+
+            var columnName = condition[0];
+            var ids = columnName.ToLower() == "id" ? new string[] {condition[1]}: _columns[columnName].FindIdsByData(GeneralUtils.TransformStringValueToRealValue(condition[1])).ToArray();
+
+            foreach(var column in _columns) {
+                if(columnNames == null || columnNames.Contains(column.Key)) {
+                    rows.Add(column.Key, column.Value.GetMultipleRowsByIdList(ids));
+                }  
+            }
+
+            output.Rows = rows;
+            if(columnNames == null || columnNames.Select(x => x.ToLower()).Contains("id")) output.IdList = ids;
+            
             return output;
         }
     }
