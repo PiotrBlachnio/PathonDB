@@ -1,7 +1,7 @@
 namespace PathonDB.Models {
     public class Properties {
-        public readonly string Name;
-        public readonly string Type;
+        public string Name { get; set; }
+        public string Type { get; set; }
 
         public Properties(string name, string type) {
             Name = name;

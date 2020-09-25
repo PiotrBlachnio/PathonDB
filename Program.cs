@@ -15,5 +15,3 @@ namespace PathonDB {
         }
     }
 }
-
-//TODO: Implement Forbidden chars in select query
