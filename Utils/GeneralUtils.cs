@@ -1,8 +1,15 @@
 using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace PathonDB.Utils {
     public static class GeneralUtils {
+        private static char[] ForbiddenChars { get; } = new char[] {
+            '(',
+            ')',
+            '='
+        };
+        
         public static object TransformStringValueToRealValue(string value) {
             if(value[0] == '"') {
                 return value.Trim('"');
@@ -34,9 +41,17 @@ namespace PathonDB.Utils {
             return true;
         }
 
+        public static bool ContainsForbiddenCharacters(string input) {
+            foreach(var c in input) {
+                if(ForbiddenChars.Contains(c)) return true;
+            }
+
+            return false;
+        }
+
         public static bool ContainsOnlyAlphaNumericCharacters(string input) {
-            var regex = new Regex("^[a-zA-Z0-9 ]*$");
-            return regex.IsMatch(input);
+            var regexItem = new Regex("^[a-zA-Z0-9 ]*$");
+            return regexItem.IsMatch(input);
         }
     }
 }

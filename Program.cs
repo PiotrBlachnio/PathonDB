@@ -15,5 +15,3 @@ namespace PathonDB {
         }
     }
 }
-
-//! The given key 'userS' was not present in the dictionary.

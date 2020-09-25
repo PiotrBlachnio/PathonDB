@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using PathonDB.Models;
+using PathonDB.Models.Column;
 
 namespace PathonDB.Tests {
     public class MockedTable : ITable {
         public string Name { get; set; }
 
-        public void AddColumn(Column column) {
+        public void AddColumn(IColumn column) {
             throw new System.NotImplementedException();
         }
 
@@ -30,11 +31,11 @@ namespace PathonDB.Tests {
             };
         }
 
-        public IList<System.Guid> GetIdList() {
+        public IList<string> GetIdList() {
             throw new System.NotImplementedException();
         }
 
-        public Dictionary<string, object> GetRowById(System.Guid id) {
+        public Dictionary<string, object> GetRowById(string id) {
             throw new System.NotImplementedException();
         }
 

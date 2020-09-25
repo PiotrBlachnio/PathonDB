@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using PathonDB.Models.Column;
 
 namespace PathonDB.Models {
     public interface ITable {
         string Name { get; set; }
         
-        void AddColumn(Column column);
+        void AddColumn(IColumn column);
 
         string[] GetColumnNames();
 
@@ -13,11 +14,11 @@ namespace PathonDB.Models {
 
         void AddRow(string[] columns, string[] values);
 
-        Dictionary<string, object> GetRowById(Guid id);
+        Dictionary<string, object> GetRowById(string id);
 
         RowsData GetRowsData(string[] columnNames = null);
 
-        IList<Guid> GetIdList();
+        IList<string> GetIdList();
 
         RowsData GetRowsDataWithCondition(string[] condition, string[] columnNames = null);
     }

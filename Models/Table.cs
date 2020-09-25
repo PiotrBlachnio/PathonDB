@@ -1,20 +1,21 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using PathonDB.Models.Column;
 using PathonDB.Utils;
 
 namespace PathonDB.Models {
     public class Table : ITable {
-        private readonly Dictionary<string, Column> _columns = new Dictionary<string, Column>();
-        private readonly IList<Guid> _idList = new List<Guid>();
+        private readonly Dictionary<string, IColumn> _columns = new Dictionary<string, IColumn>();
+        private readonly IList<string> _idList = new List<string>();
         public string Name { get; set; }
 
         public Table(string name) {
             Name = name;
         }
 
-        public void AddColumn(Column column) {
-            _columns.Add(column.GetProperties().Name, column);
+        public void AddColumn(IColumn column) {
+            _columns.Add(column.Properties.Name, column);
         }
 
         public string[] GetColumnNames() {
@@ -22,35 +23,36 @@ namespace PathonDB.Models {
         }
 
         public Dictionary<string, string> GetColumnTypes() {
-            var columnTypes = new Dictionary<string ,string>();
+            var columnTypes = new Dictionary<string, string>();
 
             foreach(var column in _columns) {
-                columnTypes.Add(column.Value.GetProperties().Name, column.Value.GetProperties().Type);
+                columnTypes.Add(column.Value.Properties.Name, column.Value.Properties.Type);
             }
 
             return columnTypes;
         }
 
         public void AddRow(string[] columns, string[] values) {
-            var id = Guid.NewGuid();
+            var id = Guid.NewGuid().ToString();
             _idList.Add(id);
 
             for(var i = 0; i < columns.Length; i++) {
-                _columns[columns[i]].InsertData(id, GeneralUtils.TransformStringValueToRealValue(values[i]));
+                var row = new Row(id, GeneralUtils.TransformStringValueToRealValue(values[i]));
+                _columns[columns[i]].InsertRow(row);
             }
         }
 
-        public Dictionary<string, object> GetRowById(Guid id) {
+        public Dictionary<string, object> GetRowById(string id) {
             var row = new Dictionary<string, object>() {};
             
             foreach(var entry in _columns) {
-                row.Add(entry.Key, entry.Value.GetDataById(id));
+                row.Add(entry.Key, entry.Value.GetRowById(id));
             }
 
             return row;
         }
 
-        public IList<Guid> GetIdList() {
+        public IList<string> GetIdList() {
             return _idList;
         }
 
@@ -60,7 +62,7 @@ namespace PathonDB.Models {
 
             foreach(var column in _columns) {
                 if(columnNames == null || columnNames.Contains(column.Key)) {
-                    rows.Add(column.Key, column.Value.GetData());
+                    rows.Add(column.Key, column.Value.GetRows().Select(x => x.Value).ToArray());
                 }          
             }
 
@@ -75,11 +77,11 @@ namespace PathonDB.Models {
             var rows = new Dictionary<string, object[]>();
 
             var columnName = condition[0];
-            var ids = columnName.ToLower() == "id" ? new string[] {condition[1]}: _columns[columnName].FindIdsByData(GeneralUtils.TransformStringValueToRealValue(condition[1])).ToArray();
+            var ids = columnName.ToLower() == "id" ? new string[] {condition[1]}: _columns[columnName].GetFilteredIdList(GeneralUtils.TransformStringValueToRealValue(condition[1]));
 
             foreach(var column in _columns) {
                 if(columnNames == null || columnNames.Contains(column.Key)) {
-                    rows.Add(column.Key, column.Value.GetMultipleRowsByIdList(ids));
+                    rows.Add(column.Key, column.Value.GetRows(ids).Select(x => x.Value).ToArray());
                 }  
             }
 

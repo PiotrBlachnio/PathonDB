@@ -22,6 +22,7 @@ namespace PathonDB.Middlewares.Insert {
             var columnTypes = _database.GetTable(tableName).GetColumnTypes();
             
             for(var i = 0; i < columns.Count(); i++) {
+                if(GeneralUtils.ContainsForbiddenCharacters(values[i])) throw new ForbiddenCharactersException(values[i]);
                 if(!GeneralUtils.IsTypeValid(columnTypes[columns[i]], values[i])) throw new InvalidColumnTypeException(columns[i], columnTypes[columns[i]]);
             }
             
