@@ -40,5 +40,10 @@ namespace PathonDB.Tests {
         {
             throw new System.NotImplementedException();
         }
+
+        public Record[] GetRecords(string[] columnNames, string[] condition)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

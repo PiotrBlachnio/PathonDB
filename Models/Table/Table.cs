@@ -45,7 +45,25 @@ namespace PathonDB.Models.Table {
 
             return record;
         }
-        
+
+        public Record[] GetRecords(string[] columnNames, string[] condition) {
+            var output = new List<Record>();
+            var recordIds = condition == null ? this.IdList : null;
+            var mutualColumns = columnNames == null ? this._columns : this._columns.Where(x => columnNames.Contains(x.Properties.Name));
+
+            foreach(var id in recordIds) {
+                var names = mutualColumns.Select(x => x.Properties.Name).ToList();
+                var values = mutualColumns.Select(x => x.GetRowById(id).Value).ToList();
+
+                var record = new Record(names, values);
+                if(columnNames.Any(x => x.ToLower() == "id")) record.Id = id;
+
+                output.Add(record);
+            }
+
+            return output.ToArray();
+        }
+
         public RowsData GetRowsData(string[] columnNames = null) {
             var output = new RowsData();
             var rows = new Dictionary<string, object[]>();
@@ -57,7 +75,7 @@ namespace PathonDB.Models.Table {
             }
 
             output.Rows = rows;
-            if(columnNames == null || columnNames.Select(x => x.ToLower()).Contains("id")) output.IdList = IdList.Select(x => x.ToString()).ToArray();
+            if(columnNames == null || columnNames.Select(x => x.ToLower()).Contains("id")) output.IdList = IdList.ToArray();
         
             return output;
         }

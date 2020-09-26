@@ -15,6 +15,8 @@ namespace PathonDB.Models.Table {
 
         Record GetRecordById(string id);
 
+        Record[] GetRecords(string[] columnNames, string[] condition);
+
         RowsData GetRowsData(string[] columnNames = null);
 
         RowsData GetRowsDataWithCondition(string[] condition, string[] columnNames = null);

@@ -1,4 +1,5 @@
 using PathonDB.Models;
+using PathonDB.Models.Table;
 using PathonDB.Utils;
 using PathonDB.Validators;
 
@@ -15,8 +16,9 @@ namespace PathonDB.Services {
 
         private void SelectData(string query) {
             var arguments = SelectUtils.GetArgumentsFromQuery(query);
-            var tableName = SelectUtils.GetTableNameFromArguments(arguments).ToLower();
+            var tableName = SelectUtils.GetTableNameFromArguments(arguments).ToLower().TrimEnd(';');
             var columnNames = SelectUtils.GetColumnNamesFromQuery(query);
+            Record[] records = null;
 
             if(columnNames.Length == 0) return;
             if(columnNames[0] == "*") columnNames = null;
@@ -25,6 +27,7 @@ namespace PathonDB.Services {
 
             if(condition == null) {
                 _data = _database.GetTable(tableName).GetRowsData(columnNames);
+               records = _database.GetTable(tableName).GetRecords(columnNames, null);
             } else {
                 _data = _database.GetTable(tableName).GetRowsDataWithCondition(condition, columnNames);
             }

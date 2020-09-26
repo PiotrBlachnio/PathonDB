@@ -20,7 +20,7 @@ namespace PathonDB.Middlewares.Select {
 
             var columnNames = _database.GetTable(tableName).GetColumnProperties().Select(x => x.Name).ToArray();
 
-            if(!columnNames.Contains(condition[0])) throw new UnknownColumnNameException(condition[0]);
+            if(condition != null && !columnNames.Contains(condition[0])) throw new UnknownColumnNameException(condition[0]);
 
             return CheckNext(query);
         }

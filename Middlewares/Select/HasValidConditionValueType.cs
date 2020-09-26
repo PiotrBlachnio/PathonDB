@@ -16,6 +16,8 @@ namespace PathonDB.Middlewares.Select {
             var arguments = SelectUtils.GetArgumentsFromQuery(query);
             
             var condition = SelectUtils.GetConditionFromQuery(query);
+            if(condition == null) return CheckNext(query);
+            
             var tableName = SelectUtils.GetTableNameFromArguments(arguments).ToLower();
 
             var columnTypes = _database.GetTable(tableName).GetColumnProperties();
