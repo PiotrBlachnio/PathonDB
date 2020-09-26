@@ -7,6 +7,8 @@ namespace PathonDB.Tests {
     public class MockedTable : ITable {
         public string Name { get; set; }
 
+        public IList<string> IdList { get; private set; }
+
         public void AddColumn(IColumn column) {
             throw new System.NotImplementedException();
         }

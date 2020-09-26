@@ -7,20 +7,22 @@ using PathonDB.Utils;
 namespace PathonDB.Models.Table {
     public class Table : ITable {
         private List<IColumn> _columns { get; }
-        private readonly IList<string> _idList = new List<string>();
-        public string Name { get; set; }
+        public IList<string> IdList { get; private set; }
+        public string Name { get; private set; }
 
         public Table(string name) {
-            _columns = new List<IColumn>();
-            Name = name;
+            this._columns = new List<IColumn>();
+            this.IdList = new List<string>();
+
+            this.Name = name;
         }
 
         public void AddColumn(IColumn column) {
-            _columns.Add(column);
+            this._columns.Add(column);
         }
 
         public string[] GetColumnNames() {
-            return _columns.Select(x => x.Properties.Name).ToArray();
+            return this._columns.Select(x => x.Properties.Name).ToArray();
         }
 
         public Dictionary<string, string> GetColumnTypes() {
@@ -35,7 +37,7 @@ namespace PathonDB.Models.Table {
 
         public void AddRow(string[] columns, string[] values) {
             var id = Guid.NewGuid().ToString();
-            _idList.Add(id);
+            IdList.Add(id);
 
             for(var i = 0; i < columns.Length; i++) {
                 var row = new Row(id, GeneralUtils.TransformStringValueToRealValue(values[i]));
@@ -53,10 +55,6 @@ namespace PathonDB.Models.Table {
             return row;
         }
 
-        public IList<string> GetIdList() {
-            return _idList;
-        }
-
         public RowsData GetRowsData(string[] columnNames = null) {
             var output = new RowsData();
             var rows = new Dictionary<string, object[]>();
@@ -68,7 +66,7 @@ namespace PathonDB.Models.Table {
             }
 
             output.Rows = rows;
-            if(columnNames == null || columnNames.Select(x => x.ToLower()).Contains("id")) output.IdList = _idList.Select(x => x.ToString()).ToArray();
+            if(columnNames == null || columnNames.Select(x => x.ToLower()).Contains("id")) output.IdList = IdList.Select(x => x.ToString()).ToArray();
         
             return output;
         }

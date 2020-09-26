@@ -13,7 +13,7 @@ namespace PathonDB.Services {
             new CreateService(database).PerformQuery("CREATE TABLE users (email text, phoneNumber int, isAdult boolean);");
             new InsertService(database).PerformQuery(query);
 
-            var id = database.GetTable("users").GetIdList()[0];
+            var id = database.GetTable("users").IdList[0];
             var actual = database.GetTable("users").GetRowById(id);
 
             var expected = new Dictionary<string, object>() {

@@ -3,7 +3,9 @@ using PathonDB.Models.Column;
 
 namespace PathonDB.Models.Table {
     public interface ITable {
-        string Name { get; set; }
+        string Name { get; }
+
+        IList<string> IdList { get; }
         
         void AddColumn(IColumn column);
 
@@ -16,8 +18,6 @@ namespace PathonDB.Models.Table {
         Dictionary<string, object> GetRowById(string id);
 
         RowsData GetRowsData(string[] columnNames = null);
-
-        IList<string> GetIdList();
 
         RowsData GetRowsDataWithCondition(string[] condition, string[] columnNames = null);
     }
