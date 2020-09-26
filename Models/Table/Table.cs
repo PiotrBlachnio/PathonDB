@@ -45,18 +45,7 @@ namespace PathonDB.Models.Table {
 
             return record;
         }
-
-        //TODO: Replace it by getRecordById
-        public Dictionary<string, object> GetRowById(string id) {
-            var row = new Dictionary<string, object>() {};
-            
-            foreach(var entry in _columns) {
-                row.Add(entry.Properties.Name, entry.GetRowById(id).Value);
-            }
-
-            return row;
-        }
-
+        
         public RowsData GetRowsData(string[] columnNames = null) {
             var output = new RowsData();
             var rows = new Dictionary<string, object[]>();

@@ -17,8 +17,8 @@ namespace PathonDB.Services {
             var arguments = InsertUtils.GetArgumentsFromQuery(query.Substring(0, query.Length - 2));
             var tableName = InsertUtils.GetTableNameFromQuery(query);
 
-            var columnNames = InsertUtils.GetColumnsFromArguments(arguments).ToArray();
-            var values = InsertUtils.GetValuesFromArguments(arguments).Select(x => GeneralUtils.TransformStringValueToRealValue(x)).ToArray();
+            var columnNames = InsertUtils.GetColumnsFromArguments(arguments).ToList();
+            var values = InsertUtils.GetValuesFromArguments(arguments).Select(x => GeneralUtils.TransformStringValueToRealValue(x)).ToList();
 
             var record = new Record(columnNames, values);
             _database.GetTable(tableName).AddRecord(record);

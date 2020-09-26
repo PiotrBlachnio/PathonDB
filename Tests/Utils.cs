@@ -22,14 +22,6 @@ namespace PathonDB.Tests {
             throw new System.NotImplementedException();
         }
 
-        public IList<string> GetIdList() {
-            throw new System.NotImplementedException();
-        }
-
-        public Dictionary<string, object> GetRowById(string id) {
-            throw new System.NotImplementedException();
-        }
-
         public RowsData GetRowsDataWithCondition(string[] condition, string[] columnNames = null)
         {
             throw new System.NotImplementedException();
@@ -42,6 +34,11 @@ namespace PathonDB.Tests {
                 new Properties("phoneNumber", "int"),
                 new Properties("isAdult", "boolean")
             };
+        }
+
+        public Record GetRecordById(string id)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

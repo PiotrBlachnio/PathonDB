@@ -13,7 +13,7 @@ namespace PathonDB.Models.Table {
 
         void AddRecord(Record record);
 
-        Dictionary<string, object> GetRowById(string id);
+        Record GetRecordById(string id);
 
         RowsData GetRowsData(string[] columnNames = null);
 
