@@ -7,7 +7,7 @@ using PathonDB.Utils;
 namespace PathonDB.Models.Table {
     public class Table : ITable {
         private List<IColumn> _columns { get; }
-        public IList<string> IdList { get; private set; }
+        public List<string> IdList { get; private set; }
         public string Name { get; private set; }
 
         public Table(string name) {
@@ -46,9 +46,20 @@ namespace PathonDB.Models.Table {
             return record;
         }
 
-        public Record[] GetRecords(string[] columnNames, string[] condition) {
+        public Record[] GetRecords(string[] columnNames, Condition condition) {
             var output = new List<Record>();
-            var recordIds = condition == null ? this.IdList : null;
+            var recordIds = this.IdList;
+
+            if(condition != null) {
+                if(condition.ColumnName.ToLower() == "id") recordIds =  new List<string>() { condition.Value };
+                else {
+                    var selectedColumn = this._columns.First(x => x.Properties.Name == condition.ColumnName);
+                    var realValue = GeneralUtils.TransformStringValueToRealValue(condition.Value);
+
+                    recordIds = selectedColumn.GetFilteredIdList(realValue).ToList();
+                }
+            }
+
             var mutualColumns = columnNames == null ? this._columns : this._columns.Where(x => columnNames.Contains(x.Properties.Name));
 
             foreach(var id in recordIds) {

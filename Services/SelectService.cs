@@ -30,6 +30,7 @@ namespace PathonDB.Services {
                records = _database.GetTable(tableName).GetRecords(columnNames, null);
             } else {
                 _data = _database.GetTable(tableName).GetRowsDataWithCondition(condition, columnNames);
+                records = _database.GetTable(tableName).GetRecords(columnNames, new Condition(condition[0], condition[1]));
             }
 
             return;

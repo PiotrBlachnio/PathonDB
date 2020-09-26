@@ -5,7 +5,7 @@ namespace PathonDB.Models.Table {
     public interface ITable {
         string Name { get; }
 
-        IList<string> IdList { get; }
+        List<string> IdList { get; }
         
         void AddColumn(IColumn column);
 
@@ -15,7 +15,7 @@ namespace PathonDB.Models.Table {
 
         Record GetRecordById(string id);
 
-        Record[] GetRecords(string[] columnNames, string[] condition);
+        Record[] GetRecords(string[] columnNames, Condition condition);
 
         RowsData GetRowsData(string[] columnNames = null);
 
