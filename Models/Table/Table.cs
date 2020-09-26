@@ -25,13 +25,13 @@ namespace PathonDB.Models.Table {
             return this._columns.Select(x => x.Properties).ToArray();
         }
 
-        public void AddRow(string[] columns, string[] values) {
+        public void AddRecord(string[] columnNames, string[] values) {
             var id = Guid.NewGuid().ToString();
             IdList.Add(id);
 
-            for(var i = 0; i < columns.Length; i++) {
+            for(var i = 0; i < columnNames.Length; i++) {
                 var row = new Row(id, GeneralUtils.TransformStringValueToRealValue(values[i]));
-                _columns.First(x => x.Properties.Name == columns[i]).InsertRow(row);
+                _columns.First(x => x.Properties.Name == columnNames[i]).InsertRow(row);
             }
         }
 

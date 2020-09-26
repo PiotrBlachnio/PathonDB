@@ -13,7 +13,7 @@ namespace PathonDB.Tests {
             throw new System.NotImplementedException();
         }
 
-        public void AddRow(string[] columns, string[] values) {
+        public void AddRecord(string[] columns, string[] values) {
             throw new System.NotImplementedException();
         }
 

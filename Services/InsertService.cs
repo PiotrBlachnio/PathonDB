@@ -16,10 +16,10 @@ namespace PathonDB.Services {
             var arguments = InsertUtils.GetArgumentsFromQuery(query.Substring(0, query.Length - 2));
             var tableName = InsertUtils.GetTableNameFromQuery(query);
 
-            var columns = InsertUtils.GetColumnsFromArguments(arguments).ToArray();
+            var columnNames = InsertUtils.GetColumnsFromArguments(arguments).ToArray();
             var values = InsertUtils.GetValuesFromArguments(arguments).ToArray();
 
-            _database.GetTable(tableName).AddRow(columns, values);
+            _database.GetTable(tableName).AddRecord(columnNames, values);
         }
     }
 }
