@@ -1,5 +1,6 @@
 using PathonDB.Models;
 using PathonDB.Models.Column;
+using PathonDB.Models.Table;
 using PathonDB.Utils;
 using PathonDB.Validators.Create;
 

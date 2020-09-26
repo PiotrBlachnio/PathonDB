@@ -17,7 +17,7 @@ namespace PathonDB.Middlewares.Select {
             if(queryColumnNames.Length == 0 || queryColumnNames[0] == "*") return CheckNext(query);
 
             var tableName = SelectUtils.GetTableNameFromArguments(SelectUtils.GetArgumentsFromQuery(query)).ToLower();
-            var databaseColumnNames = _database.GetTable(tableName).GetColumnNames();
+            var databaseColumnNames = _database.GetTable(tableName).GetColumnProperties().Select(x => x.Name).ToArray();
 
             foreach(var columnName in (string[]) queryColumnNames) {
                 if(!databaseColumnNames.Contains(columnName) && columnName.ToLower() != "id") throw new UnknownColumnNameException(columnName);

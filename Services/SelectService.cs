@@ -1,10 +1,11 @@
 using PathonDB.Models;
+using PathonDB.Models.Table;
 using PathonDB.Utils;
 using PathonDB.Validators;
 
 namespace PathonDB.Services {
     public class SelectService : Service {
-        private RowsData _data = new RowsData();
+        private Record[] _records = null;
 
         public SelectService(IDatabase database) : base(database) {}
 
@@ -15,7 +16,7 @@ namespace PathonDB.Services {
 
         private void SelectData(string query) {
             var arguments = SelectUtils.GetArgumentsFromQuery(query);
-            var tableName = SelectUtils.GetTableNameFromArguments(arguments).ToLower();
+            var tableName = SelectUtils.GetTableNameFromArguments(arguments).ToLower().TrimEnd(';');
             var columnNames = SelectUtils.GetColumnNamesFromQuery(query);
 
             if(columnNames.Length == 0) return;
@@ -24,16 +25,16 @@ namespace PathonDB.Services {
             var condition = SelectUtils.GetConditionFromQuery(query);
 
             if(condition == null) {
-                _data = _database.GetTable(tableName).GetRowsData(columnNames);
+               _records = _database.GetTable(tableName).GetRecords(columnNames, null);
             } else {
-                _data = _database.GetTable(tableName).GetRowsDataWithCondition(condition, columnNames);
+                _records = _database.GetTable(tableName).GetRecords(columnNames, new Condition(condition[0], condition[1]));
             }
 
             return;
         }
 
-        public RowsData GetData() {
-            return _data;
+        public Record[] GetRecords() {
+            return _records;
         }
     }
 }

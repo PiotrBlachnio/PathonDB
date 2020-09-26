@@ -1,45 +1,37 @@
 using System.Collections.Generic;
 using PathonDB.Models;
 using PathonDB.Models.Column;
+using PathonDB.Models.Table;
 
 namespace PathonDB.Tests {
     public class MockedTable : ITable {
         public string Name { get; set; }
 
+        public List<string> IdList { get; private set; }
+
         public void AddColumn(IColumn column) {
             throw new System.NotImplementedException();
         }
 
-        public void AddRow(string[] columns, string[] values) {
+        public void AddRecord(Record record) {
             throw new System.NotImplementedException();
         }
 
-        public RowsData GetRowsData(string[] columnNames = null)
+        public Properties[] GetColumnProperties()
+        {
+            return new Properties[] {
+                new Properties("email", "text"),
+                new Properties("phoneNumber", "int"),
+                new Properties("isAdult", "boolean")
+            };
+        }
+
+        public Record GetRecordById(string id)
         {
             throw new System.NotImplementedException();
         }
 
-        public string[] GetColumnNames() {
-            return new string[2] { "email", "phoneNumber" };
-        }
-
-        public Dictionary<string, string> GetColumnTypes() {
-            return new Dictionary<string, string>() {
-                    {"email", "text"},
-                    {"phoneNumber", "int"},
-                    {"isAdult", "boolean"}
-            };
-        }
-
-        public IList<string> GetIdList() {
-            throw new System.NotImplementedException();
-        }
-
-        public Dictionary<string, object> GetRowById(string id) {
-            throw new System.NotImplementedException();
-        }
-
-        public RowsData GetRowsDataWithCondition(string[] condition, string[] columnNames = null)
+        public Record[] GetRecords(string[] columnNames, Condition condition)
         {
             throw new System.NotImplementedException();
         }

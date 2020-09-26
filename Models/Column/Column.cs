@@ -26,7 +26,7 @@ namespace PathonDB.Models.Column {
         }
 
         public string[] GetFilteredIdList(object value) {
-            return _rows.Where(x => x.Value.Equals(value)).Select(x => x.Id).ToArray();
+            return this._rows.Where(x => x.Value.Equals(value)).Select(x => x.Id).ToArray();
         }
     }
 }
