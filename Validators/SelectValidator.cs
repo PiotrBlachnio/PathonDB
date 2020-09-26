@@ -1,6 +1,6 @@
 using PathonDB.Middlewares.General;
 using PathonDB.Middlewares.Select;
-using PathonDB.Models;
+using PathonDB.Models.Database;
 
 namespace PathonDB.Validators {
     public class SelectValidator : Validator {

@@ -1,6 +1,6 @@
 using PathonDB.Middlewares.General;
 using PathonDB.Middlewares.Create;
-using PathonDB.Models;
+using PathonDB.Models.Database;
 
 namespace PathonDB.Validators.Create {
     public class CreateValidator : Validator {

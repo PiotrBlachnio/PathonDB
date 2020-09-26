@@ -1,4 +1,4 @@
-using PathonDB.Models;
+using PathonDB.Models.Database;
 using PathonDB.Models.Table;
 using PathonDB.Utils;
 using PathonDB.Validators;
@@ -33,7 +33,8 @@ namespace PathonDB.Services {
             return;
         }
 
-        public Record[] GetRecords() {
+        public Record[] GetRecords(string query) {
+            this.PerformQuery(query);
             return _records;
         }
     }

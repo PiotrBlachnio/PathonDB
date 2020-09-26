@@ -1,5 +1,5 @@
 using System;
-using PathonDB.Models;
+using PathonDB.Models.Database;
 using PathonDB.Services;
 using PathonDB.Validators;
 using Xunit;

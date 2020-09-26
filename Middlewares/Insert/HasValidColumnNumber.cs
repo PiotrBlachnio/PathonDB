@@ -1,7 +1,7 @@
 using System.Linq;
 using PathonDB.Exceptions.Insert;
 using PathonDB.Middlewares.General;
-using PathonDB.Models;
+using PathonDB.Models.Database;
 using PathonDB.Utils;
 
 namespace PathonDB.Middlewares.Insert {

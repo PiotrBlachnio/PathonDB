@@ -1,4 +1,4 @@
-using PathonDB.Models;
+using PathonDB.Models.Database;
 
 namespace PathonDB.Services {
     public abstract class Service {

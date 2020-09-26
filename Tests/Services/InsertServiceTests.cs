@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using PathonDB.Models;
+using PathonDB.Models.Database;
 using Xunit;
 
 namespace PathonDB.Services {

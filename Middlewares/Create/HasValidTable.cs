@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using PathonDB.Exceptions.Create;
 using PathonDB.Middlewares.General;
-using PathonDB.Models;
+using PathonDB.Models.Database;
 using PathonDB.Utils;
 
 namespace PathonDB.Middlewares.Create {
