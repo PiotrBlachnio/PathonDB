@@ -4,7 +4,7 @@ using System.Linq;
 using PathonDB.Models.Column;
 using PathonDB.Utils;
 
-namespace PathonDB.Models {
+namespace PathonDB.Models.Table {
     public class Table : ITable {
         private readonly Dictionary<string, IColumn> _columns = new Dictionary<string, IColumn>();
         private readonly IList<string> _idList = new List<string>();

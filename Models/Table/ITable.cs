@@ -1,8 +1,7 @@
-using System;
 using System.Collections.Generic;
 using PathonDB.Models.Column;
 
-namespace PathonDB.Models {
+namespace PathonDB.Models.Table {
     public interface ITable {
         string Name { get; set; }
         

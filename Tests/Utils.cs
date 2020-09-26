@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using PathonDB.Models;
 using PathonDB.Models.Column;
+using PathonDB.Models.Table;
 
 namespace PathonDB.Tests {
     public class MockedTable : ITable {

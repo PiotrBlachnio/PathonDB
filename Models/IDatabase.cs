@@ -1,3 +1,5 @@
+using PathonDB.Models.Table;
+
 namespace PathonDB.Models {
     public interface IDatabase {
         string[] GetTableNames();

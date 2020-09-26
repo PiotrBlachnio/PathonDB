@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using PathonDB.Models.Table;
 
 namespace PathonDB.Models {
     public class Database : IDatabase {
