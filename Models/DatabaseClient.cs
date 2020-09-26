@@ -23,7 +23,7 @@ namespace PathonDB.Models {
                         var service = new SelectService(_database);
                         service.PerformQuery(query);
 
-                        Console.WriteLine(JsonConvert.SerializeObject(service.GetData(), Formatting.Indented));
+                        Console.WriteLine(JsonConvert.SerializeObject(service.GetRecords(), Formatting.Indented));
                         break;
                     default:
                         throw new MalformedArgumentsException();

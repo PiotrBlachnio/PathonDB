@@ -51,7 +51,7 @@ namespace PathonDB.Models.Table {
             var recordIds = this.IdList;
 
             if(condition != null) {
-                if(condition.ColumnName.ToLower() == "id") recordIds =  new List<string>() { condition.Value };
+                if(condition.ColumnName.ToLower() == "id") recordIds = new List<string>() { condition.Value };
                 else {
                     var selectedColumn = this._columns.First(x => x.Properties.Name == condition.ColumnName);
                     var realValue = GeneralUtils.TransformStringValueToRealValue(condition.Value);
@@ -67,51 +67,12 @@ namespace PathonDB.Models.Table {
                 var values = mutualColumns.Select(x => x.GetRowById(id).Value).ToList();
 
                 var record = new Record(names, values);
-                if(columnNames.Any(x => x.ToLower() == "id")) record.Id = id;
+                if(columnNames == null || columnNames.Any(x => x.ToLower() == "id")) record.Id = id;
 
                 output.Add(record);
             }
 
             return output.ToArray();
-        }
-
-        public RowsData GetRowsData(string[] columnNames = null) {
-            var output = new RowsData();
-            var rows = new Dictionary<string, object[]>();
-
-            foreach(var column in _columns) {   
-                if(columnNames == null || columnNames.Contains(column.Properties.Name)) {
-                    rows.Add(column.Properties.Name, column.GetRows().Select(x => x.Value).ToArray());
-                }
-            }
-
-            output.Rows = rows;
-            if(columnNames == null || columnNames.Select(x => x.ToLower()).Contains("id")) output.IdList = IdList.ToArray();
-        
-            return output;
-        }
-
-        public RowsData GetRowsDataWithCondition(string[] condition, string[] columnNames = null) {
-            var output = new RowsData();
-            var rows = new Dictionary<string, object[]>();
-
-            var columnName = condition[0];
-            var existingColumn = _columns.First(x => x.Properties.Name == columnName);
-            
-            var ids = columnName.ToLower() == "id" ? new string[] {condition[1]}: existingColumn.GetFilteredIdList(GeneralUtils.TransformStringValueToRealValue(condition[1]));
-
-            foreach(var column in _columns) {
-
-                if(columnNames == null || columnNames.Contains(column.Properties.Name)) {
-                    rows.Add(column.Properties.Name, column.GetRows(ids).Select(x => x.Value).ToArray());
-                } 
-                
-            }
-
-            output.Rows = rows;
-            if(columnNames == null || columnNames.Select(x => x.ToLower()).Contains("id")) output.IdList = ids;
-            
-            return output;
         }
     }
 }

@@ -17,16 +17,6 @@ namespace PathonDB.Tests {
             throw new System.NotImplementedException();
         }
 
-        public RowsData GetRowsData(string[] columnNames = null)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public RowsData GetRowsDataWithCondition(string[] condition, string[] columnNames = null)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public Properties[] GetColumnProperties()
         {
             return new Properties[] {
