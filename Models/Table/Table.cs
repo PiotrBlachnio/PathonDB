@@ -48,17 +48,7 @@ namespace PathonDB.Models.Table {
 
         public Record[] GetRecords(string[] columnNames, Condition condition) {
             var output = new List<Record>();
-            var recordIds = this.IdList;
-
-            if(condition != null) {
-                if(condition.ColumnName.ToLower() == "id") recordIds = new List<string>() { condition.Value };
-                else {
-                    var selectedColumn = this._columns.First(x => x.Properties.Name == condition.ColumnName);
-                    var realValue = GeneralUtils.TransformStringValueToRealValue(condition.Value);
-
-                    recordIds = selectedColumn.GetFilteredIdList(realValue).ToList();
-                }
-            }
+            var recordIds = this.AssignRecordIds(condition);
 
             var mutualColumns = columnNames == null ? this._columns : this._columns.Where(x => columnNames.Contains(x.Properties.Name));
 
@@ -73,6 +63,16 @@ namespace PathonDB.Models.Table {
             }
 
             return output.ToArray();
+        }
+
+        private List<string> AssignRecordIds(Condition condition) {
+            if(condition == null) return this.IdList;
+            if(condition.ColumnName.ToLower() == "id") return new List<string>() { condition.Value };
+
+            var selectedColumn = this._columns.First(x => x.Properties.Name == condition.ColumnName);
+            var realValue = GeneralUtils.TransformStringValueToRealValue(condition.Value);
+
+            return selectedColumn.GetFilteredIdList(realValue).ToList();
         }
     }
 }
