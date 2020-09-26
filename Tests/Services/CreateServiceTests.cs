@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using PathonDB.Models;
+using PathonDB.Models.Column;
 using PathonDB.Services;
 using Xunit;
 
@@ -13,12 +13,12 @@ namespace PathonDB.Tests.Services {
 
             new CreateService(database).PerformQuery(query);
 
-            var actual = database.GetTable("users").GetColumnTypes();
+            var actual = database.GetTable("users").GetColumnProperties();
 
-            var expected = new Dictionary<string, string> {
-                {"email", "text"},
-                {"phoneNumber", "int"},
-                {"isAdult", "boolean"}
+            var expected = new Properties[] {
+                new Properties("email", "text"),
+                new Properties("phoneNumber", "int"),
+                new Properties("isAdult", "boolean")
             };
 
             Assert.Equal(expected, actual);

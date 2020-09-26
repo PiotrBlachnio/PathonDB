@@ -22,18 +22,6 @@ namespace PathonDB.Tests {
             throw new System.NotImplementedException();
         }
 
-        public string[] GetColumnNames() {
-            return new string[2] { "email", "phoneNumber" };
-        }
-
-        public Dictionary<string, string> GetColumnTypes() {
-            return new Dictionary<string, string>() {
-                    {"email", "text"},
-                    {"phoneNumber", "int"},
-                    {"isAdult", "boolean"}
-            };
-        }
-
         public IList<string> GetIdList() {
             throw new System.NotImplementedException();
         }
@@ -45,6 +33,15 @@ namespace PathonDB.Tests {
         public RowsData GetRowsDataWithCondition(string[] condition, string[] columnNames = null)
         {
             throw new System.NotImplementedException();
+        }
+
+        public Properties[] GetColumnProperties()
+        {
+            return new Properties[] {
+                new Properties("email", "text"),
+                new Properties("phoneNumber", "int"),
+                new Properties("isAdult", "boolean")
+            };
         }
     }
 }

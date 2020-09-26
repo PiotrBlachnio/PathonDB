@@ -19,11 +19,13 @@ namespace PathonDB.Middlewares.Insert {
             var columns = InsertUtils.GetColumnsFromArguments(arguments).ToArray();
             var values = arguments[2].Split(",").Select(x => x.Trim()).ToArray();
 
-            var columnTypes = _database.GetTable(tableName).GetColumnTypes();
+            var columnProperties = _database.GetTable(tableName).GetColumnProperties();
             
             for(var i = 0; i < columns.Count(); i++) {
                 if(GeneralUtils.ContainsForbiddenCharacters(values[i])) throw new ForbiddenCharactersException(values[i]);
-                if(!GeneralUtils.IsTypeValid(columnTypes[columns[i]], values[i])) throw new InvalidColumnTypeException(columns[i], columnTypes[columns[i]]);
+
+                var type = columnProperties.First(x => x.Name == columns[i]).Type;
+                if(!GeneralUtils.IsTypeValid(type, values[i])) throw new InvalidColumnTypeException(columns[i], type);
             }
             
             return this.CheckNext(query);

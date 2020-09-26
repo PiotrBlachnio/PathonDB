@@ -17,7 +17,7 @@ namespace PathonDB.Middlewares.Insert {
             var tableName = InsertUtils.GetTableNameFromQuery(query);
             
             var actualColumnNumber = InsertUtils.GetColumnsFromArguments(arguments).Count();
-            var expectedColumnNumber = _database.GetTable(tableName).GetColumnNames().Count();
+            var expectedColumnNumber = _database.GetTable(tableName).GetColumnProperties().Count();
 
             if(actualColumnNumber != expectedColumnNumber) throw new InvalidColumnNumberException(actualColumnNumber, expectedColumnNumber);
             

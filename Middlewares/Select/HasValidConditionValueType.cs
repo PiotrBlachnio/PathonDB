@@ -1,3 +1,4 @@
+using System.Linq;
 using PathonDB.Exceptions.General;
 using PathonDB.Middlewares.General;
 using PathonDB.Models;
@@ -17,8 +18,10 @@ namespace PathonDB.Middlewares.Select {
             var condition = SelectUtils.GetConditionFromQuery(query);
             var tableName = SelectUtils.GetTableNameFromArguments(arguments).ToLower();
 
-            var columnTypes = _database.GetTable(tableName).GetColumnTypes();
-            if(!GeneralUtils.IsTypeValid(columnTypes[condition[0]], condition[1])) throw new InvalidColumnTypeException(condition[0], columnTypes[condition[0]]);
+            var columnTypes = _database.GetTable(tableName).GetColumnProperties();
+            var type = columnTypes.First(x => x.Name == condition[0]).Type;
+
+            if(!GeneralUtils.IsTypeValid(type, condition[1])) throw new InvalidColumnTypeException(condition[0], type);
             
             return CheckNext(query);
         }

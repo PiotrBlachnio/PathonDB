@@ -18,7 +18,7 @@ namespace PathonDB.Middlewares.Insert {
             var tableName = InsertUtils.GetTableNameFromQuery(query);
             
             var queryColumns = InsertUtils.GetColumnsFromArguments(arguments);
-            var databaseColumns = _database.GetTable(tableName).GetColumnNames();
+            var databaseColumns = _database.GetTable(tableName).GetColumnProperties().Select(x => x.Name).ToArray();
 
             foreach(var column in queryColumns) {
                 if(!databaseColumns.Contains(column)) throw new UnknownColumnNameException(column);

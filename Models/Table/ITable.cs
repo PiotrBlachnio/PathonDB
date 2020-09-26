@@ -9,9 +9,10 @@ namespace PathonDB.Models.Table {
         
         void AddColumn(IColumn column);
 
-        string[] GetColumnNames();
+        Properties[] GetColumnProperties();
+        // string[] GetColumnNames();
 
-        Dictionary<string, string> GetColumnTypes();
+        // Dictionary<string, string> GetColumnTypes();
 
         void AddRow(string[] columns, string[] values);
 

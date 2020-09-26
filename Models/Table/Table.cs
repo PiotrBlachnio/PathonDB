@@ -21,19 +21,23 @@ namespace PathonDB.Models.Table {
             this._columns.Add(column);
         }
 
-        public string[] GetColumnNames() {
-            return this._columns.Select(x => x.Properties.Name).ToArray();
+        public Properties[] GetColumnProperties() {
+            return this._columns.Select(x => x.Properties).ToArray();
         }
 
-        public Dictionary<string, string> GetColumnTypes() {
-            var columnTypes = new Dictionary<string, string>();
+        // public string[] GetColumnNames() {
+        //     return this._columns.Select(x => x.Properties.Name).ToArray();
+        // }
 
-            foreach(var column in _columns) {
-                columnTypes.Add(column.Properties.Name, column.Properties.Type);
-            }
+        // public Dictionary<string, string> GetColumnTypes() {
+        //     var columnTypes = new Dictionary<string, string>();
 
-            return columnTypes;
-        }
+        //     foreach(var column in _columns) {
+        //         columnTypes.Add(column.Properties.Name, column.Properties.Type);
+        //     }
+
+        //     return columnTypes;
+        // }
 
         public void AddRow(string[] columns, string[] values) {
             var id = Guid.NewGuid().ToString();
