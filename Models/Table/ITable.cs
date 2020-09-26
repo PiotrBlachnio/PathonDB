@@ -11,7 +11,7 @@ namespace PathonDB.Models.Table {
 
         Properties[] GetColumnProperties();
 
-        void AddRecord(string[] columnNames, string[] values);
+        void AddRecord(Record record);
 
         Dictionary<string, object> GetRowById(string id);
 

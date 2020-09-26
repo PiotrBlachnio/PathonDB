@@ -1,5 +1,6 @@
 using System.Linq;
 using PathonDB.Models;
+using PathonDB.Models.Table;
 using PathonDB.Utils;
 using PathonDB.Validators;
 
@@ -19,7 +20,8 @@ namespace PathonDB.Services {
             var columnNames = InsertUtils.GetColumnsFromArguments(arguments).ToArray();
             var values = InsertUtils.GetValuesFromArguments(arguments).ToArray();
 
-            _database.GetTable(tableName).AddRecord(columnNames, values);
+            var record = new Record(columnNames, values);
+            _database.GetTable(tableName).AddRecord(record);
         }
     }
 }

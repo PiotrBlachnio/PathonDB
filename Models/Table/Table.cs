@@ -25,16 +25,16 @@ namespace PathonDB.Models.Table {
             return this._columns.Select(x => x.Properties).ToArray();
         }
 
-        public void AddRecord(string[] columnNames, string[] values) {
-            var id = Guid.NewGuid().ToString();
-            IdList.Add(id);
+        public void AddRecord(Record record) {
+            record.Id = Guid.NewGuid().ToString();
+            this.IdList.Add(record.Id);
 
-            for(var i = 0; i < columnNames.Length; i++) {
-                var row = new Row(id, GeneralUtils.TransformStringValueToRealValue(values[i]));
-                _columns.First(x => x.Properties.Name == columnNames[i]).InsertRow(row);
+            for(var i = 0; i < record.ColumnNames.Length; i++) {
+                var row = new Row(record.Id, GeneralUtils.TransformStringValueToRealValue(record.Values[i]));
+                this._columns.First(x => x.Properties.Name == record.ColumnNames[i]).InsertRow(row);
             }
         }
-
+        
         public Dictionary<string, object> GetRowById(string id) {
             var row = new Dictionary<string, object>() {};
             
