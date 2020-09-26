@@ -25,20 +25,6 @@ namespace PathonDB.Models.Table {
             return this._columns.Select(x => x.Properties).ToArray();
         }
 
-        // public string[] GetColumnNames() {
-        //     return this._columns.Select(x => x.Properties.Name).ToArray();
-        // }
-
-        // public Dictionary<string, string> GetColumnTypes() {
-        //     var columnTypes = new Dictionary<string, string>();
-
-        //     foreach(var column in _columns) {
-        //         columnTypes.Add(column.Properties.Name, column.Properties.Type);
-        //     }
-
-        //     return columnTypes;
-        // }
-
         public void AddRow(string[] columns, string[] values) {
             var id = Guid.NewGuid().ToString();
             IdList.Add(id);

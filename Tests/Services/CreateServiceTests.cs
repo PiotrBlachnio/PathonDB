@@ -21,7 +21,10 @@ namespace PathonDB.Tests.Services {
                 new Properties("isAdult", "boolean")
             };
 
-            Assert.Equal(expected, actual);
+            for(var i = 0; i < expected.Length; i++) {
+                Assert.Equal(expected[i].Name, actual[i].Name);
+                Assert.Equal(expected[i].Type, actual[i].Type);
+            }
         }
     }
 }
