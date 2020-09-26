@@ -33,7 +33,8 @@ namespace PathonDB.Services {
             return;
         }
 
-        public Record[] GetRecords() {
+        public Record[] GetRecords(string query) {
+            this.PerformQuery(query);
             return _records;
         }
     }

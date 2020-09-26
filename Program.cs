@@ -1,9 +1,9 @@
-﻿using PathonDB.Models;
+﻿using PathonDB.Models.Database;
 
 namespace PathonDB {
     class Program {
         static void Main(string[] args) {
-            var client = new DatabaseClient();
+            var client = new Client();
             var queries = new string[] {
                 "  CREATE   TABLE   users    (  email   text   , phoneNumber int, isAdult boolean);",
                 "INSERT    INTO   users    (isAdult,  email,  phoneNumber )  VALUES  (false, \"Jeff@gmail.com\", 703503);",
