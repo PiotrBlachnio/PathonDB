@@ -1,6 +1,6 @@
 using PathonDB.Middlewares.Create;
 using Xunit;
-using PathonDB.Models;
+using PathonDB.Models.Database;
 using Autofac.Extras.Moq;
 using PathonDB.Exceptions.Create;
 

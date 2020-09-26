@@ -2,20 +2,20 @@ using System.Collections.Generic;
 using System.Linq;
 using PathonDB.Models.Table;
 
-namespace PathonDB.Models {
+namespace PathonDB.Models.Database {
     public class Database : IDatabase {
-        private readonly Dictionary<string, ITable> _tables = new Dictionary<string, ITable>();
+        public List<ITable> Tables { get; private set; } = new List<ITable>();
 
         public string[] GetTableNames() {
-            return _tables.Keys.ToArray();
+            return this.Tables.Select(x => x.Name).ToArray();
         }
         
         public ITable GetTable(string tableName) {
-            return _tables[tableName];
+            return this.Tables.First(x => x.Name == tableName);
         }
 
         public void AddTable(ITable table) {
-            _tables.Add(table.Name, table);
+            this.Tables.Add(table);
         }
     }
 }

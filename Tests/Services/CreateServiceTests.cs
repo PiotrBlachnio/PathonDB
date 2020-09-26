@@ -1,4 +1,4 @@
-using PathonDB.Models;
+using PathonDB.Models.Database;
 using PathonDB.Models.Column;
 using PathonDB.Services;
 using Xunit;

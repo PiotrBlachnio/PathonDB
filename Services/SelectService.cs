@@ -1,4 +1,4 @@
-using PathonDB.Models;
+using PathonDB.Models.Database;
 using PathonDB.Models.Table;
 using PathonDB.Utils;
 using PathonDB.Validators;

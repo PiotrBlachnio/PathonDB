@@ -1,7 +1,7 @@
 using Autofac.Extras.Moq;
 using PathonDB.Exceptions.General;
 using PathonDB.Middlewares.Insert;
-using PathonDB.Models;
+using PathonDB.Models.Database;
 using Xunit;
 
 namespace PathonDB.Tests.Middlewares.Insert {

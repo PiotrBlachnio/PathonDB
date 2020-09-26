@@ -1,11 +1,12 @@
 using System;
 using Newtonsoft.Json;
 using PathonDB.Exceptions.General;
+using PathonDB.Models.Database;
 using PathonDB.Services;
 
 namespace PathonDB.Models {
     public class DatabaseClient {
-        private readonly IDatabase _database = new Database();
+        private readonly IDatabase _database = new Database.Database();
 
         public void ExecuteQuery(string[] queries) {
             foreach(var q in queries) {
