@@ -4,7 +4,7 @@ using PathonDB.Exceptions.General;
 using PathonDB.Services;
 
 namespace PathonDB.Models.Database {
-    public class Client {
+    public class Client : IClient {
         private IDatabase _database { get; } = new Database();
 
         public void ExecuteQuery(string[] queries) {
