@@ -29,12 +29,24 @@ namespace PathonDB.Models.Table {
             record.Id = Guid.NewGuid().ToString();
             this.IdList.Add(record.Id);
 
-            for(var i = 0; i < record.ColumnNames.Length; i++) {
-                var row = new Row(record.Id, GeneralUtils.TransformStringValueToRealValue(record.Values[i]));
+            for(var i = 0; i < record.ColumnNames.Count(); i++) {
+                var row = new Row(record.Id, record.Values[i]);
                 this._columns.First(x => x.Properties.Name == record.ColumnNames[i]).InsertRow(row);
             }
         }
         
+        public Record GetRecordById(string id) {
+            var record = new Record();
+
+            foreach(var column in this._columns) {
+                record.AddColumnName(column.Properties.Name);
+                record.AddValue(column.GetRowById(id).Value);
+            }
+
+            return record;
+        }
+
+        //TODO: Replace it by getRecordById
         public Dictionary<string, object> GetRowById(string id) {
             var row = new Dictionary<string, object>() {};
             

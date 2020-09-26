@@ -18,7 +18,7 @@ namespace PathonDB.Services {
             var tableName = InsertUtils.GetTableNameFromQuery(query);
 
             var columnNames = InsertUtils.GetColumnsFromArguments(arguments).ToArray();
-            var values = InsertUtils.GetValuesFromArguments(arguments).ToArray();
+            var values = InsertUtils.GetValuesFromArguments(arguments).Select(x => GeneralUtils.TransformStringValueToRealValue(x)).ToArray();
 
             var record = new Record(columnNames, values);
             _database.GetTable(tableName).AddRecord(record);
