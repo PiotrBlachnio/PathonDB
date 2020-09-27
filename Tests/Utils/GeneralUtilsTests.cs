@@ -38,24 +38,47 @@ namespace PathonDB.Tests.Utils {
             Assert.False(actual);
         }
 
-        // [Theory]
-        // [InlineData(" Hello world")]
-        // [InlineData(" Hey313")]
-        // [InlineData(" YOo4015rujafAJFA")]
-        // public void ContainsOnlyAlphaNumericCharacters_StringContainsOnlyAlphaNumericCharacters_ShouldReturnTrue(string value) {
-        //     var acutal = GeneralUtils.ContainsOnlyAlphaNumericCharacters(value);
+        [Theory]
+        [InlineData("hello")]
+        [InlineData("WorlD")]
+        [InlineData("Hello WOrld")]
+        [InlineData("HI313134")]
+        [InlineData("!!!!_$%^__@")]
+        public void ContainsForbiddenCharacters_StringNotContainsForbiddenCharacters_ShouldReturnFalse(string input) {
+            var actual = GeneralUtils.ContainsForbiddenCharacters(input);
 
-        //     Assert.True(acutal);
-        // }
+            Assert.False(actual);
+        }
 
-        // [Theory]
-        // [InlineData(" Hey!")]
-        // [InlineData("#    Hello Wordl")]
-        // [InlineData("^YO^")]
-        // public void ContainsOnlyAlphaNumericCharacters_StringDoesNotContainOnlyAlphaNumericCharacters_ShouldReturnFalse(string value) {
-        //     var acutal = GeneralUtils.ContainsOnlyAlphaNumericCharacters(value);
+        [Theory]
+        [InlineData("Hello(")]
+        [InlineData(")World")]
+        [InlineData("   =  ")]
+        [InlineData("/=/")]
+        public void ContainsForbiddenCharacters_StringContainsForbiddenCharacters_ShouldReturnTrue(string input) {
+            var actual = GeneralUtils.ContainsForbiddenCharacters(input);
 
-        //     Assert.False(acutal);
-        // }
+            Assert.True(actual);
+        }
+
+        [Theory]
+        [InlineData(" Hello world")]
+        [InlineData(" Hey313")]
+        [InlineData(" YOo4015rujafAJFA")]
+        public void ContainsOnlyAlphaNumericCharacters_StringContainsOnlyAlphaNumericCharacters_ShouldReturnTrue(string value) {
+            var acutal = GeneralUtils.ContainsOnlyAlphaNumericCharacters(value);
+
+            Assert.True(acutal);
+        }
+
+        [Theory]
+        [InlineData(" Hey!")]
+        [InlineData("#    Hello Wordl")]
+        [InlineData("^YO^")]
+        public void ContainsOnlyAlphaNumericCharacters_StringDoesNotContainOnlyAlphaNumericCharacters_ShouldReturnFalse(string value) {
+            var acutal = GeneralUtils.ContainsOnlyAlphaNumericCharacters(value);
+
+            Assert.False(acutal);
+        }
     }
 }
