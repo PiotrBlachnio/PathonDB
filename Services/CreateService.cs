@@ -25,7 +25,7 @@ namespace PathonDB.Services {
                 table.AddColumn(column);
             }
 
-            _database.AddTable(table);
+            this._database.AddTable(table);
         }
     }
 }
