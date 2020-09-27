@@ -20,7 +20,7 @@ namespace PathonDB.Models.Database {
                         new InsertService(this._database).PerformQuery(query);
                         break;
                     case "SELECT":
-                        this.PrintAsJson(new SelectService(this._database).GetRecords(query));
+                        this.PrintAsJson(new SelectService(this._database).PerformQuery(query));
                         break;
                     default:
                         throw new MalformedArgumentsException();

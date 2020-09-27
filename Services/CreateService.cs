@@ -8,7 +8,7 @@ namespace PathonDB.Services {
     public class CreateService : Service {
         public CreateService(IDatabase database) : base(database) {}
 
-        public override void PerformQuery(string query) {
+        public void PerformQuery(string query) {
             new CreateValidator(this._database).Validate(query);
             CreateTable(query);
         }
@@ -25,7 +25,7 @@ namespace PathonDB.Services {
                 table.AddColumn(column);
             }
 
-            _database.AddTable(table);
+            this._database.AddTable(table);
         }
     }
 }

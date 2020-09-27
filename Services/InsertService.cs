@@ -8,7 +8,7 @@ namespace PathonDB.Services {
     public class InsertService : Service {
         public InsertService(IDatabase database) : base(database) {}
 
-        public override void PerformQuery(string query) {
+        public void PerformQuery(string query) {
             new InsertValidator(this._database).Validate(query);
             this.InsertRow(query);
         }
@@ -21,7 +21,7 @@ namespace PathonDB.Services {
             var values = InsertUtils.GetValuesFromArguments(arguments).Select(x => GeneralUtils.TransformStringValueToRealValue(x)).ToList();
 
             var record = new Record(columnNames, values);
-            _database.GetTable(tableName).AddRecord(record);
+            this._database.GetTable(tableName).AddRecord(record);
         }
     }
 }
