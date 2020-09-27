@@ -93,5 +93,29 @@ namespace PathonDB.Tests.Utils {
 
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData("SELECT (email, isAdult) FROM users ;")]
+        [InlineData("  SELECT   (email, isAdult)   FROM     users   ;   ")]
+        [InlineData("  SELECT   (email, isAdult)   FROM     users  WHERE  ;   ")]
+        [InlineData("  SELECT   (email, isAdult)   FROM     users  WHERE  id 501;   ")]
+        public void GetConditionFromQuery_ConditionNotExists_ShouldReturnNull(string query) {
+            var actual = SelectUtils.GetConditionFromQuery(query);
+
+            Assert.Null(actual);
+        }
+
+        [Theory]
+        [InlineData("SELECT (email, isAdult) FROM users WHERE isAdult=true;")]
+        [InlineData("  SELECT   (email, isAdult)   FROM     users  Where isAdult = true ;   ")]
+        [InlineData("  SELECT   (email, isAdult)   FROM     users  where isAdult= true  ;   ")]
+        [InlineData("  SELECT   (email, isAdult)   FROM     users  wheRe    isAdult =true;   ")]
+        public void GetConditionFromQuery_ConditionExists_ShouldReturnValidCondition(string query) {
+            var actual = SelectUtils.GetConditionFromQuery(query);
+
+            var expected = new string[] { "isAdult", "true" };
+
+            Assert.Equal(expected, actual);
+        } 
     }
 }
