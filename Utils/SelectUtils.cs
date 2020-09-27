@@ -11,8 +11,8 @@ namespace PathonDB.Utils {
 
         public static string GetFromKeywordFromArguments(string[] arguments) {
             string charToFind = arguments[1];
-
             if(arguments[1].StartsWith('(')) charToFind = arguments.First(x => x.EndsWith(')'));
+            
             return arguments[(Array.IndexOf(arguments, charToFind) + 1)];
         }
 
