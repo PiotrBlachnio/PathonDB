@@ -9,7 +9,7 @@ namespace PathonDB.Tests.Utils {
         public void GetArgumentsFromQuery_ShouldReturnValidStringArray(string query) {
             var actual = CreateUtils.GetArgumentsFromQuery(query);
 
-            var expected = new string[2] { "CREATE TABLE users",  "email text, phoneNumber int);" };
+            var expected = new string[] { "CREATE TABLE users",  "email text, phoneNumber int);" };
 
             Assert.Equal(expected, actual);
         }
