@@ -20,7 +20,7 @@ namespace PathonDB.Utils {
             var tableName = SelectUtils.GetTableNameFromArguments(arguments);
             var tableNameIndex = Array.IndexOf(arguments, tableName);
             
-            if(tableNameIndex + 1 == arguments.Length) return null;
+            if(tableNameIndex + 1 == arguments.Length || arguments[tableNameIndex + 1].Trim() == ";") return null;
 
             return arguments[tableNameIndex + 1];
         }

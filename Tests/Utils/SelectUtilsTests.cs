@@ -28,5 +28,31 @@ namespace PathonDB.Tests.Utils {
 
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData("SELECT * FROM users WHERE id = 50;")]
+        [InlineData("  SELECT   *   FROM    users   WHERE   id    =    50;")]
+        [InlineData("SELECT (   username   ,   email   )      FROM   users  WHERE id=50;   ")]
+        public void GetWhereKeywordFromArguments_KeywordExists_ShouldReturnValidKeyword(string query) {
+            var arguments = SelectUtils.GetArgumentsFromQuery(query);
+
+            var actual = SelectUtils.GetWhereKeywordFromArguments(arguments);
+
+            var expected = "WHERE";
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("SELECT * FROM users;")]
+        [InlineData("  SELECT   *   FROM     users   ;   ")]
+        [InlineData("SELECT (   username   ,   email   )      FROM   users  ;   ")]
+        public void GetWhereKeywordFromArguments_KeywordNotExists_ShouldReturnNull(string query) {
+            var arguments = SelectUtils.GetArgumentsFromQuery(query);
+
+            var actual = SelectUtils.GetWhereKeywordFromArguments(arguments);
+
+            Assert.Null(actual);
+        }
     }
 }
