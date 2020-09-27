@@ -19,7 +19,6 @@ namespace PathonDB.Middlewares.Select {
             var tableName = SelectUtils.GetTableNameFromArguments(arguments).ToLower();
 
             var columnNames = _database.GetTable(tableName).GetColumnProperties().Select(x => x.Name).ToArray();
-
             if(condition != null && !columnNames.Contains(condition[0])) throw new UnknownColumnNameException(condition[0]);
 
             return CheckNext(query);

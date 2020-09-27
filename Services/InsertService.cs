@@ -8,7 +8,7 @@ namespace PathonDB.Services {
     public class InsertService : Service {
         public InsertService(IDatabase database) : base(database) {}
 
-        public override void PerformQuery(string query) {
+        public void PerformQuery(string query) {
             new InsertValidator(this._database).Validate(query);
             this.InsertRow(query);
         }

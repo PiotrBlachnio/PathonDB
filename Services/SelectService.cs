@@ -9,9 +9,11 @@ namespace PathonDB.Services {
 
         public SelectService(IDatabase database) : base(database) {}
 
-        public override void PerformQuery(string query) {
+        public Record[] PerformQuery(string query) {
             new SelectValidator(this._database).Validate(query);
             this.SelectData(query);
+
+            return this._records;
         }
 
         private void SelectData(string query) {
@@ -31,11 +33,6 @@ namespace PathonDB.Services {
             }
 
             return;
-        }
-
-        public Record[] GetRecords(string query) {
-            this.PerformQuery(query);
-            return _records;
         }
     }
 }

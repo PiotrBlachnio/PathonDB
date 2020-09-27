@@ -7,7 +7,5 @@ namespace PathonDB.Services {
         public Service(IDatabase database) {
             _database = database;
         }
-
-        public abstract void PerformQuery(string query);
     }
 }
