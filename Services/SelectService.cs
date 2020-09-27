@@ -22,7 +22,7 @@ namespace PathonDB.Services {
 
             var condition = SelectUtils.GetConditionFromQuery(query);
 
-            return _database.GetTable(tableName).GetRecords(columnNames, new Condition(condition == null ? null : condition[0], condition[1]));
+            return _database.GetTable(tableName).GetRecords(columnNames, condition == null ? null : new Condition(condition[0], condition[1]));
         }
     }
 }
