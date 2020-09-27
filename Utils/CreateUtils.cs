@@ -18,9 +18,7 @@ namespace PathonDB.Utils {
         }
 
         public static IEnumerable<string[]> GetColumnsFromArguments(string[] arguments) {
-            if(arguments[1].Last() == ';') {
-                arguments[1] = arguments[1].Substring(0, arguments[1].Length - 2);
-            }
+            if(arguments[1].Last() == ';') arguments[1].TrimEnd(';');
             
             return arguments[1].Split(",").Select(x => x.Trim()).Select(x => x.Split(" ", StringSplitOptions.RemoveEmptyEntries));
         }    
