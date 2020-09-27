@@ -38,6 +38,13 @@ namespace PathonDB.Tests.Utils {
             Assert.False(actual);
         }
 
+        [Theory]
+        [InlineData("hello")]
+        public void ContainsForbiddenCharacters_StringNotContainsForbiddenCharacters(string input) {
+            var actual = GeneralUtils.ContainsForbiddenCharacters(input);
+
+            Assert.False(actual);
+        }
         // [Theory]
         // [InlineData(" Hello world")]
         // [InlineData(" Hey313")]

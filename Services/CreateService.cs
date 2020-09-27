@@ -14,7 +14,7 @@ namespace PathonDB.Services {
         }
 
         private void CreateTable(string query) {
-            var arguments = CreateUtils.GetArgumentsFromQuery(query);
+            var arguments = CreateUtils.GetArgumentsFromQuery(query.Remove(query.Length - 2));
             var tableName = CreateUtils.GetTableNameFromQuery(query);
             var columns = CreateUtils.GetColumnsFromArguments(arguments);
 
