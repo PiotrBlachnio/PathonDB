@@ -70,5 +70,28 @@ namespace PathonDB.Tests.Utils {
 
             Assert.Equal(expected, actual);
         }
+
+        [Theory]
+        [InlineData("SELECT * FROM users ;")]
+        [InlineData("  SELECT   *   FROM     users   ;   ")]
+        public void GetColumnNamesFromQuery_AsteriksSymbol_ShouldReturnValidColumnNamesArray(string query) {
+            var actual = SelectUtils.GetColumnNamesFromQuery(query);
+
+            var expected = new string[] { "*" };
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("SELECT (email, isAdult) FROM users ;")]
+        [InlineData("  SELECT   (email, isAdult)   FROM     users   ;   ")]
+        [InlineData("  SELECT   (   email   ,   isAdult   )   FROM     users   ;   ")]
+        public void GetColumnNamesFromQuery_MultipleColumnNames_ShouldReturnValidColumnNamesArray(string query) {
+            var actual = SelectUtils.GetColumnNamesFromQuery(query);
+
+            var expected = new string[] { "email", "isAdult" };
+
+            Assert.Equal(expected, actual);
+        }
     }
 }
