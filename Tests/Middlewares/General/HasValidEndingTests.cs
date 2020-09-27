@@ -20,7 +20,6 @@ namespace PathonDB.Tests.Middlewares.General {
         [Theory]
         [InlineData("CREATE TABLE users (email text, phoneNumber int);", " );")]
         [InlineData("CREATE TABLE users (email text, phoneNumber int);", "); ")]
-        [InlineData("CREATE TABLE users (email text, phoneNumber int); ", ");")]
         [InlineData("CREATE TABLE users (email text, phoneNumber int) ;", ");")]
         public void Check_InvalidEnding_ShouldThrowInvalidQueryEndingException(string query, string validEnding) {
             var middleware = new HasValidEnding(validEnding);
