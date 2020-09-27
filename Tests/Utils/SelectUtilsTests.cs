@@ -54,5 +54,21 @@ namespace PathonDB.Tests.Utils {
 
             Assert.Null(actual);
         }
+
+        [Theory]
+        [InlineData("SELECT * FROM users ;")]
+        [InlineData("  SELECT   *   FROM     users   ;   ")]
+        [InlineData("SELECT (   username   ,   email   )      FROM   users  ;   ")]
+        [InlineData("  SELECT   *   FROM    users   WHERE   id    =    50;")]
+        [InlineData("SELECT (   username   ,   email   )      FROM   users  WHERE id=50;   ")]
+        public void GetTableNameFromArguments_ShouldReturnValidTableName(string query) {
+            var arguments = SelectUtils.GetArgumentsFromQuery(query);
+
+            var actual = SelectUtils.GetTableNameFromArguments(arguments);
+
+            var expected = "users";
+
+            Assert.Equal(expected, actual);
+        }
     }
 }
