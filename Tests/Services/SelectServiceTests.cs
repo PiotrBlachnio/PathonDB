@@ -78,5 +78,27 @@ namespace PathonDB.Tests.Services {
                 Assert.Equal(actual[0].Values, expected[0].Values);
             }
         }
+
+        [Theory]
+        [InlineData("SELECT (phoneNumber, isAdult) FROM users WHERE isAdult=false;")]
+        [InlineData("   SELECT    (    phoneNumber   ,    isAdult   )   FROM    users  wHerE   isAdult   =   false;    ")]
+        public void PerformQuery_MultipleColumnsWithCondition_ShouldReturnValidRecords(string query) {
+            var database = new Database();
+
+            new CreateService(database).PerformQuery("CREATE TABLE users (email text, phoneNumber int, isAdult boolean);");
+            new InsertService(database).PerformQuery("INSERT INTO users (email, phoneNumber, isAdult) VALUES (\"Jeff@gmail.com\", 703503, true);");
+            new InsertService(database).PerformQuery("INSERT    INTO   users    (isAdult,  email,  phoneNumber )  VALUES  (false, \"Arnold@gmail.com\", 141505);");
+
+            var actual = new SelectService(database).PerformQuery(query);
+            
+            var expected = new Models.Table.Record[] {
+                new Models.Table.Record(new List<string>() { "phoneNumber", "isAdult" }, new List<object>() { 141505, false })
+            };
+
+            for(var i = 0; i < actual.Length; i++) {
+                Assert.Equal(actual[0].ColumnNames, expected[0].ColumnNames);
+                Assert.Equal(actual[0].Values, expected[0].Values);
+            }
+        }
     }
 }
