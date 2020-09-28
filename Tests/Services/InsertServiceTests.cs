@@ -16,7 +16,7 @@ namespace PathonDB.Services {
             var id = database.GetTable("users").IdList[0];
             var actual = database.GetTable("users").GetRecordById(id);
 
-            var expected = new PathonDB.Models.Table.Record(new List<string>() {
+            var expected = new Models.Table.Record(new List<string>() {
                 "email",
                 "phoneNumber",
                 "isAdult"
