@@ -8,7 +8,7 @@ namespace PathonDB.Tests.Services {
         [Theory]
         [InlineData("CREATE TABLE users (email text, phoneNumber int, isAdult boolean);")]
         [InlineData("CREATE TABLE   users   (email   text,   phoneNumber  int ,  isAdult  boolean );")]
-        public void CreateTable_ShouldCreateNewTableInDatabase(string query) {
+        public void PerformQuery_ShouldCreateNewTableInDatabase(string query) {
             var database = new Database();
 
             new CreateService(database).PerformQuery(query);

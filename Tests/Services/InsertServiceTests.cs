@@ -7,7 +7,7 @@ namespace PathonDB.Services {
         [Theory]
         [InlineData("INSERT INTO users (email, phoneNumber, isAdult) VALUES (\"Jeff@gmail.com\", 703503, true);")]
         [InlineData("INSERT INTO   uSERs    (  email,   phoneNumber, isAdult)   VALueS   ( \"Jeff@gmail.com\",   703503,   true);")]
-        public void InsertRow_ShouldAddRowInTheTable(string query) {
+        public void PerformQuery_ShouldAddRowInTheTable(string query) {
             var database = new Database();
 
             new CreateService(database).PerformQuery("CREATE TABLE users (email text, phoneNumber int, isAdult boolean);");
