@@ -31,5 +31,18 @@ namespace PathonDB.Tests.Middlewares.Select {
 
             Assert.Throws<MalformedArgumentsException>(() => middleware.Check(query));
         }
+
+        [Theory]
+        [InlineData("SELECT * fromm users;")]
+        [InlineData("   SELECT   *   fFROM    users  ;  ")]
+        [InlineData("SELECT (username, email) fromusers;")]
+        [InlineData("   SELECT   (username, email)      users  ;  ")]
+        [InlineData("SELECT *  where users WHERE isAdult=true;")]
+        [InlineData("   SELECT   *from    users  wheRe    isAdult    = true  ;  ")]
+        public void Check_InvalidFromKeyword_ShouldThrowMalformedArgumentsException(string query) {
+            var middleware = new HasValidArguments();
+
+            Assert.Throws<MalformedArgumentsException>(() => middleware.Check(query));
+        }
     }
 }
