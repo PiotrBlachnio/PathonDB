@@ -1,4 +1,5 @@
 using Autofac.Extras.Moq;
+using PathonDB.Exceptions.General;
 using PathonDB.Middlewares.Select;
 using PathonDB.Models.Database;
 using Xunit;
@@ -21,6 +22,23 @@ namespace PathonDB.Tests.Middlewares.Select {
                 var actual = middleware.Check(query);
 
                 Assert.True(actual);
+            }
+        }
+
+        [Theory]
+        [InlineData("SELECT * FROM userss")]
+        [InlineData("   SELECT   (email)   FROM        ")]
+        [InlineData("SELECT (Id, email) FROM _")]
+        [InlineData("   SELECT   (isAdult, id)   FroM    item  ;  ")]
+        [InlineData("SELECT (isAdult,   id  ,   phoneNumber) FROM  WHERE isAdult=true")]
+        [InlineData("   SELECT   (   isAdult  ,    id   ,   phoneNumber   )   FROM  wheRe    isAdult    = true    ")]
+        public void Check_InvalidTableName_ShouldThrowTableNotFoundException(string query) {
+            using (var mock = AutoMock.GetLoose()) {
+                mock.Mock<IDatabase>().Setup(m => m.GetTableNames()).Returns(new string[] { "users", "items" });
+
+                var middleware = mock.Create<HasValidTable>();
+
+                Assert.Throws<TableNotFoundException>(() => middleware.Check(query));
             }
         }
     }
