@@ -27,7 +27,10 @@ namespace PathonDB.Utils {
 
         public static string GetTableNameFromArguments(string[] arguments) {
             var lowercaseArray = arguments.Select(x => x.ToLower()).ToArray();
-            var tableName = arguments[Array.IndexOf(lowercaseArray, "from") + 1];
+            var fromIndex = Array.IndexOf(lowercaseArray, "from");
+
+            if(fromIndex == arguments.Length - 1) return null;
+            var tableName = arguments[fromIndex + 1];
 
             return tableName;
         }
