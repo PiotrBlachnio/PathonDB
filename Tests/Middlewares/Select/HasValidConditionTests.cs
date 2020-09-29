@@ -1,3 +1,4 @@
+using PathonDB.Exceptions.General;
 using PathonDB.Middlewares.Select;
 using Xunit;
 
@@ -16,6 +17,15 @@ namespace PathonDB.Tests.Middlewares.Select {
             var actual = middleware.Check(query);
 
             Assert.True(actual);
+        }
+
+        [Theory]
+        [InlineData("SELECT * FROM users WHERE")]
+        [InlineData("   SELECT   (email)   FROM    users    where ")]
+        public void Check_InvalidCondition_ShoulThrowMalformedArgumentsException(string query) {
+            var middleware = new HasValidCondition();
+
+            Assert.Throws<MalformedArgumentsException>(() => middleware.Check(query));
         }
     }
 }
