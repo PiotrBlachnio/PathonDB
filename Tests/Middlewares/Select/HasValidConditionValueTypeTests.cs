@@ -1,4 +1,5 @@
 using Autofac.Extras.Moq;
+using PathonDB.Exceptions.General;
 using PathonDB.Middlewares.Select;
 using PathonDB.Models.Database;
 using Xunit;
@@ -21,6 +22,19 @@ namespace PathonDB.Tests.Middlewares.Select {
                 var actual = middleware.Check(query);
 
                 Assert.True(actual);
+            }
+        }
+
+        [Theory]
+        [InlineData("SELECT (isAdult,   id  ,   phoneNumber) FROM users WHERE isAdult=\"true\"")]
+        [InlineData("   SELECT   (   isAdult  ,    id   ,   phoneNumber   )   FROM    users  wheRe    isAdult    = 5151    ")]
+        public void Check_InvalidConditionValueType_ShouldThrowInvalidColumnTypeException(string query) {
+            using(var mock = AutoMock.GetLoose()) {
+                mock.Mock<IDatabase>().Setup(m => m.GetTable("users")).Returns(new MockedTable());
+
+                var middleware = mock.Create<HasValidConditionValueType>();
+
+                Assert.Throws<InvalidColumnTypeException>(() => middleware.Check(query));
             }
         }
     }
