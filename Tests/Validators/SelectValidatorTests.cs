@@ -16,12 +16,12 @@ namespace PathonDB.Tests.Validators {
         }
 
         [Theory]
-        [InlineData("SELECT * FROM users")]
-        [InlineData("   SELECT   (email)   FROM    users    ")]
-        [InlineData("SELECT (Id, email) FROM users")]
+        [InlineData("SELECT * FROM users;")]
+        [InlineData("   SELECT   (email)   FROM    users    ;")]
+        [InlineData("SELECT (Id, email) FROM users;")]
         [InlineData("   SELECT   (isAdult, id)   FroM    users  ;  ")]
-        [InlineData("SELECT (isAdult,   id  ,   phoneNumber) FROM users WHERE isAdult=true")]
-        [InlineData("   SELECT   (   isAdult  ,    id   ,   phoneNumber   )   FROM    users  wheRe    isAdult    = true    ")]
+        [InlineData("SELECT (isAdult,   id  ,   phoneNumber) FROM users WHERE isAdult=true;")]
+        [InlineData("   SELECT   (   isAdult  ,    id   ,   phoneNumber   )   FROM    users  wheRe    isAdult    = true   ; ")]
         public void Validate_ValidQuery_ShouldReturnTrue(string query) {
             var validator = new SelectValidator(_database);
 
