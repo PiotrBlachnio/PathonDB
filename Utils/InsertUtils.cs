@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using PathonDB.Comparers;
 
 namespace PathonDB.Utils {
     public static class InsertUtils {
@@ -22,7 +23,7 @@ namespace PathonDB.Utils {
         }
 
         public static IEnumerable<string> GetColumnsFromArguments(string[] arguments) {
-            return arguments[1].Split(")")[0].Split(",", StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim());
+            return arguments[1].Split(")")[0].Split(",", StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).Distinct(new InsertQueryComparer());
         }
 
         public static IEnumerable<string> GetValuesFromArguments(string[] arguments) {

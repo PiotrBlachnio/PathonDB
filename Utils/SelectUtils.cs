@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using PathonDB.Comparers;
 
 namespace PathonDB.Utils {
     public static class SelectUtils {
@@ -42,7 +43,7 @@ namespace PathonDB.Utils {
             var startIndex = query.IndexOf('(') + 1;
             var endIndex = query.IndexOf(')');
 
-            return query.Substring(startIndex, endIndex - startIndex).Split(",", StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).Distinct().ToArray();
+            return query.Substring(startIndex, endIndex - startIndex).Split(",", StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).Distinct(new SelectQueryComparer()).ToArray();
         }
 
         public static string[] GetConditionFromQuery(string query) {
