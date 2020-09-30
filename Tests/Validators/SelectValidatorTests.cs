@@ -1,3 +1,4 @@
+using System;
 using PathonDB.Models.Database;
 using PathonDB.Services;
 using PathonDB.Validators;
@@ -28,6 +29,22 @@ namespace PathonDB.Tests.Validators {
             var actual = validator.Validate(query);
 
             Assert.True(actual);
+        }
+
+        [Theory]
+        [InlineData("SELECT * FROM FROM users;")]
+        [InlineData("   SELECT   (email)   ( FROM    users    ;")]
+        [InlineData("SELECT (Id, email) FROM ) users;")]
+        [InlineData("SELECT (Id, email FROM ) users;")]
+        [InlineData("SELECT (Id_, email) FROM ) users;")]
+        [InlineData("   SELECT   (isAdult, id)  = FroM    users  ;  ")]
+        [InlineData("SELECT (isAdult,   id  ,   phoneNumber) FROM users WHERE isAdult==true;")]
+        [InlineData("SELECT (isAdult,   id  ,   phoneNumber) FROM users WHERE isAdult=135151;")]
+        [InlineData("   SELECT   (   isAdult  ,    id   ,   phoneNumber   )WHERE   wheRe    isAdult    = true FROM    users  wheRe    isAdult    = true   ; ")]
+        public void Validate_InvalidQuery_ShouldThrowAnException(string query) {
+            var validator = new SelectValidator(_database);
+
+            Assert.ThrowsAny<Exception>(() => validator.Validate(query));
         }
     }
 }
