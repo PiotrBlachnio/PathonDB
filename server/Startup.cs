@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PathonDB.Extensions;
 
 namespace PathonDB {
     public class Startup {
@@ -14,15 +15,12 @@ namespace PathonDB {
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services) {
-            // services.ConfigureDatabase(Configuration);
 
             // services.ConfigureAutoMapper();
 
-            // services.ConfigureControllers();
+            services.ConfigureControllers();
 
             // services.AddServices();
-
-            // services.ConfigureSwagger();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
@@ -33,6 +31,7 @@ namespace PathonDB {
             // app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             app.UseRouting();
