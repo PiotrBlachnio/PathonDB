@@ -2,7 +2,7 @@ using System;
 
 namespace PathonDB.Server.Services {
     public class AuthService : IAuthService {
-        public string GenerateDatabaseKey() {
+        public string GenerateNewKey() {
             return Guid.NewGuid().ToString();
         }
     }

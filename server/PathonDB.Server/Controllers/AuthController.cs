@@ -14,8 +14,8 @@ namespace PathonDB.Server.Controllers {
         }
 
         [HttpGet(ApiRoutes.Auth.NewKey)]
-        public ActionResult GetNewDatabaseKey() {
-            var key = _authService.GenerateDatabaseKey();
+        public ActionResult GetNewKey() {
+            var key = _authService.GenerateNewKey();
             var response = new NewKeyResponse() { Key = key };
 
             return Ok(response);
