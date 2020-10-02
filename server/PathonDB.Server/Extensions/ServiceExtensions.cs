@@ -1,5 +1,8 @@
+using System;
+using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
+using PathonDB.Server.Services;
 
 namespace PathonDB.Server.Extensions {
     public static class ServiceExtensions {
@@ -7,6 +10,14 @@ namespace PathonDB.Server.Extensions {
             services.AddControllers().AddNewtonsoftJson(s => {
                 s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });
+        }
+
+        public static void ConfigureAutoMapper(this IServiceCollection services) {
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+        }
+        
+        public static void AddServices(this IServiceCollection services) {
+            services.AddScoped<IAuthService, AuthService>();
         }
     }
 }

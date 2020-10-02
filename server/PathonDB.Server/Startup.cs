@@ -16,11 +16,11 @@ namespace PathonDB.Server {
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services) {
-            // services.ConfigureAutoMapper();
+            services.ConfigureAutoMapper();
 
             services.ConfigureControllers();
 
-            // services.AddServices();
+            services.AddServices();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
