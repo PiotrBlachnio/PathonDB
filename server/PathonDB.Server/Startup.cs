@@ -1,4 +1,3 @@
-using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -6,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PathonDB.Server.Extensions;
+using PathonDB.Server.Middlewares;
 
 namespace PathonDB.Server {
     public class Startup {
@@ -28,7 +28,7 @@ namespace PathonDB.Server {
                 app.UseDeveloperExceptionPage();
             }
 
-            // app.UseMiddleware<ExceptionMiddleware>();
+            app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseHttpsRedirection();
 
