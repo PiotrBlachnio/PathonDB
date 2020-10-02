@@ -1,5 +1,6 @@
 using System;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json.Serialization;
 using PathonDB.Server.Services;
@@ -18,6 +19,7 @@ namespace PathonDB.Server.Extensions {
         
         public static void AddServices(this IServiceCollection services) {
             services.AddScoped<IAuthService, AuthService>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
     }
 }

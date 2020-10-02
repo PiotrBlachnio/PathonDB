@@ -2,6 +2,7 @@ using System;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PathonDB.Server.Contracts;
+using PathonDB.Server.Contracts.Requests;
 using PathonDB.Server.Contracts.Responses;
 using PathonDB.Server.Services;
 
@@ -26,10 +27,12 @@ namespace PathonDB.Server.Controllers {
         }
 
         [HttpPost(ApiRoutes.Auth.ExistingKey)]
-        public ActionResult UseExistingKey() {
-            var key = _authService.GetKeyFromHttpContext(_httpContextAccessor.HttpContext);
+        public ActionResult UseExistingKey([FromBody] ExistingKeyRequest body) {
+            if(!_authService.IsKeyValid(body.Key)) throw new Exception("Access key is invalid");
 
-            if(!_authService.IsKeyValid(key)) throw new Exception("Access key is invalid");
+            _httpContextAccessor.HttpContext.Response.Cookies.Append("access-key", body.Key);
+
+            return Ok();
         }
     }
 }
