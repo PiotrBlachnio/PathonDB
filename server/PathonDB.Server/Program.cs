@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace PathonDB {
+namespace PathonDB.Server {
     public class Program {
         
         public static void Main(string[] args) {
