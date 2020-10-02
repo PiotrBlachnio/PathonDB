@@ -30,6 +30,10 @@ namespace PathonDB.Server {
 
             app.UseMiddleware<ExceptionMiddleware>();
 
+            app.UseWhen(context => context.Request.Path.StartsWithSegments("/api/v1/database"), appBuilder => {
+                appBuilder.UseMiddleware<AuthMiddleware>();
+            });
+
             app.UseHttpsRedirection();
 
             app.UseStaticFiles();

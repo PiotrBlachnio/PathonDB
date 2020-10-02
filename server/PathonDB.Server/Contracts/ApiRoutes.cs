@@ -11,5 +11,9 @@ namespace PathonDB.Server.Contracts {
 
             public const string ExistingKey = Base + "/auth/existing-key";
         }
+
+        public static class Database {
+            public const string Query = Base + "/database/query";
+        }
     }
 }
