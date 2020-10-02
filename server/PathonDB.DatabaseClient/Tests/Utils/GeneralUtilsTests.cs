@@ -1,7 +1,7 @@
-using PathonDB.Utils;
+using PathonDB.DatabaseClient.Utils;
 using Xunit;
 
-namespace PathonDB.Tests.Utils {
+namespace PathonDB.DatabaseClient.Tests.Utils {
     public class GeneralUtilsTests {
         [Theory]
         [InlineData("4", 4)]

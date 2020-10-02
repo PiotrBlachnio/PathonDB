@@ -1,9 +1,9 @@
 using System.Linq;
-using PathonDB.Exceptions.General;
-using PathonDB.Middlewares.General;
-using PathonDB.Utils;
+using PathonDB.DatabaseClient.Exceptions.General;
+using PathonDB.DatabaseClient.Middlewares.General;
+using PathonDB.DatabaseClient.Utils;
 
-namespace PathonDB.Middlewares.Insert {
+namespace PathonDB.DatabaseClient.Middlewares.Insert {
     public class HasValidColumns : Middleware {
         public override bool Check(string query) {
             var arguments = InsertUtils.GetArgumentsFromQuery(query);

@@ -1,12 +1,12 @@
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
-using PathonDB.Exceptions.Create;
-using PathonDB.Middlewares.General;
-using PathonDB.Models.Database;
-using PathonDB.Utils;
+using PathonDB.DatabaseClient.Exceptions.Create;
+using PathonDB.DatabaseClient.Middlewares.General;
+using PathonDB.DatabaseClient.Models.Database;
+using PathonDB.DatabaseClient.Utils;
 
-namespace PathonDB.Middlewares.Create {
+namespace PathonDB.DatabaseClient.Middlewares.Create {
     public class HasValidTable : Middleware {
         private readonly IDatabase _database;
 

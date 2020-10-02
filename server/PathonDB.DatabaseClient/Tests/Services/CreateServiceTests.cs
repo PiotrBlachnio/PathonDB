@@ -1,9 +1,9 @@
-using PathonDB.Models.Database;
-using PathonDB.Models.Column;
-using PathonDB.Services;
+using PathonDB.DatabaseClient.Models.Database;
+using PathonDB.DatabaseClient.Models.Column;
+using PathonDB.DatabaseClient.Services;
 using Xunit;
 
-namespace PathonDB.Tests.Services {
+namespace PathonDB.DatabaseClient.Tests.Services {
     public class CreateServiceTests {
         [Theory]
         [InlineData("CREATE TABLE users (email text, phoneNumber int, isAdult boolean);")]

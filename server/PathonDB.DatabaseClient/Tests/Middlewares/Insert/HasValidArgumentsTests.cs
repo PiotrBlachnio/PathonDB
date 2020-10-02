@@ -1,8 +1,8 @@
-using PathonDB.Exceptions.General;
-using PathonDB.Middlewares.Insert;
+using PathonDB.DatabaseClient.Exceptions.General;
+using PathonDB.DatabaseClient.Middlewares.Insert;
 using Xunit;
 
-namespace PathonDB.Tests.Middlewares.Insert {
+namespace PathonDB.DatabaseClient.Tests.Middlewares.Insert {
     public class HasValidArgumentsTests {
         [Theory]
         [InlineData("INSERT INTO users (email, phoneNumber) VALUES (\"Jeff@gmail.com\", 703503);")]

@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
-using PathonDB.Comparers;
+using PathonDB.DatabaseClient.Comparers;
 
-namespace PathonDB.Utils {
+namespace PathonDB.DatabaseClient.Utils {
     public static class SelectUtils {
         private const string QUERY_START = "SELECT ";
 

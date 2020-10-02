@@ -1,8 +1,8 @@
-using PathonDB.Middlewares.General;
-using PathonDB.Middlewares.Select;
-using PathonDB.Models.Database;
+using PathonDB.DatabaseClient.Middlewares.General;
+using PathonDB.DatabaseClient.Middlewares.Select;
+using PathonDB.DatabaseClient.Models.Database;
 
-namespace PathonDB.Validators {
+namespace PathonDB.DatabaseClient.Validators {
     public class SelectValidator : Validator {
         private const string QUERY_END = ";";
 

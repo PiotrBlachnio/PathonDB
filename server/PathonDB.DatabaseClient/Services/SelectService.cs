@@ -1,9 +1,9 @@
-using PathonDB.Models.Database;
-using PathonDB.Models.Table;
-using PathonDB.Utils;
-using PathonDB.Validators;
+using PathonDB.DatabaseClient.Models.Database;
+using PathonDB.DatabaseClient.Models.Table;
+using PathonDB.DatabaseClient.Utils;
+using PathonDB.DatabaseClient.Validators;
 
-namespace PathonDB.Services {
+namespace PathonDB.DatabaseClient.Services {
     public class SelectService : Service {
         public SelectService(IDatabase database) : base(database) {}
 

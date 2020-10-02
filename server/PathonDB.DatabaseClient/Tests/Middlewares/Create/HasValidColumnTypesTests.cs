@@ -1,8 +1,8 @@
-using PathonDB.Exceptions.Create;
-using PathonDB.Middlewares.Create;
+using PathonDB.DatabaseClient.Exceptions.Create;
+using PathonDB.DatabaseClient.Middlewares.Create;
 using Xunit;
 
-namespace PathonDB.Tests.Middlewares.Create {
+namespace PathonDB.DatabaseClient.Tests.Middlewares.Create {
     public class HasValidColumnTypesTests {
         [Theory]
         [InlineData("CREATE TABLE users (email text, phoneNumber int")]

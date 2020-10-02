@@ -1,10 +1,10 @@
 using Autofac.Extras.Moq;
-using PathonDB.Exceptions.General;
-using PathonDB.Middlewares.Select;
-using PathonDB.Models.Database;
+using PathonDB.DatabaseClient.Exceptions.General;
+using PathonDB.DatabaseClient.Middlewares.Select;
+using PathonDB.DatabaseClient.Models.Database;
 using Xunit;
 
-namespace PathonDB.Tests.Middlewares.Select {
+namespace PathonDB.DatabaseClient.Tests.Middlewares.Select {
     public class HasValidConditionColumnNameTests {
         [Theory]
         [InlineData("SELECT * FROM users")]

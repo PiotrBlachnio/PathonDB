@@ -1,10 +1,10 @@
 using System;
 using System.Linq;
-using PathonDB.Exceptions.Create;
-using PathonDB.Middlewares.General;
-using PathonDB.Utils;
+using PathonDB.DatabaseClient.Exceptions.Create;
+using PathonDB.DatabaseClient.Middlewares.General;
+using PathonDB.DatabaseClient.Utils;
 
-namespace PathonDB.Middlewares.Create {
+namespace PathonDB.DatabaseClient.Middlewares.Create {
     public class HasValidColumnTypes : Middleware {
         public override bool Check(string query) {
             var arguments = CreateUtils.GetArgumentsFromQuery(query);

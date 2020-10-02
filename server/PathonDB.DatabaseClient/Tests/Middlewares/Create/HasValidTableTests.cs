@@ -1,10 +1,10 @@
-using PathonDB.Middlewares.Create;
+using PathonDB.DatabaseClient.Middlewares.Create;
 using Xunit;
-using PathonDB.Models.Database;
+using PathonDB.DatabaseClient.Models.Database;
 using Autofac.Extras.Moq;
-using PathonDB.Exceptions.Create;
+using PathonDB.DatabaseClient.Exceptions.Create;
 
-namespace PathonDB.Tests.Middlewares.Create {
+namespace PathonDB.DatabaseClient.Tests.Middlewares.Create {
     public class HasValidTableTests {
         [Theory]
         [InlineData("CREATE TABLE   animals   (email text,phoneNumber int, isAdult boolean);")]

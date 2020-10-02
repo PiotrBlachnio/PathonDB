@@ -1,8 +1,8 @@
-using PathonDB.Middlewares.General;
-using PathonDB.Middlewares.Insert;
-using PathonDB.Models.Database;
+using PathonDB.DatabaseClient.Middlewares.General;
+using PathonDB.DatabaseClient.Middlewares.Insert;
+using PathonDB.DatabaseClient.Models.Database;
 
-namespace PathonDB.Validators {
+namespace PathonDB.DatabaseClient.Validators {
     public class InsertValidator : Validator {
         private const string QUERY_END = ");";
         private const string QUERY_START = "INSERT INTO";

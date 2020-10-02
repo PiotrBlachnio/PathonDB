@@ -1,8 +1,8 @@
-using PathonDB.Exceptions.General;
-using PathonDB.Middlewares.General;
+using PathonDB.DatabaseClient.Exceptions.General;
+using PathonDB.DatabaseClient.Middlewares.General;
 using Xunit;
 
-namespace PathonDB.Tests.Middlewares.General {
+namespace PathonDB.DatabaseClient.Tests.Middlewares.General {
     public class HasValidEndingTests {
         [Theory]
         [InlineData("CREATE TABLE users (email text, phoneNumber int);", ");")]

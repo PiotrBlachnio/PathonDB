@@ -1,8 +1,8 @@
 using System.Linq;
-using PathonDB.Utils;
+using PathonDB.DatabaseClient.Utils;
 using Xunit;
 
-namespace PathonDB.Tests.Utils {
+namespace PathonDB.DatabaseClient.Tests.Utils {
     public class InsertUtilsTests {
         [Theory]
         [InlineData("INSERT INTO users (email, phoneNumber) VALUES (\"Jeff@gmail.com\", 703503);")]

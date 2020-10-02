@@ -1,9 +1,9 @@
 using System;
-using PathonDB.Models.Database;
-using PathonDB.Validators.Create;
+using PathonDB.DatabaseClient.Models.Database;
+using PathonDB.DatabaseClient.Validators.Create;
 using Xunit;
 
-namespace PathonDB.Tests.Validators {
+namespace PathonDB.DatabaseClient.Tests.Validators {
     public class CreateValidatorTests {
         [Theory]
         [InlineData("CREATE TABLE users (email text, phoneNumber int);")]

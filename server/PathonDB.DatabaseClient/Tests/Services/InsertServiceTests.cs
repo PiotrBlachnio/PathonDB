@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using PathonDB.Models.Database;
+using PathonDB.DatabaseClient.Models.Database;
 using Xunit;
 
-namespace PathonDB.Services {
+namespace PathonDB.DatabaseClient.Services {
     public class InsertServiceTests {
         [Theory]
         [InlineData("INSERT INTO users (email, phoneNumber, isAdult) VALUES (\"Jeff@gmail.com\", 703503, true);")]

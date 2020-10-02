@@ -1,11 +1,11 @@
 using System;
 using System.Linq;
-using PathonDB.Exceptions.General;
-using PathonDB.Middlewares.General;
-using PathonDB.Models.Database;
-using PathonDB.Utils;
+using PathonDB.DatabaseClient.Exceptions.General;
+using PathonDB.DatabaseClient.Middlewares.General;
+using PathonDB.DatabaseClient.Models.Database;
+using PathonDB.DatabaseClient.Utils;
 
-namespace PathonDB.Middlewares.Insert {
+namespace PathonDB.DatabaseClient.Middlewares.Insert {
     public class HasValidTable : Middleware {
         private readonly IDatabase _database;
 

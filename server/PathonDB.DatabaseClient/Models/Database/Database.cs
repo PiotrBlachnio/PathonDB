@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
-using PathonDB.Models.Table;
+using PathonDB.DatabaseClient.Models.Table;
 
-namespace PathonDB.Models.Database {
+namespace PathonDB.DatabaseClient.Models.Database {
     public class Database : IDatabase {
         public List<ITable> Tables { get; private set; } = new List<ITable>();
 

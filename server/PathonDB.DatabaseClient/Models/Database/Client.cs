@@ -1,9 +1,9 @@
 using System;
 using Newtonsoft.Json;
-using PathonDB.Exceptions.General;
-using PathonDB.Services;
+using PathonDB.DatabaseClient.Exceptions.General;
+using PathonDB.DatabaseClient.Services;
 
-namespace PathonDB.Models.Database {
+namespace PathonDB.DatabaseClient.Models.Database {
     public class Client : IClient {
         private IDatabase _database { get; } = new Database();
 

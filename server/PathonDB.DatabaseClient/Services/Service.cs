@@ -1,6 +1,6 @@
-using PathonDB.Models.Database;
+using PathonDB.DatabaseClient.Models.Database;
 
-namespace PathonDB.Services {
+namespace PathonDB.DatabaseClient.Services {
     public abstract class Service {
         protected readonly IDatabase _database;
 

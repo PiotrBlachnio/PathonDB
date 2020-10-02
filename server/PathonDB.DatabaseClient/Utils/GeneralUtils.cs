@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace PathonDB.Utils {
+namespace PathonDB.DatabaseClient.Utils {
     public static class GeneralUtils {
         private static char[] ForbiddenChars { get; } = new char[] {
             '(',

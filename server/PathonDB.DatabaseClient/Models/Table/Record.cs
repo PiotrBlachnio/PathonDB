@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace PathonDB.Models.Table {
+namespace PathonDB.DatabaseClient.Models.Table {
     public class Record {
         public string Id { get; set; }
         public List<string> ColumnNames { get; private set; }

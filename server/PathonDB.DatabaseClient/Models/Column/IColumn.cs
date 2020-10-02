@@ -1,4 +1,4 @@
-namespace PathonDB.Models.Column {
+namespace PathonDB.DatabaseClient.Models.Column {
     public interface IColumn {
         Properties Properties { get; }
 

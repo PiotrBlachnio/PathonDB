@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using PathonDB.Models.Table;
+using PathonDB.DatabaseClient.Models.Table;
 
-namespace PathonDB.Models.Database {
+namespace PathonDB.DatabaseClient.Models.Database {
     public interface IDatabase {
         List<ITable> Tables { get; }
         

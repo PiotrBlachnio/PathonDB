@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace PathonDB.Models.Column {
+namespace PathonDB.DatabaseClient.Models.Column {
     public class Column : IColumn {
         public Properties Properties { get; private set; }
         private List<Row> _rows { get; }

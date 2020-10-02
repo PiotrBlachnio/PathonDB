@@ -1,8 +1,8 @@
-using PathonDB.Exceptions.General;
-using PathonDB.Middlewares.Select;
+using PathonDB.DatabaseClient.Exceptions.General;
+using PathonDB.DatabaseClient.Middlewares.Select;
 using Xunit;
 
-namespace PathonDB.Tests.Middlewares.Select {
+namespace PathonDB.DatabaseClient.Tests.Middlewares.Select {
     public class HasValidArgumentsTests {
         [Theory]
         [InlineData("SELECT * FROM users;")]

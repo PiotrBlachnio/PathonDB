@@ -1,4 +1,4 @@
-namespace PathonDB.Middlewares.General {
+namespace PathonDB.DatabaseClient.Middlewares.General {
     public abstract class Middleware {
         private Middleware next = null;
 

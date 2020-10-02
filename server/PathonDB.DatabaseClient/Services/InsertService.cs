@@ -1,10 +1,10 @@
 using System.Linq;
-using PathonDB.Models.Database;
-using PathonDB.Models.Table;
-using PathonDB.Utils;
-using PathonDB.Validators;
+using PathonDB.DatabaseClient.Models.Database;
+using PathonDB.DatabaseClient.Models.Table;
+using PathonDB.DatabaseClient.Utils;
+using PathonDB.DatabaseClient.Validators;
 
-namespace PathonDB.Services {
+namespace PathonDB.DatabaseClient.Services {
     public class InsertService : Service {
         public InsertService(IDatabase database) : base(database) {}
 

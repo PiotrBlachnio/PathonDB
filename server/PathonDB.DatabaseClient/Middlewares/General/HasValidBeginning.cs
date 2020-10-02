@@ -1,7 +1,7 @@
 using System;
-using PathonDB.Exceptions.General;
+using PathonDB.DatabaseClient.Exceptions.General;
 
-namespace PathonDB.Middlewares.General {
+namespace PathonDB.DatabaseClient.Middlewares.General {
     public class HasValidBeginning : Middleware
     {
         private readonly string _beginningString;

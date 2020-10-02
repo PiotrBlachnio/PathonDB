@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using PathonDB.Models;
-using PathonDB.Models.Column;
-using PathonDB.Models.Table;
+using PathonDB.DatabaseClient.Models;
+using PathonDB.DatabaseClient.Models.Column;
+using PathonDB.DatabaseClient.Models.Table;
 
-namespace PathonDB.Tests {
+namespace PathonDB.DatabaseClient.Tests {
     public class MockedTable : ITable {
         public string Name { get; set; }
 

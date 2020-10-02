@@ -1,6 +1,6 @@
-using PathonDB.Middlewares.General;
+using PathonDB.DatabaseClient.Middlewares.General;
 
-namespace PathonDB.Validators {
+namespace PathonDB.DatabaseClient.Validators {
     public abstract class Validator {
         protected Middleware _middleware;
 

@@ -1,10 +1,10 @@
-using PathonDB.Models.Database;
-using PathonDB.Models.Column;
-using PathonDB.Models.Table;
-using PathonDB.Utils;
-using PathonDB.Validators.Create;
+using PathonDB.DatabaseClient.Models.Database;
+using PathonDB.DatabaseClient.Models.Column;
+using PathonDB.DatabaseClient.Models.Table;
+using PathonDB.DatabaseClient.Utils;
+using PathonDB.DatabaseClient.Validators.Create;
 
-namespace PathonDB.Services {
+namespace PathonDB.DatabaseClient.Services {
     public class CreateService : Service {
         public CreateService(IDatabase database) : base(database) {}
 

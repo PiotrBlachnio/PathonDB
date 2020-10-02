@@ -1,4 +1,4 @@
-namespace PathonDB.Models.Table {
+namespace PathonDB.DatabaseClient.Models.Table {
     public class Condition {
         public string ColumnName { get; private set; }
         public string Value { get; private set; }

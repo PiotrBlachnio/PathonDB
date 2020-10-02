@@ -1,10 +1,10 @@
 using Autofac.Extras.Moq;
-using PathonDB.Exceptions.Insert;
-using PathonDB.Middlewares.Insert;
-using PathonDB.Models.Database;
+using PathonDB.DatabaseClient.Exceptions.Insert;
+using PathonDB.DatabaseClient.Middlewares.Insert;
+using PathonDB.DatabaseClient.Models.Database;
 using Xunit;
 
-namespace PathonDB.Tests.Middlewares.Insert {
+namespace PathonDB.DatabaseClient.Tests.Middlewares.Insert {
     public class HasValidColumnNumberTests {
         [Theory]
         [InlineData("INSERT INTO users (email, phoneNumber, isAdult) VALUES (\"Jeff@gmail.com\", 703503, true);")]

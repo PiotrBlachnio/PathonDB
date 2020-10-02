@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using PathonDB.Comparers;
+using PathonDB.DatabaseClient.Comparers;
 
-namespace PathonDB.Utils {
+namespace PathonDB.DatabaseClient.Utils {
     public static class InsertUtils {
         private const string QUERY_START = "INSERT INTO ";
 

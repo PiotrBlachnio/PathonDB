@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using PathonDB.Models.Column;
-using PathonDB.Utils;
+using PathonDB.DatabaseClient.Models.Column;
+using PathonDB.DatabaseClient.Utils;
 
-namespace PathonDB.Models.Table {
+namespace PathonDB.DatabaseClient.Models.Table {
     public class Table : ITable {
         private List<IColumn> _columns { get; }
         public List<string> IdList { get; private set; }

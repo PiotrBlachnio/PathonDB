@@ -1,6 +1,6 @@
-using PathonDB.Exceptions.General;
+using PathonDB.DatabaseClient.Exceptions.General;
 
-namespace PathonDB.Middlewares.General {
+namespace PathonDB.DatabaseClient.Middlewares.General {
     public class HasValidEnding : Middleware {
         private readonly string _endingString;
 

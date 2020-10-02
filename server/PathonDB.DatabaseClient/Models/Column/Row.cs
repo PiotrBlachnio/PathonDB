@@ -1,4 +1,4 @@
-namespace PathonDB.Models.Column {
+namespace PathonDB.DatabaseClient.Models.Column {
     public class Row {
         public string Id { get; private set; }
         public object Value { get; private set; }
