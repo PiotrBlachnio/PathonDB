@@ -7,7 +7,7 @@ namespace PathonDB.Server.Controllers {
     public class AuthController : ControllerBase {
         [HttpGet(ApiRoutes.Auth.NewKey)]
         public ActionResult GetNewDatabaseKey() {
-            return Ok();
+            return Ok("Hi");
         }
     }
 }
