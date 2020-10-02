@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using PathonDB.Server.Exceptions;
 
 namespace PathonDB.Server.Middlewares {
     public class ExceptionMiddleware {
@@ -27,7 +28,7 @@ namespace PathonDB.Server.Middlewares {
             context.Response.StatusCode = 400;
 
             return context.Response.WriteAsync(new ExceptionDetails() {
-                message = error.Message
+                Message = error.Message
             }.ToString());
         }
     }
