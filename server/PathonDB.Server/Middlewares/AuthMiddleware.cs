@@ -15,9 +15,9 @@ namespace PathonDB.Server.Middlewares {
 
         public async Task InvokeAsync(HttpContext context) {
             var databaseKey = GetCookie(context, "database-key");
-
             if(!IsDatabaseKeyValid(databaseKey)) throw new Exception("Database key is invalid");
             
+            _logger.LogInformation("Database key has passed authentication process successfully");
             await _next(context);
         }
 
