@@ -7,9 +7,13 @@ namespace PathonDB.Server.Contracts {
         private const string Base = Root + "/" + Version;
 
         public static class Auth {
-            public const string NewKey = Base + "/new-key";
+            public const string NewKey = Base + "/auth/new-key";
 
-            public const string ExistingKey = Base + "existing-key";
+            public const string ExistingKey = Base + "/auth/existing-key";
+        }
+
+        public static class Database {
+            public const string Query = Base + "/database/query";
         }
     }
 }

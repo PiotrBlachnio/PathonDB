@@ -2,11 +2,13 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using PathonDB.Server.Services;
 
 namespace PathonDB.Server.Middlewares {
     public class AuthMiddleware {
         private readonly RequestDelegate _next;
         private readonly ILogger<AuthMiddleware> _logger;
+        private readonly IAuthService _authService = new AuthService();
 
         public AuthMiddleware(RequestDelegate next, ILogger<AuthMiddleware> logger) {
             _next = next;
@@ -14,20 +16,11 @@ namespace PathonDB.Server.Middlewares {
         }
 
         public async Task InvokeAsync(HttpContext context) {
-            var databaseKey = GetCookie(context, "database-key");
-
-            if(!IsDatabaseKeyValid(databaseKey)) throw new Exception("Database key is invalid");
+            var key = _authService.GetKeyFromHttpContext(context);
+            if(!_authService.IsKeyValid(key)) throw new Exception("Access key is invalid");
             
+            _logger.LogInformation("Access key has passed authentication process successfully");
             await _next(context);
-        }
-
-        private string GetCookie(HttpContext context, string cookieName) {
-            context.Request.Cookies.TryGetValue("database-key", out string cookie);
-            return cookie;
-        }
-
-        private bool IsDatabaseKeyValid(string databaseKey) {
-            return Guid.TryParse(databaseKey, out Guid guid);
         }
     }
 }

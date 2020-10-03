@@ -16,11 +16,11 @@ namespace PathonDB.Server {
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services) {
-            // services.ConfigureAutoMapper();
+            services.ConfigureAutoMapper();
 
             services.ConfigureControllers();
 
-            // services.AddServices();
+            services.AddServices();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
@@ -29,6 +29,10 @@ namespace PathonDB.Server {
             }
 
             app.UseMiddleware<ExceptionMiddleware>();
+
+            app.UseWhen(context => context.Request.Path.StartsWithSegments("/api/v1/database"), appBuilder => {
+                appBuilder.UseMiddleware<AuthMiddleware>();
+            });
 
             app.UseHttpsRedirection();
 

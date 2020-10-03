@@ -8,9 +8,11 @@ namespace PathonDB.DatabaseClient.Services {
     public class InsertService : Service {
         public InsertService(IDatabase database) : base(database) {}
 
-        public void PerformQuery(string query) {
+        public object PerformQuery(string query) {
             new InsertValidator(this._database).Validate(query);
             this.InsertRow(query);
+
+            return null;
         }
 
         private void InsertRow(string query) {

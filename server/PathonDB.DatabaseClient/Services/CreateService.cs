@@ -8,9 +8,11 @@ namespace PathonDB.DatabaseClient.Services {
     public class CreateService : Service {
         public CreateService(IDatabase database) : base(database) {}
 
-        public void PerformQuery(string query) {
+        public object PerformQuery(string query) {
             new CreateValidator(this._database).Validate(query);
             CreateTable(query);
+
+            return null;
         }
 
         private void CreateTable(string query) {
