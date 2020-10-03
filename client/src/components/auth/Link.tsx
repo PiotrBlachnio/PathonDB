@@ -1,6 +1,7 @@
 import React, { ReactElement, CSSProperties } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons';
+import styles from '../../assets/styles.module.css';
 
 export enum Position {
     LEFT = 1,
@@ -18,7 +19,9 @@ const rightContainerStyle: CSSProperties = {
     top: 35,
     cursor: 'pointer',
     height: 50,
-    transition: '.5s'
+    transition: '.3s opacity',
+    fontFamily: 'roboto',
+    fontSize: 15
 };
 
 const rightIconStyle: CSSProperties = {
@@ -29,7 +32,7 @@ const rightIconStyle: CSSProperties = {
 
 const Link: React.FC<IProps> = (props): ReactElement => {
     return (
-        <div style={rightContainerStyle}>
+        <div style={rightContainerStyle} className={styles.link}>
             {props.text}
             <FontAwesomeIcon icon={faLongArrowAltRight} style={rightIconStyle}/>
         </div>
