@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using PathonDB.DatabaseClient.Models.Database;
 using PathonDB.Server.Contracts;
 using PathonDB.Server.Contracts.Requests;
 using PathonDB.Server.Contracts.Responses;
