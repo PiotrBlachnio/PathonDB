@@ -7,6 +7,7 @@ namespace PathonDB.DatabaseClient.Models.Database {
 
         public object ExecuteQuery(string[] queries) {
             foreach(var q in queries) {
+                if(q == null) throw new QueryNotExist();
                 var query = q.TrimStart();
                 var arguments = query.Split(" ");
 
