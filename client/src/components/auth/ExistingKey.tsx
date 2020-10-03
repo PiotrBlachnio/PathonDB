@@ -34,3 +34,7 @@ const Auth: React.FC = (): ReactElement => {
 }
 
 export default Auth;
+
+//TODO: Create existing key and new key components
+//TODO: Render above components based on condition in index auth
+//TODO: Add links with arrows to switch between them
