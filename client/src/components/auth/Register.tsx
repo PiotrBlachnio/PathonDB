@@ -24,7 +24,7 @@ const buttonStyle = {
     transform: 'translateX(-25%)'
 };
 
-const Auth: React.FC = (): ReactElement => {
+const Register: React.FC = (): ReactElement => {
     return (
         <Paper elevation={24} style={paperStyle as any}>
             <TextField variant='outlined' style={inputStyle as any} placeholder='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' label='Access key'/>
@@ -33,8 +33,4 @@ const Auth: React.FC = (): ReactElement => {
     );
 }
 
-export default Auth;
-
-//TODO: Create existing key and new key components
-//TODO: Render above components based on condition in index auth
-//TODO: Add links with arrows to switch between them
+export default Register;
