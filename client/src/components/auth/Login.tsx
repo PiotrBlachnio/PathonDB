@@ -1,5 +1,6 @@
 import React, { ReactElement } from "react";
-import { Paper, TextField, Button } from '@material-ui/core';
+import Button from './Button';
+import { Paper, TextField } from '@material-ui/core';
 
 const paperStyle = {
     width: 700,
@@ -18,17 +19,11 @@ const inputStyle = {
     width: 310
 };
 
-const buttonStyle = {
-    position: 'relative',
-    top: '70%',
-    transform: 'translateX(-25%)'
-};
-
 const Login: React.FC = (): ReactElement => {
     return (
         <Paper elevation={24} style={paperStyle as any}>
             <TextField variant='outlined' style={inputStyle as any} placeholder='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' label='Access key'/>
-            <Button color='primary' variant='contained' style={buttonStyle as any}>Authenticate</Button>
+            <Button>Authenticate</Button>
         </Paper>
     );
 }
