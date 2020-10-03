@@ -16,8 +16,6 @@ namespace PathonDB.Server {
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services) {
-            services.ConfigureAutoMapper();
-
             services.ConfigureControllers();
 
             services.AddServices();
