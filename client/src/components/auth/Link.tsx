@@ -48,4 +48,5 @@ const Link: React.FC<IProps> = (props): ReactElement => {
 //     );
 // };
 
+//TODO: Create separate components for right and left link. Render them based on condition in Link component;
 export default Link;
