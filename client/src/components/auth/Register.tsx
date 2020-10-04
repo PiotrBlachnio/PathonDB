@@ -4,6 +4,7 @@ import Input from './Input';
 import Container from './Container';
 import Link, { Position } from "./Link";
 import { AuthPage } from "./index";
+import { v4 } from 'uuid';
 
 interface IProps {
     switchPage: (page: AuthPage) => void
@@ -15,7 +16,7 @@ const Register: React.FC<IProps> = (props): ReactElement => {
     return (
         <Container>
             <Input isDisabled={true} value={generatedKey}/>
-            <Button>Generate</Button>
+            <Button onClick={() => setGeneratedKey(v4())}>Generate</Button>
             <Link text="Use existing key" position={Position.LEFT} switchPage={props.switchPage}/>
         </Container>
     );
