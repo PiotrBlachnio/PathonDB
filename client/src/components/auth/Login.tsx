@@ -2,7 +2,7 @@ import React, { ReactElement } from "react";
 import Button from './Button';
 import Input from './Input';
 import Container from './Container';
-import Link, { Position } from './Link';
+import Link, { Position } from './Link/Link';
 
 const Login: React.FC = (): ReactElement => {
     return (

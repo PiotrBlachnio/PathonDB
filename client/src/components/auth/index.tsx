@@ -10,15 +10,14 @@ enum AuthPage {
 const Auth: React.FC = (): ReactElement => {
     const [currentPage, setCurrentPage] = useState<AuthPage>(AuthPage.LOGIN);
 
-    const renderPage = (): ReactElement => {
-        if(currentPage == AuthPage.LOGIN) {
-            return <Login />
-        } else {
-            return <Register />
-        }
+    const getComponentBasedOnCurrentPage = (): ReactElement => {
+        if(currentPage == AuthPage.LOGIN) return <Login />
+        else if(currentPage == AuthPage.REGISTER) return <Register />
+        
+        return <></>
     }
 
-    return renderPage();
+    return getComponentBasedOnCurrentPage()
 }
 
 export default Auth;

@@ -1,6 +1,7 @@
 import React, { ReactElement, CSSProperties } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons';
+import styles from '../../../assets/styles.module.css';
 
 interface IProps {
     text: string;
@@ -25,7 +26,7 @@ const iconStyle: CSSProperties = {
 
 const RightLink: React.FC<IProps> = (props): ReactElement => {
     return (
-        <div style={containerStyle}>
+        <div style={containerStyle} className={styles.link}>
             {props.text}
             <FontAwesomeIcon icon={faLongArrowAltRight} style={iconStyle}/>
         </div>
