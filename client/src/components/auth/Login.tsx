@@ -12,7 +12,7 @@ interface IProps {
 const Login: React.FC<IProps> = (props): ReactElement => {
     return (
         <Container>
-            <Input />
+            <Input isDisabled={false} placeholder="Access key" />
             <Button>Authenticate</Button>
             <Link text="Generate new key" position={Position.RIGHT} switchPage={props.switchPage}/>
         </Container>

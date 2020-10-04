@@ -14,7 +14,7 @@ const Auth: React.FC = (): ReactElement => {
 
     const getComponentBasedOnCurrentPage = (): ReactElement => {
         if(currentPage === AuthPage.LOGIN) return <Login switchPage={switchPage} />
-        else if(currentPage === AuthPage.REGISTER) return <Register />
+        else if(currentPage === AuthPage.REGISTER) return <Register switchPage={switchPage} />
         
         return <></>
     }

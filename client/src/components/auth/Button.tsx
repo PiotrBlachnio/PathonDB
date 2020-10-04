@@ -4,7 +4,7 @@ import React, { ReactElement, CSSProperties } from "react";
 const style: CSSProperties = {
     position: 'relative',
     top: '70%',
-    transform: 'translateX(-25%)'
+    transform: 'translateX(-35%)'
 };
 
 const Button: React.FC = (props): ReactElement => {
