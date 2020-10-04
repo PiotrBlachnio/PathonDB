@@ -1,6 +1,6 @@
 import React, { ReactElement, CSSProperties } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons';
+import { faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../../assets/styles.module.css';
 import { AuthPage } from "../index";
 
@@ -11,7 +11,7 @@ interface IProps {
 
 const containerStyle: CSSProperties = {
     position: 'absolute',
-    right: 25,
+    left: 25,
     top: 35,
     cursor: 'pointer',
     height: 50,
@@ -22,17 +22,17 @@ const containerStyle: CSSProperties = {
 
 const iconStyle: CSSProperties = {
     position: 'relative',
-    paddingLeft: 5,
+    paddingRight: 5,
     top: 2
 };
 
-const RightLink: React.FC<IProps> = (props): ReactElement => {
+const LeftLink: React.FC<IProps> = (props): ReactElement => {
     return (
-        <div style={containerStyle} className={styles.link} onClick={() => props.switchPage(AuthPage.REGISTER)} >
+        <div style={containerStyle} className={styles.link} onClick={() => props.switchPage(AuthPage.LOGIN)} >
+            <FontAwesomeIcon icon={faLongArrowAltLeft} style={iconStyle}/>
             {props.text}
-            <FontAwesomeIcon icon={faLongArrowAltRight} style={iconStyle}/>
         </div>
     );
 };
 
-export default RightLink;
+export default LeftLink;

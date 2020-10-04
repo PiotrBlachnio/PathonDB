@@ -1,5 +1,7 @@
 import React, { ReactElement } from "react";
 import RightLink from './RightLink';
+import LeftLink from './LeftLink';
+import { AuthPage } from "../index";
 
 export enum Position {
     LEFT = 1,
@@ -8,13 +10,14 @@ export enum Position {
 
 interface IProps {
     text: string;
+    switchPage: (page: AuthPage) => void;
     position: Position; 
 }
 
 const Link: React.FC<IProps> = (props): ReactElement => {
     const getComponentBasedOnPosition = (): ReactElement => {
-        if(props.position == Position.LEFT) return <></>
-        else if(props.position == Position.RIGHT) return <RightLink text={props.text} />
+        if(props.position === Position.LEFT) return <LeftLink text={props.text} switchPage={props.switchPage} />
+        else if(props.position === Position.RIGHT) return <RightLink text={props.text} switchPage={props.switchPage} />
 
         return <></>
     }
@@ -22,5 +25,4 @@ const Link: React.FC<IProps> = (props): ReactElement => {
     return getComponentBasedOnPosition();
 }
 
-//TODO: Create separate components for right and left link. Render them based on condition in Link component;
 export default Link;

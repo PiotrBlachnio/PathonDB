@@ -2,14 +2,19 @@ import React, { ReactElement } from "react";
 import Button from './Button';
 import Input from './Input';
 import Container from './Container';
-import Link, { Position } from './Link/Link';
+import Link, { Position } from './Link';
+import { AuthPage } from "./index";
 
-const Login: React.FC = (): ReactElement => {
+interface IProps {
+    switchPage: (page: AuthPage) => void
+}
+
+const Login: React.FC<IProps> = (props): ReactElement => {
     return (
         <Container>
             <Input />
             <Button>Authenticate</Button>
-            <Link text="Generate new key" position={Position.RIGHT} />
+            <Link text="Generate new key" position={Position.RIGHT} switchPage={props.switchPage}/>
         </Container>
     );
 }
