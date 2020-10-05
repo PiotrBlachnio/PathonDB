@@ -13,7 +13,7 @@ interface IProps {
 const Alert: React.FC<IProps> = (props): ReactElement => {
     return (
         <Snackbar open={props.isOpen} autoHideDuration={props.autoHideDuration} onClose={props.handleClose}>
-            <MaterialAlert onClose={props.handleClose} severity={props.severity}>
+            <MaterialAlert onClose={props.handleClose} severity={props.severity} elevation={12} variant="filled" >
                 {props.message}
             </MaterialAlert>
         </Snackbar>
