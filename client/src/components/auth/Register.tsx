@@ -23,13 +23,16 @@ const Register: React.FC<IProps> = (props): ReactElement => {
     };
 
     return (
-        <Container>
-            <Input isDisabled={true} value={generatedKey}/>
-            <Button onClick={() => setGeneratedKey(v4())}>Generate</Button>
-            <CopyButton onClick={handleCopyButtonClick} />
-            <Link text="Use existing key" position={Position.LEFT} switchPage={props.switchPage}/>
+        <>
+            <Container>
+                <Input isDisabled={true} value={generatedKey}/>
+                <Button onClick={() => setGeneratedKey(v4())}>Generate</Button>
+                <CopyButton onClick={handleCopyButtonClick} />
+                <Link text="Use existing key" position={Position.LEFT} switchPage={props.switchPage}/>
+            </Container>
+
             <Alert isOpen={isAlertOpen} handleClose={toggleAlert} severity="success" message="Access key copied successfully!" autoHideDuration={3000} />
-        </Container>
+        </>
     );
 }
 
