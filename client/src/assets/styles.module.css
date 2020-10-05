@@ -1,3 +1,7 @@
 .link:hover {
     opacity: .5;
 }
+
+.copy_icon:hover {
+    opacity: .5;
+}
