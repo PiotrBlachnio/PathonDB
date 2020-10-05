@@ -6,13 +6,17 @@ import Link, { Position } from "./Link";
 import { AuthPage } from "./index";
 import { v4 } from 'uuid';
 import CopyButton from './CopyButton';
+import Alert from '../general/Alert';
 
 interface IProps {
     switchPage: (page: AuthPage) => void
 }
 
 const Register: React.FC<IProps> = (props): ReactElement => {
+    const [isAlertOpen, setIsAlertOpen] = useState<boolean>(false);
     const [generatedKey, setGeneratedKey] = useState<string>('xxxxxxxx-xxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx');
+
+    const toggleAlert = (): void => setIsAlertOpen(!isAlertOpen);
 
     return (
         <Container>
@@ -20,6 +24,7 @@ const Register: React.FC<IProps> = (props): ReactElement => {
             <Button onClick={() => setGeneratedKey(v4())}>Generate</Button>
             <CopyButton />
             <Link text="Use existing key" position={Position.LEFT} switchPage={props.switchPage}/>
+            <Alert isOpen={isAlertOpen} handleClose={toggleAlert} severity="success" message="Access key copied successfully!" autoHideDuration={3000} />
         </Container>
     );
 }

@@ -2,6 +2,10 @@ import React, { ReactElement, CSSProperties } from "react";
 import { FileCopy } from '@material-ui/icons';
 import styles from '../../assets/styles.module.css';
 
+interface IProps {
+    onClick: () => void;
+}
+
 const style: CSSProperties = {
     position: 'relative',
     top: '50%',
@@ -12,9 +16,9 @@ const style: CSSProperties = {
     cursor: 'pointer'
 };
 
-const CopyButton: React.FC = (props): ReactElement => {
+const CopyButton: React.FC<IProps> = (props): ReactElement => {
     return (
-        <FileCopy style={style} className={styles.copy_icon} />
+        <FileCopy style={style} className={styles.copy_icon} onClick={props.onClick} />
     );
 }
 
