@@ -2,9 +2,10 @@ import { TextField } from "@material-ui/core";
 import React, { ReactElement, CSSProperties } from "react";
 
 interface IProps {
+    isDisabled: boolean;
     value?: string;
     placeholder?: string;
-    isDisabled: boolean;
+    onChange?: (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
 }
 
 const style: CSSProperties = {
@@ -17,7 +18,7 @@ const style: CSSProperties = {
 
 const Input: React.FC<IProps> = (props): ReactElement => {
     return (
-        <TextField variant='outlined' style={style} value={props.value} placeholder={props.placeholder} disabled={props.isDisabled} />
+        <TextField variant='outlined' style={style} value={props.value} placeholder={props.placeholder} disabled={props.isDisabled} onChange={props.onChange} />
     );
 }
 

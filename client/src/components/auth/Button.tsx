@@ -2,7 +2,7 @@ import { Button as MaterialButton } from "@material-ui/core";
 import React, { ReactElement, CSSProperties } from "react";
 
 interface IProps {
-    onClick?: () => void
+    onClick?: () => void;
 }
 
 const style: CSSProperties = {
