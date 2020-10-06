@@ -5,6 +5,7 @@ import Container from './Container';
 import Link, { Position } from './Link';
 import { AuthPage } from "./index";
 import { authorizeWithAccessKey } from '../../utils/api';
+import { setIsAuthenticated, IsAuthenticated } from '../../utils';
 
 interface IProps {
     switchPage: (page: AuthPage) => void
@@ -19,9 +20,8 @@ const Login: React.FC<IProps> = (props): ReactElement => {
 
     const authorize = async (): Promise<void> => {
         try {
-            const response = await authorizeWithAccessKey(key);
-
-            console.log(response);
+            await authorizeWithAccessKey(key);
+            setIsAuthenticated(IsAuthenticated.TRUE);
         } catch(error) {
             setIsError(true);
             setErrorMessage(error.response.data.Message);
