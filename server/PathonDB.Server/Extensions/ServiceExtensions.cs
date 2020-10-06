@@ -15,7 +15,7 @@ namespace PathonDB.Server.Extensions {
         public static void SetupCorsPolicy(this IServiceCollection services) {
             services.AddCors(options => {
                 options.AddPolicy(name: "CorsPolicy", builder => {
-                    builder.WithOrigins("*");
+                    builder.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader().AllowCredentials();
                 });
             });
         }

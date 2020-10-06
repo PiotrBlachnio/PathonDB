@@ -16,6 +16,10 @@ namespace PathonDB.Server {
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services) {
+            services.AddMvc(option => option.EnableEndpointRouting = false) .AddNewtonsoftJson();
+
+            services.SetupCorsPolicy();
+            
             services.ConfigureControllers();
 
             services.AddServices();
@@ -32,14 +36,12 @@ namespace PathonDB.Server {
                 appBuilder.UseMiddleware<AuthMiddleware>();
             });
 
-            app.UseHttpsRedirection();
-
             app.UseStaticFiles();
+
+            app.UseCors("CorsPolicy");
 
             app.UseRouting();
 
-            app.UseCors("CorsPolicy");
-            
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
             });
