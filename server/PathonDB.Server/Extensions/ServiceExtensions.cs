@@ -12,6 +12,14 @@ namespace PathonDB.Server.Extensions {
             });
         }
         
+        public static void SetupCorsPolicy(this IServiceCollection services) {
+            services.AddCors(options => {
+                options.AddPolicy(name: "CorsPolicy", builder => {
+                    builder.WithOrigins("*");
+                });
+            });
+        }
+
         public static void AddServices(this IServiceCollection services) {
             services.AddScoped<IAuthService, AuthService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

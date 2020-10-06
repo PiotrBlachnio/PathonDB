@@ -38,6 +38,8 @@ namespace PathonDB.Server {
 
             app.UseRouting();
 
+            app.UseCors("CorsPolicy");
+            
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllers();
             });
