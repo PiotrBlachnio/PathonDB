@@ -16,15 +16,15 @@ const Login: React.FC<IProps> = (props): ReactElement => {
     const onChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => setKey(e.target.value);
 
     const authorize = async (): Promise<void> => {
-        // try {
-            const response = await axios.post('http://localhost:5000/api/v1/auth/existing-key', { key }, { headers: {
+        try {
+            const response = await axios.post('/auth/existing-key', { key }, { headers: {
                 'Content-Type': 'application/json'
             }});
 
             console.log(response);
-        // } catch(error) {
-        //     console.log(error);
-        // }
+        } catch(error) {
+            console.log(error);
+        }
     };
 
     return (
