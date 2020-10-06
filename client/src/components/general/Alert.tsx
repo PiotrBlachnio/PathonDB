@@ -1,5 +1,5 @@
-import React, { ReactElement, CSSProperties } from "react";
-import { Snackbar, makeStyles } from '@material-ui/core';
+import React, { ReactElement } from "react";
+import { Snackbar } from '@material-ui/core';
 import { Alert as MaterialAlert, Color } from '@material-ui/lab';
 
 interface IProps {

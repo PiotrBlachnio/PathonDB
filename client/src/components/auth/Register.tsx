@@ -7,9 +7,10 @@ import { AuthPage } from "./index";
 import { v4 } from 'uuid';
 import CopyButton from './CopyButton';
 import Alert from '../general/Alert';
+import copy from 'copy-to-clipboard';
 
 interface IProps {
-    switchPage: (page: AuthPage) => void
+    switchPage: (page: AuthPage) => void;
 }
 
 const Register: React.FC<IProps> = (props): ReactElement => {
@@ -20,12 +21,13 @@ const Register: React.FC<IProps> = (props): ReactElement => {
 
     const handleCopyButtonClick = (): void => {
         toggleAlert();
+        copy(generatedKey);
     };
 
     return (
         <>
             <Container>
-                <Input isDisabled={true} value={generatedKey}/>
+                <Input isDisabled={true} value={generatedKey} />
                 <Button onClick={() => setGeneratedKey(v4())}>Generate</Button>
                 <CopyButton onClick={handleCopyButtonClick} />
                 <Link text="Use existing key" position={Position.LEFT} switchPage={props.switchPage}/>
