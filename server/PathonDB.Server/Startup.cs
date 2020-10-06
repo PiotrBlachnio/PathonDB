@@ -16,10 +16,10 @@ namespace PathonDB.Server {
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services) {
-            services.AddMvc(option => option.EnableEndpointRouting = false) .AddNewtonsoftJson();
+            services.ConfigureMvc();
 
             services.SetupCorsPolicy();
-            
+
             services.ConfigureControllers();
 
             services.AddServices();

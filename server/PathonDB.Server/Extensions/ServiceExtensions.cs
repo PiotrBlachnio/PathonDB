@@ -25,5 +25,9 @@ namespace PathonDB.Server.Extensions {
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IDatabaseClient, Models.DatabaseClient>();
         }
+
+        public static void ConfigureMvc(this IServiceCollection services) {
+            services.AddMvc(option => option.EnableEndpointRouting = false).AddNewtonsoftJson();
+        }
     }
 }
