@@ -4,7 +4,7 @@ import Input from './Input';
 import Container from './Container';
 import Link, { Position } from './Link';
 import { AuthPage } from "./index";
-import axios from 'axios';
+import { authorizeWithAccessKey } from '../../utils/api';
 
 interface IProps {
     switchPage: (page: AuthPage) => void
@@ -17,9 +17,7 @@ const Login: React.FC<IProps> = (props): ReactElement => {
 
     const authorize = async (): Promise<void> => {
         try {
-            const response = await axios.post('/auth/existing-key', { key }, { headers: {
-                'Content-Type': 'application/json'
-            }});
+            const response = await authorizeWithAccessKey(key);
 
             console.log(response);
         } catch(error) {
