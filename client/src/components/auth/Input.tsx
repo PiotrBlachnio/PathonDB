@@ -5,6 +5,8 @@ interface IProps {
     isDisabled: boolean;
     value?: string;
     placeholder?: string;
+    isError?: boolean;
+    errorMessage?: string;
     onChange?: (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
 }
 
@@ -18,7 +20,7 @@ const style: CSSProperties = {
 
 const Input: React.FC<IProps> = (props): ReactElement => {
     return (
-        <TextField variant='outlined' style={style} value={props.value} placeholder={props.placeholder} disabled={props.isDisabled} onChange={props.onChange} />
+        <TextField helperText={props.errorMessage} error={props.isError} variant='outlined' style={style} value={props.value} placeholder={props.placeholder} disabled={props.isDisabled} onChange={props.onChange} />
     );
 }
 

@@ -12,6 +12,8 @@ interface IProps {
 
 const Login: React.FC<IProps> = (props): ReactElement => {
     const [key, setKey] = useState<string>('');
+    const [isError, setIsError] = useState<boolean>(false);
+    const [errorMessage, setErrorMessage] = useState<string>('');
 
     const onChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => setKey(e.target.value);
 
@@ -21,13 +23,14 @@ const Login: React.FC<IProps> = (props): ReactElement => {
 
             console.log(response);
         } catch(error) {
-            console.log(error);
+            setIsError(true);
+            setErrorMessage(error.response.data.Message);
         }
     };
 
     return (
         <Container>
-            <Input isDisabled={false} placeholder="Access key" onChange={onChange} />
+            <Input isDisabled={false} placeholder="Access key" onChange={onChange} isError={isError} errorMessage={errorMessage} />
             <Button onClick={authorize}>Authenticate</Button>
             <Link text="Generate new key" position={Position.RIGHT} switchPage={props.switchPage}/>
         </Container>
