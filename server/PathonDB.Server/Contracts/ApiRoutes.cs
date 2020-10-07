@@ -10,6 +10,8 @@ namespace PathonDB.Server.Contracts {
             public const string NewKey = Base + "/auth/new-key";
 
             public const string ExistingKey = Base + "/auth/existing-key";
+
+            public const string Logout = Base + "/auth/logout";
         }
 
         public static class Database {

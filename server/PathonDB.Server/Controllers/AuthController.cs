@@ -34,5 +34,12 @@ namespace PathonDB.Server.Controllers {
 
             return Ok();
         }
+
+        [HttpPost(ApiRoutes.Auth.Logout)]
+        public ActionResult Logout() {
+            _httpContextAccessor.HttpContext.Response.Cookies.Delete("access-key");
+
+            return Ok();
+        }
     }
 }
