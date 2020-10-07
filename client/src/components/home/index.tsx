@@ -2,6 +2,7 @@ import React, { ReactElement, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { checkIsAuthenticated } from '../../utils';
 import Navbar from './Navbar';
+import Input from './Input';
 
 const Home: React.FC = (): ReactElement => {
     const history = useHistory();
@@ -12,7 +13,7 @@ const Home: React.FC = (): ReactElement => {
     return (
         <>
             <Navbar />
-            <h1>Home</h1>
+            <Input />
         </>
     );
 }
