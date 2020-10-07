@@ -6,12 +6,14 @@ import Link, { Position } from './Link';
 import { AuthPage } from "./index";
 import { authorizeWithAccessKey } from '../../utils/api';
 import { setIsAuthenticated, IsAuthenticated } from '../../utils';
+import { useHistory } from "react-router-dom";
 
 interface IProps {
     switchPage: (page: AuthPage) => void
 }
 
 const Login: React.FC<IProps> = (props): ReactElement => {
+    const history = useHistory();
     const [key, setKey] = useState<string>('');
     const [isError, setIsError] = useState<boolean>(false);
     const [errorMessage, setErrorMessage] = useState<string>('');
@@ -22,6 +24,8 @@ const Login: React.FC<IProps> = (props): ReactElement => {
         try {
             await authorizeWithAccessKey(key);
             setIsAuthenticated(IsAuthenticated.TRUE);
+            
+            history.push('/home');
         } catch(error) {
             setIsError(true);
             setErrorMessage(error.response.data.Message);
