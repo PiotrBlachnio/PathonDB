@@ -12,10 +12,22 @@ namespace PathonDB.Server.Extensions {
             });
         }
         
+        public static void SetupCorsPolicy(this IServiceCollection services) {
+            services.AddCors(options => {
+                options.AddPolicy(name: "CorsPolicy", builder => {
+                    builder.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader().AllowCredentials();
+                });
+            });
+        }
+
         public static void AddServices(this IServiceCollection services) {
             services.AddScoped<IAuthService, AuthService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IDatabaseClient, Models.DatabaseClient>();
+        }
+
+        public static void ConfigureMvc(this IServiceCollection services) {
+            services.AddMvc(option => option.EnableEndpointRouting = false).AddNewtonsoftJson();
         }
     }
 }
