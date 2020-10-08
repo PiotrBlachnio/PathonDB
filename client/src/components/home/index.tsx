@@ -4,7 +4,8 @@ import { checkIsAuthenticated } from '../../utils';
 import Navbar from './Navbar';
 import Input from './Input';
 import Alert from '../general/Alert';
-import {  executeQuery } from '../../utils/api';
+import Button from './Button';
+import { executeQuery } from '../../utils/api';
 
 const Home: React.FC = (): ReactElement => {
     const history = useHistory();
@@ -32,6 +33,7 @@ const Home: React.FC = (): ReactElement => {
         <>
             <Navbar />
             <Input />
+            <Button onClick={performQuery}>Perform query</Button>
             <Alert severity='error' isOpen={isAlertOpen} message={alertMessage} handleClose={toggleAlert} autoHideDuration={3000} />
         </>
     );

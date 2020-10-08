@@ -7,10 +7,10 @@ interface IProps {
 
 const style: CSSProperties = {
     position: 'absolute',
-    top: '30%',
+    top: '40%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 700
+    width: 200
 };
 
 const Button: React.FC<IProps> = (props): ReactElement => {

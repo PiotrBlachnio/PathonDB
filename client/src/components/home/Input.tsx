@@ -1,6 +1,10 @@
 import { TextField } from "@material-ui/core";
 import React, { ReactElement, CSSProperties } from "react";
 
+interface IProps {
+    onChange?: (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
+}
+
 const style: CSSProperties = {
     position: 'absolute',
     top: '30%',
@@ -9,9 +13,9 @@ const style: CSSProperties = {
     width: 700
 };
 
-const Input: React.FC = (): ReactElement => {
+const Input: React.FC<IProps> = (props): ReactElement => {
     return (
-        <TextField variant='outlined' style={style} placeholder='Execute query' />
+        <TextField variant='outlined' style={style} placeholder='Query...' onChange={props.onChange} />
     );
 }
 
