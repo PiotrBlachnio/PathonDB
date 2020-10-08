@@ -24,8 +24,6 @@ namespace PathonDB.Server.Controllers {
         public ActionResult PerformQuery([FromBody] QueryRequest body) {
             var key = _authService.GetKeyFromHttpContext(_httpContextAccessor.HttpContext);
 
-            if(!_databaseClient.ContainsKey(key)) _databaseClient.AddClient(key);
-
             var result = _databaseClient.PerformQuery(key, body.Query);
             var response = new QueryResponse() { Result = result };
             
