@@ -17,7 +17,6 @@ namespace PathonDB.Server.Middlewares {
 
         public async Task InvokeAsync(HttpContext context) {
             var key = _authService.GetKeyFromHttpContext(context);
-            _logger.LogInformation(key);
             if(!_authService.IsKeyValid(key)) throw new Exception("Access key is invalid");
             
             _logger.LogInformation("Access key has passed authentication process successfully");

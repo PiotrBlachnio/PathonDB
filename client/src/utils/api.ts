@@ -1,13 +1,10 @@
 import axios from 'axios';
 
 export const authorizeWithAccessKey = async (key: string): Promise<void> => {
-    return await axios.post('/auth/existing-key', { key });
+    return await axios.post('/auth', { key });
 };
 
-export const logout = async (): Promise<void> => {
-    return await axios.post('/auth/logout');
-};
-
-export const executeQuery = async (query: string): Promise<void> => {
-    return await axios.post('/database/query', { query })
+export const executeQuery = async (query: string, accessKey: string | null): Promise<void> => {
+    console.log(accessKey);
+    return await axios.post('/database/query', { query }, { headers: { 'access-key': accessKey }})
 };

@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { checkIsAuthenticated } from '../../utils';
+import { checkIsAuthenticated, getAccessKey } from '../../utils';
 import Navbar from './Navbar';
 import Input from './Input';
 import Alert from '../general/Alert';
@@ -20,8 +20,7 @@ const Home: React.FC = (): ReactElement => {
 
     const performQuery = async (): Promise<void> => {
         try {
-            // const response = await executeQuery(query);
-            const response = await axios.post('/database/query', { query }, { withCredentials: true })
+            const response = await executeQuery(query, getAccessKey());
             console.log(response);
         } catch(error) {
             console.log(Object.entries(error));

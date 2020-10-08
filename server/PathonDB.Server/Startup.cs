@@ -30,6 +30,8 @@ namespace PathonDB.Server {
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors("CorsPolicy");
+            
             app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseWhen(context => context.Request.Path.StartsWithSegments("/api/v1/database"), appBuilder => {
@@ -37,8 +39,6 @@ namespace PathonDB.Server {
             });
 
             app.UseStaticFiles();
-
-            app.UseCors("CorsPolicy");
 
             app.UseRouting();
 
