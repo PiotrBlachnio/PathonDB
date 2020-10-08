@@ -8,7 +8,7 @@ namespace PathonDB.Server.Services {
         }
 
         public string GetKeyFromHttpContext(HttpContext httpContext) {
-            httpContext.Request.Cookies.TryGetValue("access-key", out string key);
+            var key = httpContext.Request.Headers["access-key"];
             return key;
         }
 

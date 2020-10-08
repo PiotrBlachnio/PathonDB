@@ -5,6 +5,7 @@ import Navbar from './Navbar';
 import Input from './Input';
 import Alert from '../general/Alert';
 import Button from './Button';
+import axios from 'axios';
 import { executeQuery } from '../../utils/api';
 
 const Home: React.FC = (): ReactElement => {
@@ -15,13 +16,17 @@ const Home: React.FC = (): ReactElement => {
 
     const toggleAlert = (): void => setIsAlertOpen(isOpen => !isOpen);
 
+    const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => setQuery(e.target.value);
+
     const performQuery = async (): Promise<void> => {
         try {
-            const response = await executeQuery(query);
+            // const response = await executeQuery(query);
+            const response = await axios.post('/database/query', { query }, { withCredentials: true })
             console.log(response);
         } catch(error) {
-            setIsAlertOpen(true);
-            setAlertMessage(error.response.data.Message);
+            console.log(Object.entries(error));
+            // setIsAlertOpen(true);
+            // setAlertMessage(error.response.data.Message);
         }
     };
 
@@ -32,7 +37,7 @@ const Home: React.FC = (): ReactElement => {
     return (
         <>
             <Navbar />
-            <Input />
+            <Input onChange={handleInputChange} />
             <Button onClick={performQuery}>Perform query</Button>
             <Alert severity='error' isOpen={isAlertOpen} message={alertMessage} handleClose={toggleAlert} autoHideDuration={3000} />
         </>

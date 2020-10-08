@@ -9,5 +9,5 @@ export const logout = async (): Promise<void> => {
 };
 
 export const executeQuery = async (query: string): Promise<void> => {
-    return await axios.post('/database/query', { query }, { withCredentials: false })
+    return await axios.post('/database/query', { query })
 };
