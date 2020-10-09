@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { DataGrid, RowProps } from '@material-ui/data-grid';
 import { IData } from './index';
+import { v4 } from 'uuid';
 
 interface IProps {
     isOpen: boolean;
@@ -37,7 +38,8 @@ const Table: React.FC<IProps> = (props): ReactElement => {
         for(let i = 0; i < props.data!.length; i++) {
             var row: Record<string, number | string | boolean> = {};
 
-            row.id = props.data![i].id;
+            if(props.data![i].id) row.id = props.data![i].id;
+            else row.id = v4();
 
             for(let j = 0; j < props.data![i].columnNames.length; j++) {
                 row[props.data![i].columnNames[j]] = props.data![i].values[j];
@@ -50,15 +52,14 @@ const Table: React.FC<IProps> = (props): ReactElement => {
     };
 
     const renderColumns = (): any => {
-        var columns: Record<string, string>[] = [];
+        var columns: Record<string, string | number>[] = [];
 
-        if(props.data![0].id) columns.push({ field: 'id', headerName: 'ID' });
+        if(props.data![0].id) columns.push({ field: 'id', headerName: 'ID', width: 320 });
 
         for(let i = 0; i < props.data![0].columnNames.length; i++) {
             var type = typeof props.data![0].columnNames[i];
-            columns.push({ field: props.data![0].columnNames[i], headerName: props.data![0].columnNames[i], type: type });
+            columns.push({ field: props.data![0].columnNames[i], headerName: props.data![0].columnNames[i], type: type, width: 150 });
         }
-        
         
         return columns;
     };
@@ -75,5 +76,3 @@ const Table: React.FC<IProps> = (props): ReactElement => {
 }
 
 export default Table;
-
-// SELECT * FROM users;

@@ -15,7 +15,7 @@ const style: CSSProperties = {
 
 const Input: React.FC<IProps> = (props): ReactElement => {
     return (
-        <TextField variant='outlined' style={style} placeholder='Query...' onChange={props.onChange} />
+        <TextField variant='outlined' style={style} placeholder='Query...' onChange={props.onChange} spellCheck={false} />
     );
 }
 
