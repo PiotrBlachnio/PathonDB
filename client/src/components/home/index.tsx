@@ -15,6 +15,17 @@ interface IAlert {
     message: string;
 }
 
+interface ITable {
+    isOpen: boolean;
+    data: IData[] | null
+}
+
+export interface IData {
+    columnNames: string[];
+    values: string[] | number[] | boolean[];
+    id: string;
+}
+
 const Home: React.FC = (): ReactElement => {
     const [alert, setAlert] = useState<IAlert>({
         isOpen: false,
@@ -22,9 +33,14 @@ const Home: React.FC = (): ReactElement => {
         message: ''
     });
 
+    const [table, setTable] = useState<ITable>({
+        isOpen: false,
+        data: null
+    });
+
     const history = useHistory();
     const [query, setQuery] = useState<string>('');
-
+    
     const toggleAlert = (): void => setAlert((alert) => ({ ...alert, isOpen: !alert.isOpen }));
 
     const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => setQuery(e.target.value);
@@ -34,6 +50,13 @@ const Home: React.FC = (): ReactElement => {
             message,
             severity,
             isOpen: true
+        });
+    };
+
+    const showTable = (data: IData[]): void => {
+        setTable({
+            isOpen: true,
+            data: data
         });
     };
 
@@ -48,12 +71,15 @@ const Home: React.FC = (): ReactElement => {
         try {
             const response = await executeQuery(query, getAccessKey());
             showAlert('success', 'Query executed successfully');
-            if(response.data.result !== null) {
-
-            }
+            console.log(response.data.result);
+            if(response.data.result !== null) showTable(response.data.result);
         } catch(error) {
-            if(error.response.data.Message === 'Access key is invalid') logout();
-            else showAlert('error', error.response.data.Message);
+            if(error.response !== undefined) {
+                if(error.response.data.Message === 'Access key is invalid') logout();
+                else showAlert('error', error.response.data.Message);
+            } else {
+                showAlert('error', error.message);
+            }
         }
     };
 
@@ -66,8 +92,8 @@ const Home: React.FC = (): ReactElement => {
             <Navbar />
             <Input onChange={handleInputChange} />
             <Button onClick={performQuery}>Perform query</Button>
-            <Table isOpen={true} />
-            <Alert severity={alert.severity} isOpen={alert.isOpen} message={alert.message} handleClose={toggleAlert} autoHideDuration={3000} />
+            <Table isOpen={table.isOpen} data={table.data} />
+            <Alert severity={alert.severity} isOpen={alert.isOpen} message={alert.message} handleClose={toggleAlert} autoHideDuration={5000} />
         </>
     );
 }
