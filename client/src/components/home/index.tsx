@@ -7,6 +7,7 @@ import Alert from '../general/Alert';
 import Button from './Button';
 import { executeQuery } from '../../utils/api';
 import { Color } from "@material-ui/lab";
+import Table from './Table';
 
 interface IAlert {
     isOpen: boolean;
@@ -47,8 +48,9 @@ const Home: React.FC = (): ReactElement => {
         try {
             const response = await executeQuery(query, getAccessKey());
             showAlert('success', 'Query executed successfully');
-            console.log(response);
-            //TODO: Add success message and create table with data
+            if(response.data.result !== null) {
+
+            }
         } catch(error) {
             if(error.response.data.Message === 'Access key is invalid') logout();
             else showAlert('error', error.response.data.Message);
@@ -64,6 +66,7 @@ const Home: React.FC = (): ReactElement => {
             <Navbar />
             <Input onChange={handleInputChange} />
             <Button onClick={performQuery}>Perform query</Button>
+            <Table isOpen={true} />
             <Alert severity={alert.severity} isOpen={alert.isOpen} message={alert.message} handleClose={toggleAlert} autoHideDuration={3000} />
         </>
     );
