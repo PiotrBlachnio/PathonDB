@@ -15,26 +15,25 @@ interface IAlert {
 }
 
 const Home: React.FC = (): ReactElement => {
-    const history = useHistory();
     const [alert, setAlert] = useState<IAlert>({
         isOpen: false,
         severity: 'error',
         message: ''
     });
 
-    const [isAlertOpen, setIsAlertOpen] = useState<boolean>(false);
-    const [alertMessage, setAlertMessage] = useState<string>('');
-    const [alertSeverity, setAlertSeverity] = useState<Color>('error');
+    const history = useHistory();
     const [query, setQuery] = useState<string>('');
 
-    const toggleAlert = (): void => setIsAlertOpen(isOpen => !isOpen);
+    const toggleAlert = (): void => setAlert((alert) => ({ ...alert, isOpen: !alert.isOpen }));
 
     const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => setQuery(e.target.value);
 
     const showAlert = (severity: Color, message: string): void => {
-        setAlertMessage(message);
-        setAlertSeverity(severity);
-        setIsAlertOpen(true);
+        setAlert({
+            message,
+            severity,
+            isOpen: true
+        });
     };
 
     const logout = (): void => {
@@ -47,6 +46,8 @@ const Home: React.FC = (): ReactElement => {
     const performQuery = async (): Promise<void> => {
         try {
             const response = await executeQuery(query, getAccessKey());
+            showAlert('success', 'Query executed successfully');
+            console.log(response);
             //TODO: Add success message and create table with data
         } catch(error) {
             if(error.response.data.Message === 'Access key is invalid') logout();
@@ -63,7 +64,7 @@ const Home: React.FC = (): ReactElement => {
             <Navbar />
             <Input onChange={handleInputChange} />
             <Button onClick={performQuery}>Perform query</Button>
-            <Alert severity={alertSeverity} isOpen={isAlertOpen} message={alertMessage} handleClose={toggleAlert} autoHideDuration={3000} />
+            <Alert severity={alert.severity} isOpen={alert.isOpen} message={alert.message} handleClose={toggleAlert} autoHideDuration={3000} />
         </>
     );
 }
