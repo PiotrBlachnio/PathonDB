@@ -11,14 +11,10 @@ const Navbar: React.FC = (): ReactElement => {
     const history = useHistory();
 
     const handleButtonClick = async (): Promise<void> => {
-        try {
-            setIsAuthenticated(IsAuthenticated.FALSE);
-            setAccessKey('');
+        setIsAuthenticated(IsAuthenticated.FALSE);
+        setAccessKey('');
 
-            history.push('/auth');
-        } catch(error) {
-            console.error(error);
-        }
+        history.push('/auth');
     };
 
     return (

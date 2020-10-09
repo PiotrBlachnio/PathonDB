@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PathonDB.Server.Contracts;
@@ -24,6 +25,8 @@ namespace PathonDB.Server.Controllers {
         public ActionResult PerformQuery([FromBody] QueryRequest body) {
             var key = _authService.GetKeyFromHttpContext(_httpContextAccessor.HttpContext);
 
+            if(!_databaseClient.ContainsKey(key)) throw new Exception("Access key is invalid");
+            
             var result = _databaseClient.PerformQuery(key, body.Query);
             var response = new QueryResponse() { Result = result };
             
