@@ -17,8 +17,6 @@ const style: CSSProperties = {
     transform: 'translate(-50%)'
 };
 
-// TODO: Do refactoring
-
 const Table: React.FC<IProps> = (props): ReactElement => {
     const renderRows = (): any => {
         var rows: Record<string, number | string | boolean>[] = [];
