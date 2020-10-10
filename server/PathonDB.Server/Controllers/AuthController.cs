@@ -4,40 +4,30 @@ using Microsoft.AspNetCore.Mvc;
 using PathonDB.Server.Contracts;
 using PathonDB.Server.Contracts.Requests;
 using PathonDB.Server.Contracts.Responses;
+using PathonDB.Server.Models;
 using PathonDB.Server.Services;
 
 namespace PathonDB.Server.Controllers {
 
     [ApiController]
     public class AuthController : ControllerBase {
+        private readonly IDatabaseClient _databaseClient;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IAuthService _authService;
 
-        public AuthController(IHttpContextAccessor httpContextAccessor, IAuthService authService) {
+        public AuthController(IHttpContextAccessor httpContextAccessor, IAuthService authService, IDatabaseClient databaseClient) {
+            _databaseClient = databaseClient;
             _httpContextAccessor = httpContextAccessor;
             _authService = authService;
         }
 
-        [HttpGet(ApiRoutes.Auth.NewKey)]
-        public ActionResult GetNewKey() {
-            var key = _authService.GenerateNewKey();
-            var response = new NewKeyResponse() { Key = key };
+        [HttpPost(ApiRoutes.Auth.Authorize)]
+        public ActionResult Authorize([FromBody] ExistingKeyRequest body) {
+            var key = body.Key;
 
-            return Ok(response);
-        }
+            if(!_authService.IsKeyValid(key)) throw new Exception("Access key is invalid");
 
-        [HttpPost(ApiRoutes.Auth.ExistingKey)]
-        public ActionResult UseExistingKey([FromBody] ExistingKeyRequest body) {
-            if(!_authService.IsKeyValid(body.Key)) throw new Exception("Access key is invalid");
-
-            _httpContextAccessor.HttpContext.Response.Cookies.Append("access-key", body.Key);
-
-            return Ok();
-        }
-
-        [HttpPost(ApiRoutes.Auth.Logout)]
-        public ActionResult Logout() {
-            _httpContextAccessor.HttpContext.Response.Cookies.Delete("access-key");
+            if(!_databaseClient.ContainsKey(key)) _databaseClient.AddClient(key);
 
             return Ok();
         }
