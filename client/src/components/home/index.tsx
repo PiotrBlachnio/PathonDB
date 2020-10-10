@@ -69,17 +69,18 @@ const Home: React.FC = (): ReactElement => {
 
     const performQuery = async (): Promise<void> => {
         try {
-            const response = await executeQuery(query, getAccessKey());
+            const result = (await executeQuery(query, getAccessKey())).data.result;
+
             showAlert('success', 'Query executed successfully');
-            console.log(response.data.result);
-            if(response.data.result !== null) showTable(response.data.result);
+            if(result) showTable(result);
         } catch(error) {
-            if(error.response !== undefined) {
-                if(error.response.data.Message === 'Access key is invalid') logout();
-                else showAlert('error', error.response.data.Message);
-            } else {
+            if(!error.response) {
                 showAlert('error', error.message);
+                return;
             }
+
+            if(error.response.data.Message === 'Access key is invalid') logout();
+            else showAlert('error', error.response.data.Message);
         }
     };
 
