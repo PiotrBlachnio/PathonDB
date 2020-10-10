@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:5000/api/v1';
+axios.defaults.baseURL = `${process.env.REACT_APP_API_URL}/api/v1`;
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.withCredentials = true;
 
