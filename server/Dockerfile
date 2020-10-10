@@ -1,26 +1,21 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 
-ARG BUILDCONFIG=RELEASE
-ARG VERSION=1.0.0
+WORKDIR /app 
 
-ENV STAGE=PRODUCTION
+COPY *.sln .
+COPY PathonDB.Server/*.csproj ./PathonDB.Server/
+COPY PathonDB.DatabaseClient/*.csproj ./PathonDB.DatabaseClient/
 
-COPY ./PathonDB.Server/PathonDB.Server.csproj /build/PathonDB.Server/
-COPY ./PathonDB.DatabaseClient/PathonDB.DatabaseClient.csproj /build/PathonDB.DatabaseClient/
+RUN dotnet restore 
 
-RUN dotnet restore ./build/PathonDB.Server/PathonDB.Server.csproj
-RUN dotnet restore ./build/PathonDB.DatabaseClient/PathonDB.DatabaseClient.csproj
+COPY PathonDB.Server/. ./PathonDB.Server/
+COPY PathonDB.DatabaseClient/. ./PathonDB.DatabaseClient/
 
-COPY . ./build/
+WORKDIR /app/PathonDB.Server
+RUN dotnet publish -c Release -o out 
 
-WORKDIR /build/
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS runtime
+WORKDIR /app 
 
-RUN dotnet publish ./PathonDB.Server/PathonDB.Server.csproj -c $BUILDCONFIG -o out /p:Version=$VERSION
-RUN dotnet publish ./PathonDB.DatabaseClient/PathonDB.Server.csproj -c $BUILDCONFIG -o out /p:Version=$VERSION
-
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
-WORKDIR /app
-
-COPY --from=build /build/out .
-
-ENTRYPOINT [ "dotnet", "PathonDB.Server.dll" ]
+COPY --from=build /app/PathonDB.Server/out ./
+ENTRYPOINT ["dotnet", "PathonDB.Server.dll"]
