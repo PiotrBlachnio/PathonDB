@@ -18,4 +18,4 @@ FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS runtime
 WORKDIR /app 
 
 COPY --from=build /app/PathonDB.Server/out ./
-ENTRYPOINT ["dotnet", "PathonDB.Server.dll"]
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet PathonDB.Server.dll
