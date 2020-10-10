@@ -26,29 +26,16 @@ const style: CSSProperties = {
 
 const Table: React.FC<IProps> = (props): ReactElement => {
     const renderRows = (): RowsProp => {
-        var rows: Record<string, number | string | boolean>[] = [];
+        const rows: RowsProp = getRowsFromData()
 
-        for(let i = 0; i < props.data!.length; i++) {
-            var row: Record<string, number | string | boolean> = {};
-
-            if(props.data![i].id) row.id = props.data![i].id;
-            else row.id = v4();
-
-            for(let j = 0; j < props.data![i].columnNames.length; j++) {
-                row[props.data![i].columnNames[j]] = props.data![i].values[j];
-            }
-
-            rows.push(row);
-        }
-
-        return rows as RowsProp;
+        return rows;
     };
 
     const renderColumns = (): Columns => {
-        var columns: ICol[] = [];
-        var row: IData = props.data![0];
+        let columns: ICol[] = [];
+        const row: IData = props.data![0];
 
-        var idColumn = returnColumnIfRowContainsId(row);
+        const idColumn = returnColumnIfRowContainsId(row);
         if(idColumn) columns.push(idColumn);
 
         columns = [...columns, ...getColumnsFromRow(row)];
@@ -57,14 +44,33 @@ const Table: React.FC<IProps> = (props): ReactElement => {
     };
 
     const getColumnsFromRow = (row: IData): ICol[] => {
-        var columns: ICol[] = [];
+        const columns: ICol[] = [];
 
         for(let i = 0; i < row.columnNames.length; i++) {
-            var type = typeof row.columnNames[i];
+            const type = typeof row.columnNames[i];
             columns.push({ field: row.columnNames[i], headerName: row.columnNames[i], type: type, width: 150 });
         }
 
         return columns;
+    };
+
+    const getRowsFromData = (): RowsProp => {
+        const rows = [];
+
+        for(let i = 0; i < props.data!.length; i++) {
+            const currentDataElement = props.data![i];
+            const row: Record<string, number | string | boolean> = {};
+
+            row.id = currentDataElement.id ? currentDataElement.id : v4();
+
+            for(let j = 0; j < currentDataElement.columnNames.length; j++) {
+                row[currentDataElement.columnNames[j]] = currentDataElement.values[j];
+            }
+
+            rows.push(row);
+        }
+
+        return rows as RowsProp;
     };
 
     const returnColumnIfRowContainsId = (row: IData): ICol | null => {
