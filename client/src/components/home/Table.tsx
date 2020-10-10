@@ -1,5 +1,5 @@
-import React, { ReactElement } from 'react';
-import { DataGrid, RowProps } from '@material-ui/data-grid';
+import React, { CSSProperties, ReactElement } from 'react';
+import { DataGrid } from '@material-ui/data-grid';
 import { IData } from './index';
 import { v4 } from 'uuid';
 
@@ -8,28 +8,18 @@ interface IProps {
     data: IData[] | null;
 }
 
-const columns = [
-    { field: 'id', headerName: 'ID'},
-    { field: 'firstName', headerName: 'First name' },
-    { field: 'lastName', headerName: 'Last name' },
-    {
-      field: 'age',
-      headerName: 'Age',
-      type: 'number'
-    }
-  ];
-  
-  const rows = [
-    { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-    // { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-    // { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-    // { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-    // { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-    // { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-    // { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-    // { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-    // { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-  ];
+const style: CSSProperties = {
+    height: 400,
+    width: 1000,
+    position: 'absolute',
+    bottom: '0%',
+    left: '50%',
+    transform: 'translate(-50%)'
+};
+
+// TODO: Do refactoring
+// TODO: Center the table
+// TODO: Instead of toggle alert use close and open separately
 
 const Table: React.FC<IProps> = (props): ReactElement => {
     const renderRows = (): any => {
@@ -67,7 +57,7 @@ const Table: React.FC<IProps> = (props): ReactElement => {
     return (
         <>
             { props.isOpen ? 
-                <div style={{ height: 400, width: 1000, position: 'absolute', bottom: 0 }}>
+                <div style={style}>
                     <DataGrid rows={renderRows()} columns={renderColumns()} pageSize={5} checkboxSelection />
                 </div>
             : null }
