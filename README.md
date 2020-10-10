@@ -8,7 +8,10 @@ In-memory database created using C# language. It allows you to make changes usin
 * Typescript
 * CSS
 
-## CREATE query
+## Available queries
+### CREATE
 ```
-CREATE TABLE <table_name> (<column_name> <type>);
+  CREATE TABLE <table_name> (<column_name_1> <type_1>, <column_name_2>, <type_2>);
 ```
+- Column name must not contain any special characters
+- Type must be one of these: text, int, boolean
