@@ -40,8 +40,8 @@ const Home: React.FC = (): ReactElement => {
 
     const history = useHistory();
     const [query, setQuery] = useState<string>('');
-    
-    const toggleAlert = (): void => setAlert((alert) => ({ ...alert, isOpen: !alert.isOpen }));
+
+    const closeAlert = (): void => setAlert((alert) => ({...alert, isOpen: false }));
 
     const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => setQuery(e.target.value);
 
@@ -93,7 +93,7 @@ const Home: React.FC = (): ReactElement => {
             <Input onChange={handleInputChange} />
             <Button onClick={performQuery}>Perform query</Button>
             <Table isOpen={table.isOpen} data={table.data} />
-            <Alert severity={alert.severity} isOpen={alert.isOpen} message={alert.message} handleClose={toggleAlert} autoHideDuration={5000} />
+            <Alert severity={alert.severity} isOpen={alert.isOpen} message={alert.message} handleClose={closeAlert} autoHideDuration={5000} />
         </>
     );
 }

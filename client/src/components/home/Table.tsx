@@ -18,8 +18,6 @@ const style: CSSProperties = {
 };
 
 // TODO: Do refactoring
-// TODO: Center the table
-// TODO: Instead of toggle alert use close and open separately
 
 const Table: React.FC<IProps> = (props): ReactElement => {
     const renderRows = (): any => {

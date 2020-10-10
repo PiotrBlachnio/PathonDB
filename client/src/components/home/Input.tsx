@@ -7,7 +7,7 @@ interface IProps {
 
 const style: CSSProperties = {
     position: 'absolute',
-    top: '30%',
+    top: '20%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 700
