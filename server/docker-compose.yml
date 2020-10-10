@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  client:
+    container_name: pathondb/client
+    build: ../client
+    restart: always
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    ports:
+      - 3001:3000
