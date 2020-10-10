@@ -1,11 +1,18 @@
 import React, { CSSProperties, ReactElement } from 'react';
-import { DataGrid } from '@material-ui/data-grid';
+import { Columns, DataGrid, RowsProp } from '@material-ui/data-grid';
 import { IData } from './index';
 import { v4 } from 'uuid';
 
 interface IProps {
     isOpen: boolean;
     data: IData[] | null;
+}
+
+interface ICol {
+    field: string;
+    headerName?: string;
+    width?: number;
+    type?: string;
 }
 
 const style: CSSProperties = {
@@ -18,36 +25,58 @@ const style: CSSProperties = {
 };
 
 const Table: React.FC<IProps> = (props): ReactElement => {
-    const renderRows = (): any => {
-        var rows: Record<string, number | string | boolean>[] = [];
+    const renderRows = (): RowsProp => {
+        const rows: RowsProp = getRowsFromData()
+
+        return rows;
+    };
+
+    const renderColumns = (): Columns => {
+        let columns: ICol[] = [];
+        const row: IData = props.data![0];
+
+        const idColumn = returnColumnIfRowContainsId(row);
+        if(idColumn) columns.push(idColumn);
+
+        columns = [...columns, ...getColumnsFromRow(row)];
+ 
+        return columns;
+    };
+
+    const getColumnsFromRow = (row: IData): ICol[] => {
+        const columns: ICol[] = [];
+
+        for(let i = 0; i < row.columnNames.length; i++) {
+            const type = typeof row.columnNames[i];
+            columns.push({ field: row.columnNames[i], headerName: row.columnNames[i], type: type, width: 150 });
+        }
+
+        return columns;
+    };
+
+    const getRowsFromData = (): RowsProp => {
+        const rows = [];
 
         for(let i = 0; i < props.data!.length; i++) {
-            var row: Record<string, number | string | boolean> = {};
+            const currentDataElement = props.data![i];
+            const row: Record<string, number | string | boolean> = {};
 
-            if(props.data![i].id) row.id = props.data![i].id;
-            else row.id = v4();
+            row.id = currentDataElement.id ? currentDataElement.id : v4();
 
-            for(let j = 0; j < props.data![i].columnNames.length; j++) {
-                row[props.data![i].columnNames[j]] = props.data![i].values[j];
+            for(let j = 0; j < currentDataElement.columnNames.length; j++) {
+                row[currentDataElement.columnNames[j]] = currentDataElement.values[j];
             }
 
             rows.push(row);
         }
 
-        return rows;
+        return rows as RowsProp;
     };
 
-    const renderColumns = (): any => {
-        var columns: Record<string, string | number>[] = [];
+    const returnColumnIfRowContainsId = (row: IData): ICol | null => {
+        if(!row.id) return null;
 
-        if(props.data![0].id) columns.push({ field: 'id', headerName: 'ID', width: 320 });
-
-        for(let i = 0; i < props.data![0].columnNames.length; i++) {
-            var type = typeof props.data![0].columnNames[i];
-            columns.push({ field: props.data![0].columnNames[i], headerName: props.data![0].columnNames[i], type: type, width: 150 });
-        }
-        
-        return columns;
+        return { field: 'id', headerName: 'ID', width: 320 };
     };
 
     return (
