@@ -1,3 +1,6 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/89000ba4-f1bf-4527-a201-9abe8eaa4a26/deploy-status)](https://app.netlify.com/sites/pathondb/deploys)
+[![BCH compliance](https://bettercodehub.com/edge/badge/PiotrBlachnio/PathonDB?branch=master)](https://bettercodehub.com/)
+
 # Pathon Database
 In-memory database created using C# language. It allows you to make changes using various queries. The client side was written in React. The application has simple key-based authorization system. Availabe queries: CREATE, INSERT and SELECT.
 
@@ -81,3 +84,12 @@ dotnet build
 dotnet run
 ```
 
+## Contributing
+1. Fork it (https://github.com/PiotrBlachnio/PathonDB/fork)
+1. Create your feature branch (git checkout -b feature/fooBar)
+1. Commit your changes (git commit -am 'Add some fooBar')
+1. Push to the branch (git push origin feature/fooBar)
+1. Create a new Pull Request
+
+## Check it by yourself
+[Netlify](https://come-and-eat.netlify.com/#/home)
