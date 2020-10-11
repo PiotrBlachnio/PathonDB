@@ -101,4 +101,4 @@ bash dev.sh
 1. Create a new Pull Request
 
 ## Check it by yourself
-[Netlify](https://pathondb.netlify.app/auth) - There might be some latency on the first request due to server deployment on Heroku
+[Netlify](https://pathondb.netlify.app) - There might be some latency on the first request due to server deployment on Heroku
