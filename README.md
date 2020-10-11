@@ -41,3 +41,43 @@ In-memory database created using C# language. It allows you to make changes usin
 - All the columns can be selected using __*__ character
 - Individual columns have to be listed inside the parentheses
 - Condition can be applied using WHERE keyword and giving column name with the corresponding value
+
+## Running on localhost
+### Client
+****
+**_Make sure you added corresponding variables from .env.example file in the client directory_**
+
+****
+```
+git clone https://github.com/PiotrBlachnio/PathonDB.git
+```
+
+```
+cd PathonDB/client
+```
+
+```
+npm install
+```
+
+```
+npm run start
+```
+
+### Server
+```
+git clone https://github.com/PiotrBlachnio/PathonDB.git
+```
+
+```
+cd PathonDB/server
+```
+
+```
+dotnet build
+```
+
+```
+dotnet run
+```
+
