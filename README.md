@@ -84,6 +84,15 @@ dotnet build
 dotnet run
 ```
 
+## Running using bash script
+****
+**_Make sure you added corresponding variables from .env.example file in the client directory_**
+
+****
+
+```
+bash dev.sh
+```
 ## Contributing
 1. Fork it (https://github.com/PiotrBlachnio/PathonDB/fork)
 1. Create your feature branch (git checkout -b feature/fooBar)
