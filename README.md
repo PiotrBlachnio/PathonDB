@@ -92,4 +92,4 @@ dotnet run
 1. Create a new Pull Request
 
 ## Check it by yourself
-[Netlify](https://come-and-eat.netlify.com/#/home)
+[Netlify](https://come-and-eat.netlify.com/#/home) - There might be some latency on the first request due to server deployment on Heroku
