@@ -18,7 +18,7 @@ In-memory database created using C# language. It allows you to make changes usin
 ```
 - Column name must not contain any special characters
 - Type must be one of these: text, int, boolean
-- ID column is not allowed. It's generated automatically.
+- ID column is not allowed. It's generated automatically
 
 ### INSERT
 ```
